@@ -7,7 +7,7 @@ runtime: shiny_prerendered
 
 ## Einleitung
 
-Dieses Skript ist als Teil der Bachelorveranstaltung Statistik der Wirtschaftswissenschaftlichen Fakultät an der Universität Göttingen entstanden und soll Studenten helfen auf eine einfache und direkte Art und Weise die wichtigsten Funktion der Statischen Programmiersprache **R** zu verstehen und anwenden zu können. Der Inhalt soll des Weiteren allen Studierenden helfen welche Interesse oder Fragen hinsichtlich **R**-Programmierung haben.
+ Skript ist als Teil der Bachelorveranstaltung Statistik der Wirtschaftswissenschaftlichen Fakultät an der Universität Göttingen entstanden und soll Studenten helfen auf eine einfache und direkte Art und Weise die wichtigsten Funktion der Statischen Programmiersprache **R** zu verstehen und anwenden zu können. Der Inhalt soll des Weiteren allen Studierenden helfen welche Interesse oder Fragen hinsichtlich **R**-Programmierung haben.
 
 Die aktuellste Version des Skriptes, sowie die unterliegenden Source-Files, sind im Gitlab-Repository ["intro2r"](https://gitlab.gwdg.de/kruse44/intro2r) zu finden.
 
