@@ -1,0 +1,205 @@
+---
+title: "Einführung in die R Grundlagen"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+  
+```{r, include=FALSE}
+library(learnr)
+```
+
+
+## Eigene Funktionen
+
+Wenn du merkst, dass du einige Aufgaben immer wieder durchführen musst und dafür Abfolgen von Code immer Kopieren und Einfügen musst, oder dass es keine Funktionen existieren welche eine bestimmte Aufgabe die du gelöst sehen willst lösen kann, solltest du überlegen eigene Funktionen zu schreiben.
+
+Funktionen werden mit der `function()`-Anweisung definiert und wie alles andere als **R**-Objekte gespeichert. Ein Beispiel einer "leeren" Funktion
+
+```{r}
+f <- function() {
+  ## Eine leere Funktion
+  }
+
+```
+
+Als nächstes können wir eine Funktion erstellen, die tatsächlich einen nicht-trivialen Funktionskörper hat.
+```{r}
+
+f <- function() {
+  cat("Hello, world!\n")
+}
+f()
+
+```
+Der letzte Aspekt einer Grundfunktion sind die Funktionsargumente. Dies sind die Optionen, die der Benutzer angeben kann. Für diese Grundfunktion können wir ein Argument hinzufügen, das bestimmt, wie oft "Hallo, Welt!" auf der Konsole ausgegeben wird.
+
+```{r}
+
+f <- function(num) {
+       for(i in seq_len(num)) {
+               cat("Hello, world!\n")
+       }
+}
+
+f(2)
+
+```
+
+### return()
+
+Zu guter letzt lernst du noch den befehl `return()`kennen. Dieser Befehl sagt deiner **R**-Funktion, dass wenn die funktion durchgeführt wird es möglich ist einer Variable dazu einen Wert zu zuweisen. Als Beispiel:
+
+Hierfür schreiben wir eine Funktion welche zwei Element als Input nimmst und diese mit einander addiert. 
+
+```{r, eval = FALSE}
+
+addtwo <- function(x, y){
+  z <- x + y
+}
+
+```
+
+Führen wir nun diese Funktion aus, so werden `x` und `y` mit einander addiert und wiedergegeben. Nun willst du aber zum Beispiel diesen Wert in einem Objekt Speichern nennen wir es einfach `v`. Hierfür nutzt man einfach die folgende Funktionsstruktur.
+
+```{r, eval = FALSE}
+
+addtwo <- function(x, y){
+  z <- x + y
+  return(z)
+}
+
+```
+
+gebe einfach beliebige Zahlen für die beiden Inputs ein. Du wirst sehen, dass kein Ergebnis widergegeben wird, allerdings dass wenn du `v` eingibst und abrufst das Ergebnis ausgegeben wird.
+
+```{r addtow, exercise=TRUE}
+v <- addtwo(x = 2, y = 3)
+v
+```
+
+
+
+## Kontroll-Strukturen
+
+Bei einigen Aufgaben müssen sich einige Berechnungen wiederholen oder sie sind abhängig von bestimmten
+Bedingungen. Selbst denselben Befehl immer wieder abzutippen ist im besten Fall langweilig, und im
+schlimmsten Fall sehr aufwendig. Deswegen erlaubt es R, wie viele andere Programmiersprachen auch,
+repetitive Aufgaben zu automatisieren
+
+
+### For-Loops
+
+Wenn du Rechnungen mehrfach wiederholen musst eignet sich dafür der `for()`-Befehl, der die folgende
+allgemeine Form besitzt:
+
+```{r forBSP1, eval=FALSE}
+for (variable in vector) {
+  # Aufgabe
+}
+```
+
+Der Ablauf hierbei ist immer gleich, wird eine bestimmte Kondition (condition) erfüllt, wird ein bestimmter
+**R** Befehl ausgeführt (expr). Man kann diese If-Anfrage durch eine Else-Condition erweitern, welche bei
+nicht Erfüllung der Bedingung einen anderen Befehl ausführt.
+
+```{r forBSP2}
+for(i in 1:5){
+  print(i)
+}
+```
+
+### If-Else
+
+Du wirst beim Schreiben von eigenen Funktionen in die Situation kommen, in der eine Funktion bedingt
+auf ein Ereignis ein bestimmtes Ergebnis reagieren muss. Diese bedingten Abfragen sehen in **R** so aus
+
+```{r ifBSP1, eval=FALSE}
+# Einfacher Fall
+  if (condition) {
+# expr
+}
+
+# Entweder Oder Fall
+if (condition) {
+  # expr
+} else {
+  # expr
+}
+```
+
+Der Ablauf hierbei ist immer gleich, wird eine bestimmte Kondition (condition) erfüllt, wird ein bestimmter
+**R** Befehl ausgeführt (expr). Man kann diese If-Anfrage durch eine Else-Condition erweitern, welche bei
+nicht Erfüllung der Bedingung einen anderen Befehl ausführt
+
+```{r ifBSP2}
+x <- c(6)
+
+if (x == 6) { # Wenn x = 6, dann
+  print("x gleich 6")
+}
+
+if (x == 5) { # Wenn x = 5, dann
+  print("x gleich 5")
+} else { # Wenn x nicht gleich 5 dann
+  print("x ist ungleich 5")
+}
+```
+
+### While-Loops
+
+Die while-Schleife dient dazu, eine Abfolge von Anweisungen mehrfach auszuführen, solange eine Bedingung
+erfüllt ist
+
+```{r whileBSP1, eval=FALSE}
+while (condition) {
+  # Expr
+}
+```
+
+Ein Beispiel für diese Form der wiederholten Ausführung eines Befehls ist hier zu sehen.
+
+```{r whileBSP2}
+i <- 1
+while (i < 6) {
+  print(i)
+  i = i+1
+}
+```
+
+
+
+## Teste dein **R** Wissen
+
+*Die Freunde Aisouda, Henny und René haben sich nach dem Studium in der Göttinger Innenstadt eine Eisdiele gekauft. Um zu wissen wie viele Kugeln Eis sie vorbereiten müssen, müssen die Drei die wahrscheinlich nachgefragt Menge vorhersagen. René schlägt dabei vor, dass sie pro erwarteter Sonnenstunde 100 Kugeln Eis verkaufen werden.*
+
+*Schreibe eine Funktion `Eismenge` die als Input die morgigen Sonnenstunden (`s`) nimmt und die zu produzierende Menge an Eis berechnet. Gehe davon aus, dass es am morgigen Tag 11 Sonnenstunden geben wird. Berechne mit der Funktion die Eismenge.*
+```{r function1, exercise=TRUE}
+
+```
+
+```{r function1-solution}
+Eismenge <- function(s) {
+  x <- s * 100
+  return(x)
+}
+
+Eismenge(s = 11)
+```
+
+*Henny und Aisouda haben allerdings schon begonnen Flyer in der Stadt zu verteilen und sind der Meinung, dass die Anzahl der verteilten Flyer ebenfalls einen Einfluss auf die Menge an verkaufen Eiskugeln hat. Beide gehen darüber hinaus  davon aus, dass die wahre Beziehung zwischen den Größen wie folgt sei: (Sonnenstunden x log(Temperatur) x 100)/Preis*
+
+*Schreibe eine Funktion die als Input die morgigen Sonnenstunden (`s`), Temperatur (`t`) und Preis (`p`) nimmt und die zu produzierende Menge an Eis berechnet. Gehe davon aus, dass es am morgigen Tag 11 Sonnenstunden geben wird, es 32 Grad warm wird und eine Kugel 1.50 € Kostet. Berechne mit der Funktion die Eismenge.*
+
+```{r function2, exercise=TRUE}
+
+```
+
+```{r function2-solution}
+Eismenge <- function(s, t, p) {
+  return((s * log(t) *100)/p)
+}
+
+Eismenge(s = 11, t =32, p = 1.5)
+```
+
+

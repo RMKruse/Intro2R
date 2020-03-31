@@ -1,0 +1,100 @@
+---
+title: "Einführung in die R Grundlagen"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+  
+```{r, include=FALSE}
+library(learnr)
+```
+
+
+
+## Einführung in **R**-Programmierung {#kapitel3}
+    
+Nach dem wir im letzten Kapitel uns R und dessen IDE Rstudio genauer angeschaut haben und dabei erste Beispiele für das Programmieren in R gesehen haben wird es Zeit uns in diesem Kapitel genauer mit der Programmierung in R zu befassen.
+Du wirst lernen was Objekte in R sind, wie man Funktionen richtig anwendet und neue Funktionen durch das installieren durch Packages R hinzufügt. Des Weiteren wirst du lernen wie man Code richtig liest, was gute Konditionen beim Schreiben von Code sind und wie du einen guten Workflow in eure Arbeitsweise einarbeitet.
+
+  
+## Zuweisung und Recalling Objekts
+  
+Im letzten Kapitel haben wir ein Beispiel gehabt, in dem wir einer Variable `x` die Sequenz von 1 bis 10 zugewiesen haben. Durch diese Zuweisung war die Sequenz an die Variable `x` gebunden, sodass jedes Mal wenn `x` in der Console abgerufen worden ist die Sequenz von 1 bis 10 wiedergeben worden ist. Generell kann man R wie einen Taschenrechner nutzen wie im ersten Abschnitt beschrieben, allerdings können wir immer wie bei dem Sequenz Beispiel Rechnungen, Werte oder andere Dinge gewissen Ausdrücken wie der Variablen `X` zuweisen um sie so zu speichern.
+Dieses zuweisen erfolgt in **R** immer über den `<-` Operator. Hierbei müssen Variablen nicht unbedingt einzelne Variablen wie `x` sein, sie können auch Namen tragen. Als Beispiel des Zuweisens von verschieden Werten zu verschiedenen Variablen
+
+  
+```{r}
+  x <- 13
+  x
+```
+
+Hierbei wurde dem Variablen `x` der Wert 13 zugewiesen und im nächsten Schritt wurde der Variablen `x` erneut ein neuer Wert 2 zugewiesen.
+  
+```{r}
+  x <- 2
+  x
+```
+
+Du kannst hierbei sehen, dass durch die zweite Zuweisung die erste Zuweisung aufgehoben worden ist und durch die neue ersetzt worden ist. Solltet du deinem Code Kommentare hinzufügen wollen, welche nicht durch **R** ausgeführt wird, nutzt du zu erst das Symbol `#`. Wobei es einfacher ist erst deinen Kommentar zu formulieren, diesen zu markieren und durch das Drücken der Tastenkombination `Strg + Shift + c` wird dieser Part automatisch zu einem Kommentar.
+  
+```{r}
+# Kleines Beispiel eines String-Vectors
+
+  beispiel <- "hallo welt!"
+  beispiel
+```
+Das dritte Beispiel zeigt dir, dass ebenfalls ganze Namen oder andere Zeichenkombinationen einen Wert zugewiesen bekommen können. Dir fällt ebenfalls auf, dass das dritte Beispiel keinen Zahlenwert darstellt, sondern Text einen sogenannten String. Zu den verschiedenen Datentypen in **R** kommen wir im nächsten Abschnitt
+  
+Es gibt allerdings einige Namen für Variablen welche du nicht in **R** nutzen solltest, da diese zu Problem führen (können). Die Namen der Objekte dürfen nicht mit `^, !, $, @, +, -, /, or *`: beginnen.                
+
+## Teste dein **R** Wissen
+ 
+**Aufgabe 1** 
+ 
+*Wie du sicherlich weißt, ist die Antwort auf alle Fragen im Leben 42. Daher erstelle ein Objekt mit dem Namen `Antwort` und weise diesem Objekt den Wert `42` zu.* 
+
+```{r antwort42, exercise=TRUE}
+
+```
+
+```{r antwort42-solution}
+Antwort <- c(42)
+# Oder:
+Antwort <- 42
+```
+
+**Aufgabe 2**
+
+*Ein Kommilitone will einem Objekt einen Wert zuweisen, weiß aber nicht ob der Name zulässig ist. Welche(r) (wenn überhaupt) der folgenden Objektnamen ist (sind) ungültig?*
+```{r aufgabe1, echo=FALSE}
+question("",
+  answer("dieser"),
+  answer("DIESER"),
+  answer("d1eser"),
+  answer("die.ser"),
+  answer("D!ESER!", correct = TRUE),
+  random_answer_order = TRUE
+)
+```
+
+**Aufgabe 3**
+
+*Schaue dir den untenstehenden Code an. Was wird **R** nach der dritten Zeile zurückgeben? Mache eine Vorhersage und teste den Code selbst.*
+
+```{r,eval=FALSE}
+
+x <- 100
+x + 50
+x
+
+```
+
+```{r xeval, exercise=TRUE}
+
+```
+
+```{r xeval-solution}
+100
+```
+
+<!---------------------------------------------------------- Kapitel 2.1 ---------------------------------------------------------->
+

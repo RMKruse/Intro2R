@@ -1,0 +1,229 @@
+---
+title: "Einführung in die R Grundlagen"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+  
+```{r, include=FALSE}
+library(learnr)
+```
+
+
+##  Daten
+
+In diesem Kapitel wirst du lernen wie man externe Daten in **R** einließt, wie man mit diesen Daten arbeitet,
+sie verändert, anpasst und exportiert.
+  
+### Einlesen von Daten 
+
+Daten können aus verschiedenen externen Quellen und Dateiformaten in **R** eingelesen werden. Es gibt ein
+paar Hauptfunktionen, die Daten in **R** einlesen.
+
+  * `read.table()`, `read.csv()`, zum Einlesen von Tabellendaten
+  * `source()`, zum Einlesen von **R**-Code-Dateien
+  * `dget()`, zum Einlesen von **R**-Code-Dateien
+  * `load()`, zum Lesen in gespeicherten Arbeitsbereichen
+  * `unserialize()`, zum Lesen einzelner R-Objekte in binärer Form
+
+Hierbei sei darauf hingewiesen, dass es noch viele weitere **R** Packages gibt, welche es dir erlauben Daten in
+**R** einlesen zu können.
+Parallel zu den verschiedenen Funktionen zum Einlesen von Daten in **R** gibt es diese Funktionen welche es
+dir erlauben Daten zu schreiben
+    
+  * `write.table()`, `write.csv()` zum Schreiben von Tabellendaten in Textdateien (z.B. CSV) oder Verbindungen
+  * `writeLines()`, zum zeilenweisen Schreiben von Zeichendaten in eine Datei oder Verbindung
+  * `dump()`, zum Ausgeben einer textlichen Darstellung mehrerer **R**-Objekte
+  * `dput()`, zur Ausgabe einer textlichen Darstellung eines **R**-Objektes
+  * `save()`, zum Speichern einer beliebigen Anzahl von **R**-Objekten im Binärformat (möglicherweise komprimiert) in eine Datei.
+  * `serialize()`, zum Konvertieren eines **R**-Objektes in ein Binärformat zur Ausgabe auf eine Verbindung (oder Datei).
+    
+### Das readr-Package
+
+Ein explizit für das Einlesen erschaffenes **R** Package ist das reader-Package welches explizit zum Einlesen
+von großen Datenfiles gedacht ist. Das Package ersetzt die im vorigen Kapitel beschriebenen Funktionen
+`read.table()` und `read.csv()` mit den Funktionen `read_table()` bzw. `read_csv()`.
+
+Generell gibts es allerdings ein paar Gründe wieso du lieber auf die Funktionen des `readr`-Packages zurückgreifen
+solltest.
+
+  * Durch den effizienteren Code hinter den Funktonen ist das Einlesen von Daten um ein Vielfaches schneller, was sich vor allem bei größeren Datenfiles bemerkbar macht.
+  * Die `readr`-Funktionen sind generell auch reproduzierbar. Während die Base-**R** Funktionen Eigenheiten des jeweiligen Betriebssystems des Computers übernehmen, sind `readr`-Funktionen System-agnostisch.
+
+
+## Speichern von Daten
+
+
+Wir bereits zu Beginn des Kapitels dargestellt existieren analog zu den Funktionen welche Daten in **R** einlesen Funktionen, welche Daten exportieren bzw. abspeichern. Du kannst Objekte, wie die im vorigen Abschnitt erstellte Liste `x` durch die Nutzung der Funktion `write.table()` bzw. `write.csv()` speichern. Wie jede Funktion in **R** die wir bisher begegnet sind, haben auch diese Argumente die bestimmten Einfluss auf Art und Weise wie die Funktion durchgeführt wird. 
+
+Um nun `x` beispielhaft als CSV-Datei abzuspeichern musst du folgendes machen:
+
+```{r savecsvBSP, eval = FALSE}
+
+write.csv(x, file = "beispiel.csv", row.names = FALSE)
+
+```
+
+Der Aufbau der Argumente hat folgende Struktur. Zunächst solltest du `write.csv()` den Namen des **R**-Objektes geben, das du gespeichert haben möchtest. Als nächstes solltest du einen Dateinamen für deine Datei angeben. **R** wird diesen Namen ziemlich wörtlich nehmen, also stell sicher, dass du eine Erweiterung
+
+**R** wandelt deine Liste in eine Klartextdatei in eine CSV-Datei um, in welcher Werte durch Komma getrennt sind und speichert die Datei in deinem Arbeitsverzeichnis. Du fragst dich vielleicht was dein Arbeitsverzeichnis ist? Nun das klären wir im nächsten Abschnitt.
+
+
+<!----------------------------------------------------------  Kapitel 3 ---------------------------------------------------------->
+
+
+
+    
+## Daten Selektion 
+
+Es ist oft wichtig für bestimmte Operationen nur einen Teil der Daten, also ein Subset, zu betrachten und
+zu bearbeiten. Diese sogenannte Subsettig von **R** Objekten kann in Base-**R** mithilfe von drei verschiedenen
+Operatoren gemacht werden. Diese drei Operatoren sind `[]`, `[[]]` und `$`.
+Der `[]` Operator selektiert ein Teil der Daten und gibt das Subset in derselben Objekt Klasse aus wie das
+Originale. Der `[[]]` hingegen kann nur einzelne Element aus Listen oder Dataframe subsetten und das
+resultierende Objekt ist nicht unbedingt aus der selben Objekt Klasse wie das übergeordnete. Schlussendlich
+der `$` Operator kann genutzt werden um Elemente durch Nutzung ihres Names auszulesen.
+Zuerst betrachten wir wie man Subsetting mit einem Vektor macht
+  
+## Subsetting von Vektoren
+
+Zu Beginn die Anwendung des `[` Operators auf Vektoren. Hierbei kann man sehen, dass entweder einzelne
+Elemente ausgelesen werden können, ganze Folgen oder bestimmte beliebige Positionen
+
+```{r subsetvektor1}
+foo <- c("rot", "gruen", "blau", "blau", "gelb", "rot")
+
+# Nur das erste Element des Vektors
+foo[1]
+
+# Die ersten vier Elemente
+foo[1:4]
+
+# Der erste, dritte und letzte Eintrag
+foo[c(1, 3, length(foo))]
+
+```
+
+Oft sehr interessant ist auch die logische Abfrage von Inhalten:
+
+```{r subsetvektor2}
+  
+# Alle nicht roten Elemente
+foo[foo != "rot"]
+
+```
+
+## Subsetting von Matrizen
+
+Das subsetten einer Matrix erfolgt denselben Regel wie das Subsetten der Vektoren, wobei hier die abzufragenden
+Positionen anstatt mit einer Angabe auf Grund der zwei-Dimensionalität durch zwei Angaben
+anzugeben ist. Hier ein Beispiel anhand der im Kapitel 3 erschaffenen Matrix was damit gemeint ist
+
+```{r subsetmatrix1}
+m <- matrix(c(1,2,3,4,5,6), ncol = 2, nrow = 3, byrow = TRUE)
+m
+
+# Abfrage des Elements in der zweiten Reihe und der ersten Spalte
+m[2,1]
+
+```
+
+Wenn man nun allerdings anstatt eines Elementes, alle Elemente einer Reihe oder Spalte abfragen will kann
+man die jeweilige Row bzw. Column Angabe frei lassen. Beispiel hier:
+
+```{r subsetmatrix2}
+# Alle Elemente der ersten Reihe
+m[1, ]
+
+# Alle Elemente der ersten Spalte
+m[ , 1]
+
+```
+
+## Subsetting von Listen
+
+Listen können in **R** in drei verschiedenen Arten gesubsettet werden. Hierfür nutzt man die oben genannten drei verschiedenen Operatoren. Um die drei verschiedenen Arten zu illustrieren erschaffen wir zu erst eine Beispielsliste
+
+```{r subsetliste1}
+x <- list(foo = 1:3, faa = "hallo", faz = 0.3)
+
+```
+
+Eine der einfachsten und bequemsten Arten Listen zu subsetten ist die Benutzung des `$` Operators. Der Grund hierfür ist, dass wenn du den Namen der Zielliste eingibst, gefolgt vom Operator, kannst du durch das Betätigen der Tabulator Taste Rstudios Autovervollständigung nutzen. Dabei werden alle Elemente einer Liste aufgeführt und du kannst einfach das gewünschte Element über die Pfeiltasten auswählen.
+
+```{r subsetliste2}
+
+x$foo
+
+x$faa
+
+```
+
+Ähnlich zum Subsetten der Matrizen und Vektoren, können Listen ebenso mit dem `[]`- bzw. `[[]]`-Operator gesubsettet werden. Wenn du also das erste Element der Liste auswählen willst kannst du einfach wie in folgendem Beispiel machen 
+
+```{r subsetliste3}
+x[[1]]
+
+```
+
+Ebenso ist es wieder möglich in Kombination mit dem `[[]]`-Operator mit Hilfe der Namen der Elemente die Liste zu subsetten.
+
+```{r subsetliste4}
+x[["foo"]]
+
+```
+
+Schlussendlich ist es ebenso möglich mehrere Elemente der Liste auszuwählen. Hierfür nutze einfach den `[]` oder `[[]]`-Operator und setze gebe einen Vektor an, welche die Elemente bestimmt. Allerdings sei hierbei darauf hingewiesen, dass je nach dem welchen der beiden Operatoren du nutzt verschieden Elemente ausgewählten werden .Zum einfacheren Verständnis das folgende Beispiel:
+
+```{r subsetliste5}
+
+# Das Zweite und das dritte Element der Liste
+x[c(2,3)]
+
+# Der dritte Eintrag des ersten Elements 
+x[[c(1,3)]]
+```
+
+```{r subsetliste6}
+
+
+```
+
+
+## Teste dein **R** Wissen
+
+**Aufgabe 1**
+
+*Korrigiere jeden der folgenden allgemeinen Dataframe-Subsetzfehler*
+
+
+```{r, include=FALSE}
+data(mtcars)
+```
+
+```{r, eval =FALSE}
+mtcars[mtcars$cyl = 4, ]
+mtcars[-1:4, ]
+mtcars[mtcars$cyl <= 5]
+mtcars[mtcars$cyl == 4 | 6, ]
+```
+
+```{r filterex1, exercise=TRUE}
+
+```
+
+```{r filterex1-solution}
+mtcars[mtcars$cyl == 4, ]       # benutze `==`             
+mtcars[-c(1:4), ]                 # benutze `-(1:4)`          
+mtcars[mtcars$cyl <= 5, ]        # `,` fehlt
+mtcars[mtcars$cyl == 6, ]  # benutze `mtcars$cyl == 6` 
+```
+
+
+**Aufgabe 2**
+
+*Warum gibt mtcars[1:20] einen Fehler zurück? Wie unterscheidet es sich von den ähnlichen mtcars[1:20, ]. Führe beide Befehle aus.*
+
+```{r filterex2, exercise=TRUE}
+
+```
+
