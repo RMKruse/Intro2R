@@ -12,7 +12,7 @@ library(learnr)
 
 ## Einführung in **R**-Programmierung {#kapitel3}
     
-Nach dem wir im letzten Kapitel uns R und dessen IDE Rstudio genauer angeschaut haben und dabei erste Beispiele für das Programmieren in R gesehen haben wird es Zeit uns in diesem Kapitel genauer mit der Programmierung in R zu befassen.
+Nach dem wir im letzten Kapitel uns R und dessen IDE RStudio genauer angeschaut haben und dabei erste Beispiele für das Programmieren in R gesehen haben wird es Zeit uns in diesem Kapitel genauer mit der Programmierung in R zu befassen.
 Du wirst lernen was Objekte in R sind, wie man Funktionen richtig anwendet und neue Funktionen durch das installieren durch Packages R hinzufügt. Des Weiteren wirst du lernen wie man Code richtig liest, was gute Konditionen beim Schreiben von Code sind und wie du einen guten Workflow in eure Arbeitsweise einarbeitet.
 
   
