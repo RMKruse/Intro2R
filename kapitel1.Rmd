@@ -11,7 +11,7 @@ library(learnr)
 
 
 ## Einleitung
-Dieses Skript ist als Teil der Bachelorveranstaltung Statistik der Wirtschaftswissenschaftlichen Fakultät an der Universität Göttingen entstanden und soll Studenten helfen auf eine einfache und direkte Art und Weise die wichtigsten Funktion der Statischen Programmiersprache **R** zu verstehen und anwenden zu können. Der Inhalt soll des Weiteren allen Studierenden helfen welches Interesse oder Fragen hinsichtlich **R**-Programmierung haben.
+Dieses Skript ist als Teil der Bachelorveranstaltung Statistik der Wirtschaftswissenschaftlichen Fakultät der Universität Göttingen entstanden und soll Studenten helfen auf eine einfache und direkte Art und Weise die wichtigsten Funktion der Statischen Programmiersprache **R** zu verstehen und anwenden zu können. Der Inhalt soll des Weiteren allen Studierenden helfen welche Interesse oder Fragen hinsichtlich **R**-Programmierung haben.
 
 Die aktuellste Version des Skriptes, sowie die unterliegenden Source-Files, sind im Gitlab-Repository ["intro2r"](https://gitlab.gwdg.de/kruse44/intro2r) zu finden.
 
@@ -37,27 +37,29 @@ Des Weiteren diente als Grundlage die Vorlesungsfolien des Statistik-Master Kurs
 
 
 
-## Interaktion mit **R** und Rstudio
+## Interaktion mit **R** und RStudio
 
 Du hast jetzt also **R** und RStudio auf deinem Rechner installiert und willst sofort loslegen, aber vorher ist es erst einmal wichtig zu verstehen was der Unterschied zwischen **R** und RStudio ist und wieso du beide brauchst.
-Wenn du deinem Rechner den Befehl geben willst etwas für dich zu berechnen, dann musst du wissen wie du überhaupt mit ihm sprechen kannst. Hierbei stellt RStudio den Weg dar, um mit dem Computer zu interagieren, während **R** selbst die Sprache ist in der du dich mit deinem Rechner "unterhälst".
+
+Während es sich bei **R** um eine Programmiersprache, also eine Sprache zur Interaktion mit einem Computersystem, handelt, handelt es sich bei RStudio um einen sogenannten IDE (integrated development environment). Ein IDE stellt Programmierern eine Sammlung der wichtigsten Werkzeuge zur Softwareentwicklung unter einer Oberfläche zur Verfügung.
+
 Um nun mit und in **R** zu arbeiten rufst du also einfach RStudio auf. WICHTIG! Nicht **R** selbst aufrufen (auch wenn dieses funktioniert und einige alte hartgesottene Programmierer darauf schwören).
 
 
-### Das User Interface von Rstudio
-<!--TODO: Verlinkung auf Anhang für veränderungen von Rstudio-->
-  Wenn du Rstudio zum ersten Mal öffnest wirst du von folgenem Bild begrüßt.
+### Das User Interface von RStudio
+<!--TODO: Verlinkung auf Anhang für veränderungen von RStudio-->
+  Wenn du RStudio zum ersten Mal öffnest wirst du von folgenem Bild begrüßt.
 
-<!-- ![](images/rstudio_panes_klein.png) -->
+<!-- ![](images/RStudio_panes_klein.png) -->
 
-  <img src="images/rstudio_panes_klein.png" width="600" height="450" alt="Rstudio">
+  <img src="images/rstudio_panes_klein.png" width="600" height="450" alt="RStudio">
 
-Was du hier siehst ist Rstudio in seiner Standard Konfiguration. Im folgenden Abschnitt wirst du die drei bzw. vier Fenster oder auch Panes genannten Interaktionsfelder von RStudio näher kennen lernen und verstehen wie du diese benutzen kannst. Hierbei gehen wir von links nach rechts vor.
+Was du hier siehst ist RStudio in seiner Standard Konfiguration. Im folgenden Abschnitt wirst du die drei bzw. vier Fenster oder auch Panes genannten Interaktionsfelder von RStudio näher kennen lernen und verstehen wie du diese benutzen kannst. Hierbei gehen wir von links nach rechts vor.
 
 
 ### Die Console-Oberfläche
 <!-- TODO: R definition für code chunks ändern, die ``` werden angezeigt. -->
-  Das Consolen Fenster findest du in der Grundausführung von Rstudio auf der linken Seite und es dient dir als direktes Interaktionsfenster mit **R** und dadurch mit dem Computer. Jeder Code der in der Console eingegeben und durch Enter bestätigt wird, wird durchgeführt (engl. to run code).
+  Das Consolen Fenster findest du in der Grundausführung von RStudio auf der linken Seite und es dient dir als direktes Interaktionsfenster mit **R** und dadurch mit dem Computer. Jeder Code der in der Console eingegeben und durch Enter bestätigt wird, wird durchgeführt (engl. to run code).
 
 <!-- ![](images/console1.png) -->
   <img src="images/console1.png" width="600" height="450" alt="Die Console">
@@ -70,7 +72,7 @@ Was du hier siehst ist Rstudio in seiner Standard Konfiguration. Im folgenden Ab
 
 Die **R**-Console ist allerdings viel mehr als eine Art Taschenrechner, du  kannst hier dem Computer direkt über **R**-Code komplexe Befehle geben.
 
-Es ist Zeit für euren ersten selbst geschriebenen Code. Hierfür befehlst du dem Rechner die Worte "Hallo Welt!" widerzugeben. Dabei nutzt du den Befehl `print()`, gibst in die Klammer die Worte ein und führst den Code über das Drücken der Enter-Taste aus. Hierbei ist es wichtig die Worte in Anführungszeichen einzugeben `" "` um den Rechner zu symbolisieren, dass es sich um menschliche Sprache handelt.
+Es ist Zeit für euren ersten selbst geschriebenen Code. Hierfür befehlst du dem Rechner die Worte "Hallo Welt!" widerzugeben. Dabei nutzt du den Befehl `print()`, gibst in die Klammer die Worte ein und führst den Code über das Drücken der Enter +  Strg -Tasten aus (alternativ einfach auf den blauen Button "Run Code" klicken). Hierbei ist es wichtig die Worte in Anführungszeichen einzugeben `" "` um den Rechner zu symbolisieren, dass es sich um menschliche Sprache handelt.
 
 ```{r, include=FALSE}
 library(learnr)
@@ -94,29 +96,29 @@ So kannst du ohne viel Programmierkenntnisse dem PC sagen Zahlen zu runden:
 round(2.5)
 ```
 
-Oder die Uhrzeit eures Systems ausgeben lassen:
+Oder die Uhrzeit deines Systems auszugeben:
 
 ```{r}
 Sys.time()
 ```
 
-Wie du mit den verschieden Funktionen richtig umgehst, neue hinzufügst und eigene selbst schreibst wirst du im späteren Verlauf lernen können.
+Wie du mit den verschieden Funktionen richtig umgehst, neue hinzufügst und eigene selbst schreibst wirst, du im späteren Verlauf lernen können.
 
 ### Die Script-Oberfläche
 
   <!-- TODO: Einleitung: Oft einfacher Über Skript zu gehen anstatt alles immer einzutippen -->
 
-Das Eingeben von Code in die Console kann auf Dauer mühsam sein, vor allem wenn du denselben Code wiederholst, komplexere Eingaben tätigst oder aufeinander folgende Operationen ausführen willst. Daher kommen wir noch von der Console zur Script- oder Source-Oberfläche.
+Das Eingeben von Code in die Console kann auf Dauer mühsam sein, vor allem wenn du denselben Code wiederholst, komplexere Eingaben tätigst oder aufeinander folgende Operationen ausführen willst. Daher kommen wir nun von der Console zur Script- oder Source-Oberfläche.
 
-Diese Oberfläche ist beim ersten Starten von Rstudio nicht zu sehen, kann allerdings über den Reiter File --> New File --> R Script geöffnet werden. Alternativ kannst du einfach ein neues Skript über die Tastenkombination: Strg + Shift + N öffnen. Hierbei sei die Nutzung des Keyboard-Shortcuts zu bevorzugen, da diese Art und Weise schneller und direkter von statten geht.
+Diese Oberfläche ist beim ersten Starten von RStudio nicht zu sehen, kann allerdings über den Reiter File --> New File --> R Script geöffnet werden. Alternativ kannst du einfach ein neues Skript über die Tastenkombination: Strg + Shift + N öffnen. Hierbei sei die Nutzung des Keyboard-Shortcuts zu bevorzugen, da diese Art und Weise schneller und direkter von statten geht.
 
-Du wirst nun ein leeres Dokument sehen in welchem du den R-Code schreiben kannst ohne ihn gleich auszuführen. Diese Oberfläche bzw. das Skript dient also als eine Art Sammelstelle für deinen Code. Das Skript kann ebenfalls gespeichert werden, sodass du in der Lage bist Code später (wieder) auszuführen oder ihn gar zu teilen oder später bei einer Seminar- oder Abschlussarbeit abzugeben.
+Du wirst nun ein leeres Dokument sehen in welchem du den R-Code schreiben kannst, ohne ihn gleich auszuführen. Diese Oberfläche bzw. das Skript selbst, dient also als eine Art Sammelstelle für deinen Code. Das Skript kann ebenfalls gespeichert werden, sodass du in der Lage bist Code später (wieder) auszuführen oder ihn gar zu teilen oder später bei einer Seminar- oder Abschlussarbeit abzugeben.
 
   <!-- ![](images/source.png) -->
 
 <img src="images/source.png" width="600" height="450" alt="Source Pane">
 
-Gebe jetzt in dieses neue Fenster den Code aus dem letzten Abschnitt ein. Du wirst merken, dass dieser nicht sofort ausgeführt wird. Um den Code zu nutzen musst du diesen an die Console "schicken". Hierfür gibt es verschiedene Methoden. Hierfür kannst du zum einen den auszuführenden Code mit der Maus/Keyboard markieren und dann auf den Button "Run" klicken. Der viel einfachere und von uns vorgeschlagene Weg ist, einfach den Code durch das drücken von Strg + Enter (Linux, Windows) bzw. Command + Enter (Mac) auszuführen.
+Wenn du nun Code in dein neues Skript eingibst wirst du merken, dass dieser nicht sofort ausgeführt wird. Um den Code zu nutzen musst du diesen an die Console "schicken". Hierfür gibt es verschiedene Methoden. Dabei kannst du zum einen den auszuführenden Code mit der Maus/Keyboard markieren und dann auf den Button "Run" klicken. Der viel einfachere und von uns vorgeschlagene Weg ist, einfach den Code durch das drücken von Strg + Enter (Linux, Windows) bzw. Command + Enter (Mac) auszuführen.
 
   Ein von dir geschriebenes Skript kannst du einfach über den Reiter File --> Save As abspeichern, sodass du das File jeder Zeit an dem Ort findest mit dem Namen "Euer_Skript_Name.R".
 
@@ -142,21 +144,21 @@ x <- 1:10
 <!-- <img src="images/environment_beispiel.png" width="300" height="200" alt="Environment Pane"> -->
 
 
-Hierbei erstellst du eine Sequenz an Zahlen von 1 bis 10. Im ersten Beispiel wird diese Sequenz ausgegeben, während beim zweiten Beispiel du der Variable `x` die Werte der Sequenz von 1 bis 10 zuweist. Im folgenden Kapitel werden wir im genaueren die Thematik des Variablen zuweisen behandeln, jetzt reicht es zu verstehen, dass durch diese Zuweisung eine Variable gespeichert wird welche den jeweiligen Wert speichert. Darüberhinaus  erscheint nun rechts im Environment Feld der Eintrag für `x.` Dies bedeutet, dass nun wann immer du in der R Console oder im Skript die Größe `x` benutzt die zugewiesene Sequenz von 1 bis 10 ausgegeben oder benutzt wird.
+Hierbei erstellst du eine Sequenz an Zahlen von 1 bis 10. Im ersten Beispiel wird diese Sequenz ausgegeben, während beim zweiten Beispiel du der Variable `x` die Werte der Sequenz von 1 bis 10 zuweist. Im folgenden Kapitel werden wir im genaueren die Thematik des Variablen zuweisen behandeln, jetzt reicht es zu verstehen, dass durch diese Zuweisung eine Variable gespeichert wird welche den jeweiligen Wert speichert. Darüberhinaus  erscheint nun rechts im Environment Feld der Eintrag für `x`. Dies bedeutet, dass nun wann immer du in der R Console oder im Skript die Größe `x` benutzt die zugewiesene Sequenz von 1 bis 10 ausgegeben oder benutzt wird.
 
 <!-- ![](images/console_beispiel.png) -->
 
 <img src="images/console_beispiel.png" width="600" height="450" alt="">
 
 
-Wenn du auf den zweiten Tab „History“ klickst wird dir eine chronologische sortierte Auflistung aller von dir ausgeführtem **R** Befehle angezeigt. Dieser Tab hilft dir also als eine Art Anlaufstelle für Fehlersuche oder zu verstehen was du beim letzten Mal in er überhaupt gemacht hast.
+Wenn du auf den zweiten Tab „History“ klickst wird dir eine chronologische sortierte Auflistung aller von dir ausgeführtem **R** Befehle angezeigt. Dieser Tab hilft dir also als eine Art Anlaufstelle für Fehlersuche oder zu verstehen was du beim letzten Mal in **R** überhaupt gemacht hast.
 
 <!-- ![](images/history_beispiel.png) -->
 
 <img src="images/history_beispiel.png" width="600" height="450" alt="">
 
 
-Zu guter Letzt bietet die Environment-Oberfläche das manuelle Einlesen von Daten über den Butto "Import Dataset".Indem du diesen Button bedienst öffnet sich ein Dropdown Menü indem du die verschiedenen Arten von importierbaren Daten auswählen kannst. Dieses Menü erlaubt dir so das einlesen und bearbeiten von Daten aus
+Zu guter Letzt bietet die Environment-Oberfläche das manuelle Einlesen von Daten über den Butto "Import Dataset". Indem du diesen Button bedienst öffnet sich ein Dropdown Menü indem du die verschiedenen Arten von importierbaren Daten auswählen kannst. Dieses Menü erlaubt dir so das einlesen und bearbeiten von Daten aus
 
   - Text-Datein (.txt, .csv, ...)
   - Excel (.xls, .xlsc, .xml, ...)
@@ -164,9 +166,10 @@ Zu guter Letzt bietet die Environment-Oberfläche das manuelle Einlesen von Date
   - STATA
   - SAS
 
+Wie man nun genauer diese Daten einließt, wird in einem der folgendenen Kapiteln genauer beschrieben.
 
 ### Die Output-Oberfläche
-Die Tafel Files / Plots / Packages / Help zeigt dir viele hilfreiche Informationen. Wir gehen jede Registerkarte im Detail durch.
+Die Output Oberfläche mit den vier Tabs Files / Plots / Packages / Help zeigt dir viele hilfreiche Informationen. Wir gehen jeden Tab im Detail durch.
 
 
 <!-- ![](images/outputs.png) -->
@@ -175,16 +178,14 @@ Die Tafel Files / Plots / Packages / Help zeigt dir viele hilfreiche Information
 
 
 
-  Dateien - Das Datei-Panel gibt dir Zugriff auf das Dateiverzeichnis auf deiner Festplatte. Eine nette Eigenschaft des "Dateien"-Panels ist, dass du es benutzen kannst, um dein Arbeitsverzeichnis festzulegen - sobald du zu einem Ordner navigierst, in dem du Dateien lesen und speichern möchtest, klicke auf "Mehr" und dann auf "Als Arbeitsverzeichnis festlegen". Über Arbeitsverzeichnisse werden wir bald ausführlicher sprechen.
+  **Files** - Das Datei-Panel gibt dir Zugriff auf das Dateiverzeichnis auf deiner Festplatte. Eine nette Eigenschaft des "Dateien"-Panels ist, dass du es benutzen kannst, um dein Arbeitsverzeichnis festzulegen - sobald du zu einem Ordner navigierst, in dem du Dateien lesen und speichern möchtest, klicke auf "Mehr" und dann auf "Als Arbeitsverzeichnis festlegen". 
  
- Plots - Das Plots-Panel (keine große Überraschung), zeigt alle deine Plots. Es gibt Schaltflächen zum Öffnen des Plots in einem separaten Fenster und zum Exportieren des Plots.
+ **Plots** - Das Plots-Panel, zeigt alle deine Plots. Es gibt Schaltflächen zum Öffnen des Plots in einem separaten Fenster und zum Exportieren des Plots.
  
-Pakete - Zeigt eine Liste aller auf deiner Festplatte installierten **R**-Pakete an und zeigt an, ob sie derzeit geladen sind oder nicht. Pakete, die in der aktuellen Sitzung geladen sind, werden geprüft, während die installierten, aber noch nicht geladenen Pakete nicht markiert sind. 
+**Packages** - Zeigt eine Liste aller auf deiner Festplatte installierten **R**-Pakete an und zeigt an, ob sie derzeit geladen sind oder nicht. Pakete, die in der aktuellen Sitzung geladen sind, werden geprüft, während die installierten, aber noch nicht geladenen Pakete nicht markiert sind. 
 
-  Hilfe - Hilfemenü für **R**-Funktionen. Du kannst entweder den Namen einer Funktion in das Suchfenster eingeben oder den Code verwenden, um nach einer Funktion mit dem Namen
+  **Help** - Hilfemenü für **R**-Funktionen. Du kannst entweder den Namen einer Funktion in das Suchfenster eingeben oder den Code verwenden, um nach einer Funktion mit dem Namen
 
-
-Übersetzt mit www.DeepL.com/Translator (kostenlose Version)
 
 
 <!-- ![](images/help_beispiel.png) -->
@@ -193,15 +194,17 @@ Pakete - Zeigt eine Liste aller auf deiner Festplatte installierten **R**-Pakete
 
 
 
-Hierfür gibt es 2 verschiedene Möglichkeiten. Die erste, du nutzt ein einziges `?` gefolgt von dem Namen der Funktion zu der du mehr wissen möchtest, oder du nutzt `?? ` gefolgt von einem Ausdruck zu dem du mehr wissen möchtest. Wie du hieran erkennen kannst ist der Unterschied einfach darin zu sehen, dass man nur ein Fragezeichen nutzt, wenn man bereits die Funktion kennt, um die es geht und zwei Fragezeichen, wenn man eine Funktion finden möchte, um ein Problem zu lösen. 
+Hierfür gibt es neben der Eingabe in das Suchfeld verschiedene weitere Möglichkeiten Hilfe zu finden. Die erste, du nutzt ein einziges `?` gefolgt von dem Namen der Funktion zu der du mehr wissen möchtest, oder du nutzt `?? ` gefolgt von einem Ausdruck zu dem du mehr wissen möchtest. Wie du hieran erkennen kannst ist der Unterschied einfach darin zu sehen, dass man nur ein Fragezeichen nutzt, wenn man bereits die Funktion kennt, um die es geht und zwei Fragezeichen, wenn man eine Funktion finden möchte, um ein Problem zu lösen. 
 
 ```{r, eval = FALSE}
 ?sd
 # Oder auch möglich als
-help(mean)
+help(sd)
+# Möchtest du eine Funktion für Quantile finden:
+??quantile
 ```
 
-Falls du nicht direkt die Lösung deines Problems findest, die Erklärung/Beispiel nicht verständlich genug ist oder dein Problem zu komplex für die interne Rstudio-Hilfe ist gibt es verschiedene Arten um an Hilfe zu kommen.
+Falls du nicht direkt die Lösung deines Problems findest, die Erklärung/Beispiel nicht verständlich genug ist oder dein Problem zu komplex für die interne RStudio-Hilfe ist, gibt es verschiedene Arten um an Hilfe zu kommen.
 
 Eine der größten, wichtigsten und oft hilfreichsten Plattformen ist <a href="https://stackoverflow.com/" title="s">StackOverflow</a>
 
@@ -212,7 +215,7 @@ library(learnr)
 *Aufgabe 1:*
 
 ```{r aufgabe1_1, echo=FALSE}
-question("Welche(r) der folgenden Panes gibt es nicht in Rstudio",
+question("Welche(r) der folgenden Panes gibt es nicht in RStudio",
          answer("History"),
          answer("Console"),
          answer("Browser", correct = TRUE),
