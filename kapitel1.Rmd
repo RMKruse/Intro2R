@@ -123,13 +123,13 @@ Gebe jetzt in dieses neue Fenster den Code aus dem letzten Abschnitt ein. Du wir
 ### Die Environment-Oberfläche
 
 <!-- TODO: Verweis auf das Kapitel für Objekte etc einfügen -->
-Das in der Ausgangskonfiguration sich rechts oben befindliche Environment-Feld dient verschiedener Aufgaben. In aller erster Linie sind dort alle Objekte zu finden welche gerade in R definiert sind. Was das genau bedeutet und wie man so etwas macht werden wir im Kapitel XXXXXXX näher untersuchen.
+Das in der Ausgangskonfiguration sich rechts oben befindliche Environment-Feld dient verschiedener Aufgaben. In aller erster Linie sind dort alle Objekte zu finden welche gerade in R definiert sind. 
 
 <!-- ![](images/environment_history.png) -->
 
 <img src="images/environment_history.png" width="600" height="450" alt="History Pane">
 
-Als kleines Beispiel führe den folgenden Code in eurer Rstudio Instanz aus:
+Als kleines Beispiel der folgende Code:
 
 
 ```{r, eval = TRUE}
@@ -142,21 +142,21 @@ x <- 1:10
 <!-- <img src="images/environment_beispiel.png" width="300" height="200" alt="Environment Pane"> -->
 
 
-Hierbei erstellst du eine Sequenz an Zahlen von 1 bis 10. Im ersten Beispiel wird diese Sequenz ausgegeben, während beim zweiten Beispiel du der Variable `x` die Werte der Sequenz von 1 bis 10 zuweist. Allerdings erscheint nun rechts im Environment Feld der Eintrag für `x.` Dies bedeutet dass nun wann immer du in der R Console oder im Skript die Größe `x` benutzt die zugewiesene Sequenz von 1 bis 10 wiedergibt.
+Hierbei erstellst du eine Sequenz an Zahlen von 1 bis 10. Im ersten Beispiel wird diese Sequenz ausgegeben, während beim zweiten Beispiel du der Variable `x` die Werte der Sequenz von 1 bis 10 zuweist. Im folgenden Kapitel werden wir im genaueren die Thematik des Variablen zuweisen behandeln, jetzt reicht es zu verstehen, dass durch diese Zuweisung eine Variable gespeichert wird welche den jeweiligen Wert speichert. Darüberhinaus  erscheint nun rechts im Environment Feld der Eintrag für `x.` Dies bedeutet, dass nun wann immer du in der R Console oder im Skript die Größe `x` benutzt die zugewiesene Sequenz von 1 bis 10 ausgegeben oder benutzt wird.
 
 <!-- ![](images/console_beispiel.png) -->
 
 <img src="images/console_beispiel.png" width="600" height="450" alt="">
 
 
-  Der zweite Tab im Fenster "History" wird der von dir zuvor in der Console evaluierte  Code chronologisch gespeichert um dir eine Anlaufstellen für die Fehlersuche zu bieten oder zu verstehen was du beim letzten Mal in **R** gemacht habt.
+Wenn du auf den zweiten Tab „History“ klickst wird dir eine chronologische sortierte Auflistung aller von dir ausgeführtem **R** Befehle angezeigt. Dieser Tab hilft dir also als eine Art Anlaufstelle für Fehlersuche oder zu verstehen was du beim letzten Mal in er überhaupt gemacht hast.
 
 <!-- ![](images/history_beispiel.png) -->
 
 <img src="images/history_beispiel.png" width="600" height="450" alt="">
 
 
-  Zu guter Letzt bietet die Environment-Oberfläche das manuelle Einlesen von Daten über den Button-Import Dataset. In dem du diesen Button bedienst öffnet sich ein Dropdown Menü, in dem du die verschiedenen Arten von nicht in **R** integrierten einlesbaren Daten auswählen kannst. Dieses Menü erlaubt dir so das einlesen und bearbeiten von Daten aus
+Zu guter Letzt bietet die Environment-Oberfläche das manuelle Einlesen von Daten über den Butto "Import Dataset".Indem du diesen Button bedienst öffnet sich ein Dropdown Menü indem du die verschiedenen Arten von importierbaren Daten auswählen kannst. Dieses Menü erlaubt dir so das einlesen und bearbeiten von Daten aus
 
   - Text-Datein (.txt, .csv, ...)
   - Excel (.xls, .xlsc, .xml, ...)
@@ -164,11 +164,9 @@ Hierbei erstellst du eine Sequenz an Zahlen von 1 bis 10. Im ersten Beispiel wir
   - STATA
   - SAS
 
-somit bist du in der Lage Daten zu bearbeiten welche von Nutzern mit beschränkten Computerkenntnis stammen.
-
 
 ### Die Output-Oberfläche
-Die letzte Oberfläche in Rstudio dient dazu dir verschiedene Arten von Information über eure Daten, eure Dateien und genutzten Funktionen darzubieten.
+Die Tafel Files / Plots / Packages / Help zeigt dir viele hilfreiche Informationen. Wir gehen jede Registerkarte im Detail durch.
 
 
 <!-- ![](images/outputs.png) -->
@@ -177,10 +175,16 @@ Die letzte Oberfläche in Rstudio dient dazu dir verschiedene Arten von Informat
 
 
 
-Der erste Tab “Files” dient als eine Art eingebaute Version des Filemanagment Systems eures Computers. Hierbei erhälst du einen direkten Zugriff auf die Dateien und Ordnerstruktur auf eurem Rechner. Der Tab “Plots” wird alle von dir in der aktuellen Sitzung erstellten Grafiken beinhalten. 
-Der dritte Tab “Packages” stellt eine Liste von sogenannten Packages dar welche auf eurem Computer installiert sind. Packages sind herunterladbare Sammlungen oder Pakete an bereits geschriebenen Funktionen, welche du nutzen kannst anstatt dazu gezwungen zu sein eure eigenen Funktionen zu schreiben.
-Der vierte Tab “Help” stellt, wie der Name schon sagt die in **R** integrierte Hilfe dar. In diesem Fenster kannst du nach Funktionen oder Packages suchen und deren Beschreibungen, sowie Beispiele für die korrekte Nutzung finden.
+  Dateien - Das Datei-Panel gibt dir Zugriff auf das Dateiverzeichnis auf deiner Festplatte. Eine nette Eigenschaft des "Dateien"-Panels ist, dass du es benutzen kannst, um dein Arbeitsverzeichnis festzulegen - sobald du zu einem Ordner navigierst, in dem du Dateien lesen und speichern möchtest, klicke auf "Mehr" und dann auf "Als Arbeitsverzeichnis festlegen". Über Arbeitsverzeichnisse werden wir bald ausführlicher sprechen.
+ 
+ Plots - Das Plots-Panel (keine große Überraschung), zeigt alle deine Plots. Es gibt Schaltflächen zum Öffnen des Plots in einem separaten Fenster und zum Exportieren des Plots.
+ 
+Pakete - Zeigt eine Liste aller auf deiner Festplatte installierten **R**-Pakete an und zeigt an, ob sie derzeit geladen sind oder nicht. Pakete, die in der aktuellen Sitzung geladen sind, werden geprüft, während die installierten, aber noch nicht geladenen Pakete nicht markiert sind. 
 
+  Hilfe - Hilfemenü für **R**-Funktionen. Du kannst entweder den Namen einer Funktion in das Suchfenster eingeben oder den Code verwenden, um nach einer Funktion mit dem Namen
+
+
+Übersetzt mit www.DeepL.com/Translator (kostenlose Version)
 
 
 <!-- ![](images/help_beispiel.png) -->
@@ -189,15 +193,15 @@ Der vierte Tab “Help” stellt, wie der Name schon sagt die in **R** integrier
 
 
 
-Eine andere Art mit der Hilfe von Rstudio umzugehen ist die Nutzung der `?`-Funktionalität. Hierbei kannst du einfach in der Console nach der Dokumentation einzelner Funktionen suchen. Dabei kannst du mit einem `?` wenn du den Namen einer Funktion kennst direkten nach dessen Dokumentation suchen
+Hierfür gibt es 2 verschiedene Möglichkeiten. Die erste, du nutzt ein einziges `?` gefolgt von dem Namen der Funktion zu der du mehr wissen möchtest, oder du nutzt `?? ` gefolgt von einem Ausdruck zu dem du mehr wissen möchtest. Wie du hieran erkennen kannst ist der Unterschied einfach darin zu sehen, dass man nur ein Fragezeichen nutzt, wenn man bereits die Funktion kennt, um die es geht und zwei Fragezeichen, wenn man eine Funktion finden möchte, um ein Problem zu lösen. 
+
 ```{r, eval = FALSE}
 ?sd
-
 # Oder auch möglich als
 help(mean)
 ```
 
-Falls du nicht direkt die Lösung deines Problems findet, die Erklärung/Beispiel nicht verständlich genug ist oder dein Problem zu komplex für die interne Rstudio-Hilfe ist gibt es verschiedene Arten um an Hilfe zu kommen.
+Falls du nicht direkt die Lösung deines Problems findest, die Erklärung/Beispiel nicht verständlich genug ist oder dein Problem zu komplex für die interne Rstudio-Hilfe ist gibt es verschiedene Arten um an Hilfe zu kommen.
 
 Eine der größten, wichtigsten und oft hilfreichsten Plattformen ist <a href="https://stackoverflow.com/" title="s">StackOverflow</a>
 
