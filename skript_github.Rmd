@@ -1345,15 +1345,6 @@ mtcars[mtcars$cyl == 6, ]  # benutze `mtcars$cyl == 6`
 
 <!------------------------------------------------------ kapitel ´7 -------------------------------------------------------------->
 
----
-title: "Einführung in die R Grundlagen"
-output: learnr::tutorial
-runtime: shiny_prerendered
----
-  
-```{r, include=FALSE}
-library(learnr)
-```
 
 
 ## Plotten

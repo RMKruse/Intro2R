@@ -11,9 +11,11 @@ library(learnr)
 
 ## Plotten
 
-Oft ist es wichtig Zusammenhänge nicht nur in Zahlen, sondern ebenso graphisch darzustellen. Das folgende Kapitel zeigt dir wie man verschiedene Arten von wichtigen grundlegenden Plots in **R** erstellt und wie man diese in einer Art und Weise kreiert, sodass man sie ohne Probleme in Seminar- oder Abschlussarbeiten zu nutzen.
+Oft ist es wichtig Zusammenhänge nicht nur in Zahlen, sondern ebenso graphisch darzustellen. 
+Das folgende Kapitel zeigt dir wie man verschiedene Arten von wichtigen grundlegenden Plots in **R** erstellt und wie man diese in einer Art und Weise kreiert, sodass man sie ohne Probleme in Seminar- oder Abschlussarbeiten nutzen kann.
 
-Dieses Kapitel wird sich nur mit den in der base-**R** Version enthaltenen Plot-Funktionen befassen. Wir lassen bewusst **R**-Packages wie `ggplot2` oder `plotly` aus, solltest du dich allerdings für die Funktionalität dieser Packages und der damit verbundenen Verbesserung der Möglichkeiten der graphischen Darstellung interessieren, empfehlen wir dir die https://socviz.co/ und https://rkabacoff.github.io/datavis/ . 
+Dieses Kapitel wird sich nur mit den in der base-**R** Version enthaltenen Plot-Funktionen befassen. 
+Wir lassen bewusst **R**-Packages wie `ggplot2` oder `plotly` aus, solltest du dich allerdings für die Funktionalität dieser Packages und der damit verbundenen Verbesserung der Möglichkeiten der graphischen Darstellung interessieren, empfehlen wir dir die https://socviz.co/ und https://rkabacoff.github.io/datavis/ . 
 
   
 
@@ -30,15 +32,15 @@ plot(x = 1:5,
 
 Erklärung der wichtigsten Argumente der `plot()`-Funktion
 
-| Argument| Beschreibung| 
-|:------------|:-------------------------------------------------|
-|`x, y`|Vektoren gleicher Länge, die die x- und y-Werte der Punkte angeben|
-|`type`| Art der Handlung. `"l"` bedeutet Linien, `"p"` bedeutet Punkte, `"b"` bedeutet Linien und Punkte, `"n"` bedeutet kein Plotten|
-|`main`, `xlab`, `ylab`| Strings, die den Titel der Handlung beschriften, und x- und y-Achsen|
-|`xlim`, `ylim`| Grenzen zu den Achsen. Zum Beispiel setzt `xlim = c(0, 100)` das Minimum und das Maximum der x-Achse auf 0 und 100.|
-|`pch` | Eine ganze Zahl, die den Typ der Zeichensymbole angibt (siehe `?points` und Abschnitt unten), oder eine Zeichenkette, die Symbole als Text angibt. Zum Beispiel erzeugt `pch = 21` einen zweifarbigen Kreis, während `pch = "P"` das Zeichen `"P"` zeichnet. Um all die verschiedenen Symboltypen zu sehen, führen Sie ``Punkte` aus.
-|`col`| Hauptfarbe der Plottsymbole. Zum Beispiel wird `col = "rot"` rote Symbole erzeugen.|
-|`cex`| Ein numerischer Vektor, der die Größe der Symbole angibt (von 0 bis Inf). Die Standardgröße ist 1. `cex = 4` macht die Punkte sehr groß, während `cex = .5` sie sehr klein macht. |
+| Argument             | Beschreibung                                                                                                                                                                      | 
+|:---------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|`x, y`                |Vektoren gleicher Länge, die die x- und y-Werte der Punkte angeben                                                                                                                 |
+|`type`                | Art der Handlung. `"l"` bedeutet Linien, `"p"` bedeutet Punkte, `"b"` bedeutet Linien und Punkte, `"n"` bedeutet kein Plotten                                                     |
+|`main`, `xlab`, `ylab`| Strings, die den Titel der Handlung beschriften, und x- und y-Achsen                                                                                                              |
+|`xlim`, `ylim`        | Grenzen zu den Achsen. Zum Beispiel setzt `xlim = c(0, 100)` das Minimum und das Maximum der x-Achse auf 0 und 100.                                                               |
+|`pch`                 | Eine ganze Zahl, die den Typ der Zeichensymbole angibt oder eine Zeichenkette.                                                                                                    |
+|`col`                 | Hauptfarbe der Plottsymbole. Zum Beispiel wird `col = "rot"` rote Symbole erzeugen.                                                                                               |
+|`cex`                 | Ein numerischer Vektor, der die Größe der Symbole angibt (von 0 bis Inf). Die Standardgröße ist 1. `cex = 4` macht die Punkte sehr groß, während `cex = .5` sie sehr klein macht. |
 
 
 ```{r}
@@ -55,14 +57,20 @@ plot(x = 1:5,
 
 ```
 
-Generell gilt es hier, wie bei allen anderen Funktionen in **R**, wenn du mehr Information über die Art und Weise der Anwendung von **R**-Funktionen möchtest einfach die `?`-Funktion in Console oder über den View in Rstudio zu der Funktionsbeschreibung zu gelangen.
+Generell gilt es hier, wie bei allen anderen Funktionen in **R**, wenn du mehr Information über die Art und Weise der Anwendung von **R**-Funktionen möchtest einfach die `?`-Funktion in Console eingebem oder über den View-Tab in RStudio zu der Funktionsbeschreibung zu gelangen.
 
 ## Symbole 
 
-Eine der wichtigsten Optionen bei der Anpassung von Grafiken in **R** ist die Wahl der Symbole um Datenpunkte darzustellen. Das dafür genutze Argumente `pch` erlaubt eine breite Auswahl an verschiedensten Formen an Symbolen. 
-Um ein Symboltyp über `pch` auszuwählen gibt es zwei verschiedene Arten. Entweder durch die Angabe einer Zahl oder einer Zeichenfolge.
+Eine der wichtigsten Optionen bei der Anpassung von Grafiken in **R** ist die Wahl der Symbole um Datenpunkte darzustellen. 
+Das dafür genutze Argumente `pch` erlaubt eine breite Auswahl an verschiedensten Formen an Symbolen. 
+Um ein Symboltyp über `pch` auszuwählen gibt es zwei verschiedene Arten. 
+Entweder durch die Angabe einer Zahl oder einer Zeichenfolge.
 
-Symbole unterscheiden sich in ihrer Form und in der Art wie sie eingefärbt sind. Die Symbole 1 bis 14 haben nur einen Rand und sind immer leer, während die Symbole 15 bis 20 keinen Rand haben und immer gefüllt sind. Die Symbole 21 bis 25 haben sowohl einen Rand als auch eine Füllung. Um die Rahmenfarbe oder den Hintergrund für die Symbole 1 bis 20 festzulegen, verwende das Argument col. Bei den Symbolen 21 bis 25 legst du die Farbe des Rahmens mit col und die Farbe des Hintergrunds mit bg.
+Symbole unterscheiden sich in ihrer Form und in der Art wie sie eingefärbt sind. 
+Die Symbole 1 bis 14 haben nur einen Rand und sind immer leer, während die Symbole 15 bis 20 keinen Rand haben und immer gefüllt sind. 
+Die Symbole 21 bis 25 haben sowohl einen Rand als auch eine Füllung. 
+Um die Rahmenfarbe oder den Hintergrund für die Symbole 1 bis 20 festzulegen, verwende das Argument col. 
+Bei den Symbolen 21 bis 25 legst du die Farbe des Rahmens mit col und die Farbe des Hintergrunds mit bg.
 
 
 ```{r echo = FALSE, fig.width = 3, fig.height = 3, fig.align= 'center'}
@@ -108,7 +116,8 @@ plot(x = x.data, y = y.data, xaxt = "n", yaxt = "n", xlab = "", ylab = "", main 
 
 ## Low-Level Plot-Funktionen
 
-Die sogenannten Low-Level-Plot Funktionen erlauben es ein Element eines Plots zu verändern oder neue hinzuzufügen. Die wichtigsten und am meisten genutzten sind hier bei die folgenden: 
+Die sogenannten Low-Level-Plot Funktionen erlauben es ein Element eines Plots zu verändern oder neue hinzuzufügen. 
+Die wichtigsten und am meisten genutzten sind hier bei die folgenden: 
 
 
 |Function                |Outcome                                                                 |
@@ -139,10 +148,14 @@ plot(x = 0,
 
 ## points() und Segments()
 
-Um neue Punkte zu einem bestehenden Diagramm hinzuzufügen, verwende die Funktion points(). Die Funktion points() hat viele ähnliche Argumente wie die Funktion plot(), wie x (für die x-Koordinaten), y (für die y-Koordinaten) und Parameter wie col (Randfarbe), cex (Punktgröße) und pch (Symboltyp). 
+Um neue Punkte zu einem bestehenden Diagramm hinzuzufügen, verwende die Funktion points(). 
+Die Funktion points() hat viele ähnliche Argumente wie die Funktion plot(), wie x (für die x-Koordinaten), 
+y (für die y-Koordinaten) und Parameter wie col (Randfarbe), cex (Punktgröße) und pch (Symboltyp). 
 
-Ein Beispiel anhand des vorher schon genutzen `mtcars`-Datenset. Für nähere Informationen einfach `?mtcars` eingeben. 
-Hierbei wollen wir alle Autos hinsichtlich ihres Verbrauches in Miles-per-Gallon in Relation zu ihrem Gewicht abbilden. Dabei wollen wir die Autos je nach Gangschaltungstyp (Automatik und Manuell) farblich kennzeichen.
+Ein Beispiel anhand des vorher schon genutzen `mtcars`-Datenset. 
+Für nähere Informationen einfach `?mtcars` eingeben. 
+Hierbei wollen wir alle Autos hinsichtlich ihres Verbrauches in Miles-per-Gallon in Relation zu ihrem Gewicht abbilden. 
+Dabei wollen wir die Autos je nach Gangschaltungstyp (Automatik und Manuell) farblich kennzeichen.
 
 ```{r, include = FALSE}
 data(mtcars)
@@ -173,7 +186,8 @@ points(x = mtcars$mpg[mtcars$am == 1],
 
 ## abline() und segments()
 
-Um einem Plot gerade Linien hinzuzufügen, verwendest du `abline()` oder `segments()`. `abline()` fügt eine Linie über den gesamten Plot hinzu, während `segments()` eine Linie mit definierten Anfangs- und Endpunkten hinzufügt.
+Um einem Plot gerade Linien hinzuzufügen, verwendest du `abline()` oder `segments()`. `abline()` fügt eine Linie über den gesamten Plot hinzu, 
+während `segments()` eine Linie mit definierten Anfangs- und Endpunkten hinzufügt.
 
 |Argument         |Outcome                                                                 |
 |:----------------|:-----------------------------------------------------------------------|
@@ -212,7 +226,8 @@ mtext("lty = ...",
       cex = 2)
 ```
 
-Du kasnnst auch eine Regressionslinie (auch als Linie der besten Anpassung bezeichnet) zu einem Scatterplot hinzufügen, indem du ein Regressionsobjekt eingibst, das mit lm() als Hauptargument für abline() erstellt wurde
+Du kasnnst auch eine Regressionslinie (auch als Linie der besten Anpassung bezeichnet) zu einem Scatterplot hinzufügen, 
+indem du ein Regressionsobjekt eingibst, das mit lm() als Hauptargument für abline() erstellt wurde.
 
 
 ```{r}
@@ -237,7 +252,8 @@ Die letzte Low-Level-Plotting-Funktion, die wir im Detail besprechen werden, ist
 |`x, y`      |Die Koordinaten der Legende - z.B. `x = 0, y = 0` setzen den Text an die Koordinaten (0, 0).               |
 |`labels`    |Ein String-Vektor, der den Text in der Legende angibt. Zum Beispiel wird `legend = c("Männlich, "Weiblich")|
 
-Es ist ebenfalls möglich die Position der Legende durch Worte einzugeben wie `"topright"`, `"topleft"`. Zum Beispiel wird "unten rechts" die Legende immer in der rechten unteren Ecke der Handlung platziert.
+Es ist ebenfalls möglich die Position der Legende durch Worte einzugeben wie `"topright"`, `"topleft"`. 
+Zum Beispiel wird "unten rechts" die Legende immer in der rechten unteren Ecke der Handlung platziert.
 Ein Beispiel an unserem Auto Datenset:
 
 
@@ -271,9 +287,14 @@ legend("topright",
 
 ## Multiple Plots 
 
-Wie du im vorigen Beispiel gehen hast ist es ebenfalls möglich mehrere Plots in einer einzelnen Grafik abzubilden. Hier für gibt’s es bei Base-R Plots zwei Wege dieses zu erreichen. Am häufigsten wird dieses mit dem Parameter `par(mfrow)` und `par(mfcol)` erreicht. Gehen wir diese die beiden Funktionen durch. Mit den Parametern mfrow und mfcol kannst du eine Matrix von Plots in einem Plotraum erstellen. Beide Parameter nehmen einen Vektor der Länge zwei als Argument, also der Anzahl der Zeilen und Spalten in der resultierenden Plottmatrix.
+Wie du im vorigen Beispiel gehen hast ist es ebenfalls möglich mehrere Plots in einer einzelnen Grafik abzubilden. 
+Hier für gibt’s es bei Base-R Plots zwei Wege dieses zu erreichen. 
+Am häufigsten wird dieses mit dem Parameter `par(mfrow)` und `par(mfcol)` erreicht. 
+Gehen wir diese die beiden Funktionen durch. Mit den Parametern mfrow und mfcol kannst du eine Matrix von Plots in einem Plotraum erstellen. 
+Beide Parameter nehmen einen Vektor der Länge zwei als Argument, also der Anzahl der Zeilen und Spalten in der resultierenden Plottmatrix.
 
-Was ist also der Unterschied zwischen `par(mfrow)` und `par(mfcol)`? Der einzige Unterschied besteht darin, dass `par(mfrow)` sequentielle Plots zeilenweise in die Plottmatrix einfügt, während `par(mfcol)` sie spaltenweise füllt.
+Was ist also der Unterschied zwischen `par(mfrow)` und `par(mfcol)`? Der einzige Unterschied besteht darin, 
+dass `par(mfrow)` sequentielle Plots zeilenweise in die Plottmatrix einfügt, während `par(mfcol)` sie spaltenweise füllt.
 
 Der folgende Code erstellt beispielsweise die 2 x 2-Plotting-Matrix des vorigen Beispiels.
 

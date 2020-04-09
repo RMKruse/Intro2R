@@ -11,13 +11,12 @@ library(learnr)
 
 ##  Daten
 
-In diesem Kapitel wirst du lernen wie man externe Daten in **R** einließt, wie man mit diesen Daten arbeitet,
-sie verändert, anpasst und exportiert.
+In diesem Kapitel wirst du lernen wie man externe Daten in **R** einließt, wie man mit diesen Daten arbeitet, sie verändert, anpasst und exportiert.
   
 ### Einlesen von Daten 
 
-Daten können aus verschiedenen externen Quellen und Dateiformaten in **R** eingelesen werden. Es gibt ein
-paar Hauptfunktionen, die Daten in **R** einlesen.
+Daten können aus verschiedenen externen Quellen und Dateiformaten in **R** eingelesen werden. 
+Es gibt ein paar Hauptfunktionen, die Daten in **R** einlesen.
 
   * `read.table()`, `read.csv()`, zum Einlesen von Tabellendaten
   * `source()`, zum Einlesen von **R**-Code-Dateien
@@ -25,26 +24,23 @@ paar Hauptfunktionen, die Daten in **R** einlesen.
   * `load()`, zum Lesen in gespeicherten Arbeitsbereichen
   * `unserialize()`, zum Lesen einzelner R-Objekte in binärer Form
 
-Hierbei sei darauf hingewiesen, dass es noch viele weitere **R** Packages gibt, welche es dir erlauben Daten in
-**R** einlesen zu können.
-Parallel zu den verschiedenen Funktionen zum Einlesen von Daten in **R** gibt es diese Funktionen welche es
-dir erlauben Daten zu schreiben
+Hierbei sei darauf hingewiesen, dass es noch viele weitere **R** Packages gibt, welche es dir erlauben Daten in **R** einzulesen.
+Parallel zu den verschiedenen Funktionen zum Einlesen von Daten in **R** gibt es Funktionen welche es dir erlauben Daten zu schreiben/exportieren.
     
-  * `write.table()`, `write.csv()` zum Schreiben von Tabellendaten in Textdateien (z.B. CSV) oder Verbindungen
-  * `writeLines()`, zum zeilenweisen Schreiben von Zeichendaten in eine Datei oder Verbindung
+  * `write.table()`, `write.csv()` zum Schreiben von Tabellendaten in Textdateien (z.B. CSV) 
+  * `writeLines()`, zum zeilenweisen Schreiben von Zeichendaten in eine Datei
   * `dump()`, zum Ausgeben einer textlichen Darstellung mehrerer **R**-Objekte
   * `dput()`, zur Ausgabe einer textlichen Darstellung eines **R**-Objektes
   * `save()`, zum Speichern einer beliebigen Anzahl von **R**-Objekten im Binärformat (möglicherweise komprimiert) in eine Datei.
-  * `serialize()`, zum Konvertieren eines **R**-Objektes in ein Binärformat zur Ausgabe auf eine Verbindung (oder Datei).
+  * `serialize()`, zum Konvertieren eines **R**-Objektes in ein Binärformat zur Ausgabe.
     
 ### Das readr-Package
 
-Ein explizit für das Einlesen erschaffenes **R** Package ist das reader-Package welches explizit zum Einlesen
-von großen Datenfiles gedacht ist. Das Package ersetzt die im vorigen Kapitel beschriebenen Funktionen
+Ein explizit für das Einlesen erschaffenes **R** Package ist das reader-Package welches zum Einlesen von großen Datenfiles gedacht ist. 
+Das Package ersetzt die im vorigen Kapitel beschriebenen Funktionen
 `read.table()` und `read.csv()` mit den Funktionen `read_table()` bzw. `read_csv()`.
 
-Generell gibts es allerdings ein paar Gründe wieso du lieber auf die Funktionen des `readr`-Packages zurückgreifen
-solltest.
+Generell gibts es ein paar Gründe wieso du lieber auf die Funktionen des `readr`-Packages zurückgreifen solltest als die Basis-**R** Funktionen zu nutzen.
 
   * Durch den effizienteren Code hinter den Funktonen ist das Einlesen von Daten um ein Vielfaches schneller, was sich vor allem bei größeren Datenfiles bemerkbar macht.
   * Die `readr`-Funktionen sind generell auch reproduzierbar. Während die Base-**R** Funktionen Eigenheiten des jeweiligen Betriebssystems des Computers übernehmen, sind `readr`-Funktionen System-agnostisch.
@@ -53,9 +49,9 @@ solltest.
 ## Speichern von Daten
 
 
-Wir bereits zu Beginn des Kapitels dargestellt existieren analog zu den Funktionen welche Daten in **R** einlesen Funktionen, welche Daten exportieren bzw. abspeichern. Du kannst Objekte, wie die im vorigen Abschnitt erstellte Liste `x` durch die Nutzung der Funktion `write.table()` bzw. `write.csv()` speichern. Wie jede Funktion in **R** die wir bisher begegnet sind, haben auch diese Argumente die bestimmten Einfluss auf Art und Weise wie die Funktion durchgeführt wird. 
+Wie bereits zu Beginn des Kapitels dargestellt, existieren analog zu den Funktionen welche Daten in **R** einlesen Funktionen, welche Daten exportieren bzw. abspeichern. Wie jede Funktion in **R** die wir bisher begegnet sind, haben auch diese Argumente die bestimmten Einfluss auf Art und Weise wie die Funktion durchgeführt wird. 
 
-Um nun `x` beispielhaft als CSV-Datei abzuspeichern musst du folgendes machen:
+Um nun eine Liste `x` beispielhaft als CSV-Datei abzuspeichern musst du folgendes machen:
 
 ```{r savecsvBSP, eval = FALSE}
 
@@ -63,9 +59,9 @@ write.csv(x, file = "beispiel.csv", row.names = FALSE)
 
 ```
 
-Der Aufbau der Argumente hat folgende Struktur. Zunächst solltest du `write.csv()` den Namen des **R**-Objektes geben, das du gespeichert haben möchtest. Als nächstes solltest du einen Dateinamen für deine Datei angeben. **R** wird diesen Namen ziemlich wörtlich nehmen, also stell sicher, dass du eine Erweiterung
-
-**R** wandelt deine Liste in eine Klartextdatei in eine CSV-Datei um, in welcher Werte durch Komma getrennt sind und speichert die Datei in deinem Arbeitsverzeichnis. Du fragst dich vielleicht was dein Arbeitsverzeichnis ist? Nun das klären wir im nächsten Abschnitt.
+Der Aufbau der Argumente hat folgende Struktur. Zunächst solltest du `write.csv()` den Namen des **R**-Objektes geben, das du gespeichert haben möchtest. 
+Als nächstes solltest du einen Dateinamen für deine Datei angeben. **R** wird diesen Namen ziemlich wörtlich nehmen, also stell sicher, dass du eine Erweiterung an den Namen anhängst (.csv).
+**R** wandelt deine Liste dann in eine Klartextdatei in eine CSV-Datei um, in welcher Werte durch Komma getrennt sind und speichert die Datei in deinem Arbeitsverzeichnis. 
 
 
 <!----------------------------------------------------------  Kapitel 3 ---------------------------------------------------------->
@@ -75,19 +71,18 @@ Der Aufbau der Argumente hat folgende Struktur. Zunächst solltest du `write.csv
     
 ## Daten Selektion 
 
-Es ist oft wichtig für bestimmte Operationen nur einen Teil der Daten, also ein Subset, zu betrachten und
-zu bearbeiten. Diese sogenannte Subsettig von **R** Objekten kann in Base-**R** mithilfe von drei verschiedenen
-Operatoren gemacht werden. Diese drei Operatoren sind `[]`, `[[]]` und `$`.
-Der `[]` Operator selektiert ein Teil der Daten und gibt das Subset in derselben Objekt Klasse aus wie das
-Originale. Der `[[]]` hingegen kann nur einzelne Element aus Listen oder Dataframe subsetten und das
-resultierende Objekt ist nicht unbedingt aus der selben Objekt Klasse wie das übergeordnete. Schlussendlich
-der `$` Operator kann genutzt werden um Elemente durch Nutzung ihres Names auszulesen.
-Zuerst betrachten wir wie man Subsetting mit einem Vektor macht
+Es ist oft wichtig für bestimmte Operationen nur einen Teil der Daten, also ein Subset, zu betrachten und zu bearbeiten. 
+Diese sogenannte Subsettig von **R** Objekten kann in Base-**R** mithilfe von drei verschiedenen Operatoren gemacht werden. 
+Diese drei Operatoren sind `[]`, `[[]]` und `$`.
+Der `[]` Operator selektiert ein Teil der Daten und gibt das Subset in derselben Objekt Klasse aus wie das Originale. 
+Der `[[]]` hingegen kann nur einzelne Element aus Listen oder Dataframes subsetten und das resultierende Objekt ist nicht unbedingt aus der selben Objekt Klasse wie das übergeordnete. 
+Schlussendlich der `$` Operator kann genutzt werden um Elemente durch Nutzung ihres Names auszulesen.
+Zuerst betrachten wir wie man Subsetting mit einem Vektor macht.
   
 ## Subsetting von Vektoren
 
-Zu Beginn die Anwendung des `[` Operators auf Vektoren. Hierbei kann man sehen, dass entweder einzelne
-Elemente ausgelesen werden können, ganze Folgen oder bestimmte beliebige Positionen
+Zu Beginn die Anwendung des `[` Operators auf Vektoren. 
+Hierbei kann man sehen, dass entweder einzelne Elemente ausgelesen werden können, ganze Folgen oder bestimmte beliebige Positionen
 
 ```{r subsetvektor1}
 foo <- c("rot", "gruen", "blau", "blau", "gelb", "rot")
@@ -114,9 +109,9 @@ foo[foo != "rot"]
 
 ## Subsetting von Matrizen
 
-Das subsetten einer Matrix erfolgt denselben Regel wie das Subsetten der Vektoren, wobei hier die abzufragenden
+Das subsetten einer Matrix erfolgt nach denselben Regel wie das Subsetten der Vektoren, wobei hier die abzufragenden
 Positionen anstatt mit einer Angabe auf Grund der zwei-Dimensionalität durch zwei Angaben
-anzugeben ist. Hier ein Beispiel anhand der im Kapitel 3 erschaffenen Matrix was damit gemeint ist
+zutätigen ist. Hier ein Beispiel anhand der im Kapitel 3 erschaffenen Matrix was damit genau gemeint ist
 
 ```{r subsetmatrix1}
 m <- matrix(c(1,2,3,4,5,6), ncol = 2, nrow = 3, byrow = TRUE)
