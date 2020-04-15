@@ -1,0 +1,1972 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{book}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Einführung in R},
+  pdfauthor={René-Marcel Kruse},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs}
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{booktabs}
+\usepackage{amsthm}
+\makeatletter
+\def\thm@space@setup{%
+  \thm@preskip=8pt plus 2pt minus 4pt
+  \thm@postskip=\thm@preskip
+}
+\makeatother
+\usepackage[]{natbib}
+\bibliographystyle{apalike}
+
+\title{Einführung in R}
+\author{René-Marcel Kruse}
+\date{2020-04-15}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\hypertarget{einleitung}{%
+\chapter*{Einleitung}\label{einleitung}}
+\addcontentsline{toc}{chapter}{Einleitung}
+
+Dieses Skript ist als Teil der Bachelorveranstaltung Statistik der Wirtschaftswissenschaftlichen Fakultät der Universität Göttingen entstanden und soll Studenten helfen auf eine einfache und direkte Art und Weise die wichtigsten Funktion der Statischen Programmiersprache \textbf{R} zu verstehen und anwenden zu können. Der Inhalt soll des Weiteren allen Studierenden helfen welche Interesse oder Fragen hinsichtlich \textbf{R}-Programmierung haben.
+
+Die aktuellste Version des Skriptes, sowie die unterliegenden Source-Files, sind im Gitlab-Repository \href{https://gitlab.gwdg.de/kruse44/intro2r}{``intro2r''} zu finden.
+
+Dieses Skript wurde in \href{https://rmarkdown.rstudio.com/}{Rmarkdown} und dem \href{https://rstudio.github.io/learnr/}{learnr}-Package geschrieben und erstellt. Es handelt sich hierbei um einen Work-in-Progress und wird ständig durch Mitarbeiter des Lehrstuhl Statistik der Universität Göttingen erweitert und verbessert. Daher würden die Autoren sich sehr über Verbesserungsvorschläge, neue Ideen oder Fehlermeldungen freuen. Hierfür einfach eine E-Mail an folgende Adresse:
+
+    \href{mailto:gitlab+kruse44-intro2r-10509-issue-@gwdg.de}{\nolinkurl{gitlab+kruse44-intro2r-10509-issue-@gwdg.de}}
+
+Das folgende Lehrmaterial ist und wird immer frei sein und kann unter einer \href{https://creativecommons.org/licenses/by-sa/4.0/deed.de}{CC-BY-SA 4.0 Lizenz} verwendet, verbreitet und modifiziert werden. Der Hauptautor der originalen Version ist \href{https://www.uni-goettingen.de/en/610058.html}{René-Marcel Kruse} (Github@RMKruse, gitlab.gwdg@kruse44) unter Mitwirkung von:
+
+\begin{itemize}
+\tightlist
+\item
+  Jasmin Schilling
+\end{itemize}
+
+Dieses Skript bezieht sich auf verschiedene Quellen, deren inhaltliche Aufarbeitung und Darstellung der Thematik, als Grundlage und Bezugspunkt beim Erstellen dieses Skriptes dienten. Hierbei sei vor allem auf folgende Quellen verwiesen, wobei es sich bei allen Quellen um Free-and-Open-Source Lehrinhalte der jeweiligen Autoren handelt:
+
+\begin{itemize}
+\tightlist
+\item
+  \href{http://adv-r.had.co.nz/}{Advanced R} von \href{http://hadley.nz/}{Hadley Wickham}
+\item
+  \href{https://merely-useful.github.io/r/index.html}{Merely Useful: Novice R} von \href{}{Madeleine Bonsma-Fisher et al.}
+\item
+  \protect\hyperlink{https:ux2fux2fr4ds.had.co.nzux2f}{R for Data Science} von \href{http://hadley.nz/}{Hadley Wickham} und \href{https://twitter.com/statgarrett?lang=de}{Garrett Grolemund}
+\item
+  \protect\hyperlink{https:ux2fux2frstudio-education.github.ioux2fhoprux2f}{Hands-On Programming with R} von \href{https://twitter.com/statgarrett?lang=de}{Garrett Grolemund}
+\item
+  \protect\hyperlink{https:ux2fux2fserialmentor.comux2fdatavizux2f}{Fundamentals of Data Visualization} von \href{https://github.com/clauswilke}{Claus O. Wilke}
+\item
+  \protect\hyperlink{https:ux2fux2fbookdown.orgux2fndphillipsux2fYaRrrux2f}{YaRrr! The Pirate's Guide to R} von \href{https://ndphillips.github.io/index.html}{Nathaniel D. Phillips}
+\end{itemize}
+
+Des Weiteren diente als Grundlage die Vorlesungsfolien des Statistik-Master Kurses ``Introduction to Statistical Programming'' von \href{https://www.uni-goettingen.de/de/525900.html}{Paul Wiemann}.
+
+\hypertarget{intro}{%
+\chapter{\texorpdfstring{Interaktion mit \textbf{R} und RStudio}{Interaktion mit R und RStudio}}\label{intro}}
+
+Du hast jetzt also \textbf{R} und \textbf{RStudio} auf deinem Rechner installiert und willst sofort loslegen, aber vorher ist es erst einmal wichtig zu verstehen was der Unterschied zwischen \textbf{R} und \textbf{RStudio} ist und wieso du beide brauchst.
+
+Während es sich bei \textbf{R} um eine Programmiersprache, also eine Sprache zur Interaktion mit einem Computersystem, handelt, handelt es sich bei \textbf{RStudio} um einen sogenannten IDE (integrated development environment). Ein IDE stellt Programmierern eine Sammlung der wichtigsten Werkzeuge zur Softwareentwicklung unter einer Oberfläche zur Verfügung.
+
+Um nun mit und in \textbf{R} zu arbeiten rufst du also einfach \textbf{RStudio} auf. WICHTIG! Nicht \textbf{R} selbst aufrufen (auch wenn dieses funktioniert und einige alte hartgesottene Programmierer darauf schwören).
+
+\hypertarget{das-user-interface-von-rstudio}{%
+\section{Das User Interface von RStudio}\label{das-user-interface-von-rstudio}}
+
+Wenn du \textbf{RStudio} zum ersten Mal öffnest wirst du von folgendem Bild begrüßt.
+
+Was du hier siehst ist \textbf{RStudio} in seiner Standard Konfiguration. Im folgenden Abschnitt wirst du die drei bzw. vier Fenster oder auch Panes genannten Interaktionsfelder von \textbf{RStudio} näher kennen lernen und verstehen wie du diese benutzen kannst. Hierbei gehen wir von links nach rechts vor.
+
+\hypertarget{die-console-oberfluxe4che}{%
+\section{Die Console-Oberfläche}\label{die-console-oberfluxe4che}}
+
+Das Console-Fenster findest du in der Grundausführung von \textbf{RStudio} auf der linken Seite und es dient dir als direktes Interaktionsfenster mit \textbf{R} und dadurch mit dem Computer. Jeder Code der in der Console eingegeben und durch Enter bestätigt wird, wird durchgeführt (engl. to run code).
+
+Du kannst in die \textbf{R}-Console einfache Rechenaufgaben eingeben und \textbf{R} wird dir wie eine Art Taschenrechner die Lösung der Aufgabe ausgeben.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{2} \OperatorTok{+}\StringTok{ }\DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5
+\end{verbatim}
+
+Die \textbf{R}-Console ist allerdings viel mehr als eine Art Taschenrechner, du kannst hier dem Computer direkt über \textbf{R}-Code komplexe Befehle geben.
+
+Es ist Zeit für euren ersten selbst geschriebenen Code. Hierfür befählst du dem Rechner die Worte ``Hallo Welt!'' widerzugeben. Dabei nutzt du den Befehl \texttt{print()}, gibst in die Klammer die Worte ein und führst den Code über das Drücken der Enter + Strg -Tasten aus (alternativ einfach auf den blauen Button ``Run Code'' klicken). Hierbei ist es wichtig die Worte in Anführungszeichen einzugeben \texttt{"\ "} um den Rechner zu symbolisieren, dass es sich um menschliche Sprache handelt.
+
+Herzlichen Glückwunsch! Du hast hiermit deinen ersten R-Code geschrieben.
+
+Allerdings ist es oft schwer und sehr langwierig gewisse Befehle jedes Mal neu einzugeben, sodass \textbf{R} bereits eine Vielzahl an implementierten Befehlen wie den oben genutzten \texttt{print()} kennt.
+So kannst du ohne viel Programmierkenntnisse dem PC sagen Zahlen zu runden:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{round}\NormalTok{(}\FloatTok{2.5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2
+\end{verbatim}
+
+Oder die Uhrzeit deines Systems auszugeben:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{Sys.time}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "2020-04-15 14:04:17 CEST"
+\end{verbatim}
+
+Wie du mit den verschiedenen Funktionen richtig umgehst, neue hinzufügst und eigene selbst schreibst wirst, du im späteren Verlauf lernen können.
+
+\hypertarget{die-script-oberfluxe4che}{%
+\section{Die Script-Oberfläche}\label{die-script-oberfluxe4che}}
+
+Das Eingeben von Code in die Console kann auf Dauer mühsam sein, vor allem wenn du denselben Code wiederholst, komplexere Eingaben tätigst oder aufeinander folgende Operationen ausführen willst. Daher kommen wir nun von der Console zur Script- oder Source-Oberfläche.
+
+Diese Oberfläche ist beim ersten Starten von \textbf{RStudio} nicht zu sehen, kann allerdings über den Reiter File --\textgreater{} New File --\textgreater{} R Script geöffnet werden. Alternativ kannst du einfach ein neues Skript über die Tastenkombination: Strg + Shift + N öffnen. Hierbei sei die Nutzung des Keyboard-Shortcuts zu bevorzugen, da diese Art und Weise schneller und direkter von statten geht.
+
+Du wirst nun ein leeres Dokument sehen in welchem du den R-Code schreiben kannst, ohne ihn gleich auszuführen. Diese Oberfläche bzw. das Skript selbst, dient also als eine Art Sammelstelle für deinen Code. Das Skript kann ebenfalls gespeichert werden, sodass du in der Lage bist Code später (wieder) auszuführen oder ihn gar zu teilen oder später bei einer Seminar- oder Abschlussarbeit abzugeben.
+
+Wenn du nun Code in dein neues Skript eingibst wirst du merken, dass dieser nicht sofort ausgeführt wird. Um den Code zu nutzen musst du diesen an die Console ``schicken''. Hierfür gibt es verschiedene Methoden. Dabei kannst du zum einen den auszuführenden Code mit der Maus/Keyboard markieren und dann auf den Button ``Run'' klicken. Der viel einfachere und von uns vorgeschlagene Weg ist, einfach den Code durch das drücken von Strg + Enter (Linux, Windows) bzw. Command + Enter (Mac) auszuführen.
+
+Ein von dir geschriebenes Skript kannst du einfach über den Reiter File --\textgreater{} Save As abspeichern, sodass du das File jeder Zeit an dem Ort findest mit dem Namen ``Euer\_Skript\_Name.R''.
+
+\hypertarget{die-environment-oberfluxe4che}{%
+\section{Die Environment-Oberfläche}\label{die-environment-oberfluxe4che}}
+
+Das in der Ausgangskonfiguration sich rechts oben befindliche Environment-Feld dient verschiedener Aufgaben. In aller erster Linie sind dort alle Objekte zu finden welche gerade in R definiert sind.
+
+Als kleines Beispiel der folgende Code:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{1}\OperatorTok{:}\DecValTok{10}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1]  1  2  3  4  5  6  7  8  9 10
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{10}
+\end{Highlighting}
+\end{Shaded}
+
+Hierbei erstellst du eine Sequenz an Zahlen von 1 bis 10. Im ersten Beispiel wird diese Sequenz ausgegeben, während beim zweiten Beispiel du der Variable \texttt{x} die Werte der Sequenz von 1 bis 10 zuweist. Im folgenden Kapitel werden wir im genaueren die Thematik des Variablen zuweisen behandeln, jetzt reicht es zu verstehen, dass durch diese Zuweisung eine Variable gespeichert wird, welche den jeweiligen Wert speichert. Darüber hinaus erscheint nun rechts im Environment Feld der Eintrag für \texttt{x}. Dies bedeutet, dass nun wann immer du in der R Console oder im Skript die Größe \texttt{x} benutzt die zugewiesene Sequenz von 1 bis 10 ausgegeben oder benutzt wird.
+
+Wenn du auf den zweiten Tab „History`` klickst wird dir eine chronologische sortierte Auflistung aller von dir ausgeführtem \textbf{R} Befehle angezeigt. Dieser Tab hilft dir also als eine Art Anlaufstelle für Fehlersuche oder zu verstehen was du beim letzten Mal in \textbf{R} überhaupt gemacht hast.
+
+Zu guter Letzt bietet die Environment-Oberfläche das manuelle Einlesen von Daten über den Butto ``Import Dataset''. Indem du diesen Button bedienst öffnet sich ein Dropdown Menü indem du die verschiedenen Arten von importierbaren Daten auswählen kannst. Dieses Menü erlaubt dir so das einlesen und bearbeiten von Daten aus
+
+\begin{itemize}
+\tightlist
+\item
+  Text-Datein (.txt, .csv, \ldots)
+\item
+  Excel (.xls, .xlsc, .xml, \ldots)
+\item
+  SPSS
+\item
+  STATA
+\item
+  SAS
+\end{itemize}
+
+Wie man nun genauer diese Daten einließt, wird in einem der folgenden Kapiteln genauer beschrieben.
+
+\hypertarget{die-output-oberfluxe4che}{%
+\section{Die Output-Oberfläche}\label{die-output-oberfluxe4che}}
+
+Die Output Oberfläche mit den vier Tabs Files / Plots / Packages / Help zeigt dir viele hilfreiche Informationen. Wir gehen jeden Tab im Detail durch.
+
+\textbf{Files} - Das Datei-Panel gibt dir Zugriff auf das Dateiverzeichnis auf deiner Festplatte. Eine nette Eigenschaft des ``Dateien''-Panels ist, dass du es benutzen kannst, um dein Arbeitsverzeichnis festzulegen - sobald du zu einem Ordner navigierst, indem du Dateien lesen und speichern möchtest, klicke auf ``Mehr'' und dann auf ``Als Arbeitsverzeichnis festlegen''.
+
+\textbf{Plots} - Das Plots-Panel, zeigt alle deine Plots. Es gibt Schaltflächen zum Öffnen des Plots in einem separaten Fenster und zum Exportieren des Plots.
+
+\textbf{Packages} - Zeigt eine Liste aller auf deiner Festplatte installierten \textbf{R}-Pakete an und zeigt an, ob sie derzeit geladen sind oder nicht. Pakete, die in der aktuellen Sitzung geladen sind, werden geprüft, während die installierten, aber noch nicht geladenen Pakete nicht markiert sind.
+
+\textbf{Help} - Hilfemenü für \textbf{R}-Funktionen. Du kannst entweder den Namen einer Funktion in das Suchfenster eingeben oder den Code verwenden, um nach einer Funktion mit dem Namen
+
+Hierfür gibt es neben der Eingabe in das Suchfeld verschiedene weitere Möglichkeiten Hilfe zu finden. Die erste, du nutzt ein einziges \texttt{?} gefolgt von dem Namen der Funktion zu der du mehr wissen möchtest, oder du nutzt \texttt{??} gefolgt von einem Ausdruck zu dem du mehr wissen möchtest. Wie du hieran erkennen kannst ist der Unterschied einfach darin zu sehen, dass man nur ein Fragezeichen nutzt, wenn man bereits die Funktion kennt, um die es geht und zwei Fragezeichen, wenn man eine Funktion finden möchte, um ein Problem zu lösen.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{?sd}
+\CommentTok{# Oder auch möglich als}
+\KeywordTok{help}\NormalTok{(sd)}
+\CommentTok{# Möchtest du eine Funktion für Quantile finden:}
+\NormalTok{??quantile}
+\end{Highlighting}
+\end{Shaded}
+
+Falls du nicht direkt die Lösung deines Problems findest, die Erklärung/Beispiel nicht verständlich genug ist oder dein Problem zu komplex für die interne \textbf{RStudio}-Hilfe ist, gibt es verschiedene Arten um an Hilfe zu kommen.
+
+Eine der größten, wichtigsten und oft hilfreichsten Plattformen ist StackOverflow
+
+\hypertarget{kapitel3}{%
+\chapter{\texorpdfstring{Einführung in \textbf{R}-Programmierung}{Einführung in R-Programmierung}}\label{kapitel3}}
+
+Nach dem wir im letzten Kapitel uns \textbf{R} und dessen IDE RStudio genauer angeschaut und dabei erste Beispiele für das Programmieren in \textbf{R} gesehen haben, wird es Zeit uns in diesem Kapitel genauer mit der Programmierung in \textbf{R} zu befassen.
+Du wirst lernen was Objekte in \textbf{R} sind, wie man Funktionen richtig anwendet und neue Funktionen durch das installieren von Packages \textbf{R} hinzufügt.
+
+\hypertarget{zuweisung-und-recalling-objekts}{%
+\section*{Zuweisung und Recalling Objekts}\label{zuweisung-und-recalling-objekts}}
+\addcontentsline{toc}{section}{Zuweisung und Recalling Objekts}
+
+Im letzten Kapitel haben wir ein Beispiel gehabt, indem wir einer Variable \texttt{x} die Sequenz von 1 bis 10 zugewiesen haben.
+Durch diese Zuweisung war die Sequenz an die Variable \texttt{x} gebunden, sodass jedes Mal wenn \texttt{x} in der Console abgerufen worden ist, die Sequenz von 1 bis 10 wiedergeben worden ist.
+Generell kann man \textbf{R} wie einen Taschenrechner nutzen, allerdings können wir ebenfalls wie bei dem Sequenz Beispiel Rechnungen, Werte oder andere Dinge gewissen Ausdrücken wie der Variablen \texttt{X} zuweisen um sie so zu speichern.
+Für einfache Zuweisungen, wie wir sie in diesem Kurs uns anschauen werden, nutzen wir immer den \texttt{\textless{}-} Operator.
+Also ein gewisser Wert, der rechts steht, wird einer Variablen die links steht zugewiesen.
+Du kannst auch \texttt{=} für Zuordnungen verwenden, aber nicht in jedem Kontext.
+Wegen der geringfügigen Unterschiede in der Syntax ist es sinnvoll, für Zuweisungen immer \texttt{\textless{}-} zu verwenden.
+Hierbei müssen Variablen nicht unbedingt einzelne Variablen wie \texttt{x} sein, sie können auch Namen tragen.
+Als Beispiel des Zuweisens von verschieden Werten zu verschiedenen Variablen
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{  x <-}\StringTok{ }\DecValTok{13}
+\NormalTok{  x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 13
+\end{verbatim}
+
+Hierbei wurde der Variablen \texttt{x} der Wert 13 zugewiesen und im nächsten Schritt wird der Variablen \texttt{x} erneut ein neuer Wert von 2 zugewiesen.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{  x <-}\StringTok{ }\DecValTok{2}
+\NormalTok{  x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2
+\end{verbatim}
+
+Du kannst hierbei sehen, dass durch die zweite Zuweisung die erste Zuweisung aufgehoben worden ist und durch die neue ersetzt worden ist.
+Solltest du deinem Code Kommentare hinzufügen wollen, welche nicht durch \textbf{R} ausgeführt werden sollen, nutzt du zuerst das Symbol \texttt{\#}.
+Wobei es einfacher ist erst deinen Kommentar zu formulieren, diesen zu markieren und durch das Drücken der Tastenkombination \texttt{Strg\ +\ Shift\ +\ c} wird dieser Part automatisch zu einem Kommentar.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Kleines Beispiel eines String-Vectors}
+
+\NormalTok{  beispiel <-}\StringTok{ "hallo welt!"}
+\NormalTok{  beispiel}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "hallo welt!"
+\end{verbatim}
+
+Das dritte Beispiel zeigt dir, dass ebenfalls ganze Namen oder andere Zeichenkombinationen einen Wert zugewiesen bekommen können.
+Dir fällt ebenfalls auf, dass das dritte Beispiel keinen Zahlenwert darstellt, sondern Text einen sogenannten String.
+Zu den verschiedenen Datentypen in \textbf{R} kommen wir im nächsten Kapitel
+
+\textbf{R} unterscheidet übrigens zwischen Groß- und Kleinschreibung bei Variablennamen.
+Wenn wir eine Variable \texttt{alleTeilnehmer} definiert hätten, könnten wir nicht mit weiter \texttt{AlleTeilnehmer} rechnen.
+
+Es gibt allerdings einige Namen für Variablen welche du nicht in \textbf{R} nutzen solltest, da diese zu Problem führen (können).
+Die Namen der Objekte sollen die folgenden Zeichen nicht enthalten \texttt{\^{},\ !,\ \$,\ @,\ +,\ -,\ /,\ or\ *}.
+
+Als letzte Regel soll man keine bereits bestehenden Funktionsnamen überschreiben.
+
+\hypertarget{daten-strukturen-in-r}{%
+\chapter{Daten Strukturen in R}\label{daten-strukturen-in-r}}
+
+Um nun mit \textbf{R} zu arbeiten, ist es wichtig zu verstehen wie \textbf{R} überhaupt mit Daten umgeht, sie speichert und viel mehr noch wie du als Nutzer mit diesen arbeiten kannst.
+Daher schauen wir uns zu Beginn wir uns erst einmal an in welchen Formen (Strukturen) Daten in \textbf{R} gespeichert werden können.
+
+Die Basisdatenstrukturen von \textbf{R} können nach ihrer Dimensionalität (1 x d, 2 x d oder n x d) und danach organisiert werden, ob sie homogen (alle Inhalte müssen vom gleichen Typ sein) oder heterogen (die Inhalte können von unterschiedlichem Typ sein) sind.
+Daraus ergeben sich die fünf in der Datenanalyse an den häufigsten verwendeten Datentypen:
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+Dimension & Homogen & Heterogen\tabularnewline
+\midrule
+\endhead
+1 x d & (Atomarer) Vektor & List\tabularnewline
+2 x d & Matrix & Data Frame\tabularnewline
+n x d & Array & -\tabularnewline
+\bottomrule
+\end{longtable}
+
+Eine Besonderheit von \textbf{R} ist es, dass es keine skalaren Typen kennt.
+Einzelne Daten die wir als Menschen als Skalare wahrnehmen würden, sind trotzdem für \textbf{R} ein Vektor mit der Länge 1.
+
+Wir starten mit dem einfachsten und wahrscheinlich wichtigsten Daten Typ in \textbf{R} den Vektoren.
+Ein Vektor besteht entweder homogen aus der gleichen elementaren oder ``atomaren'' Klassen (sog. Atomare Vektoren) oder aus heterogen Daten als Listen.
+
+\hypertarget{vektoren}{%
+\section{Vektoren}\label{vektoren}}
+
+Um atomare Vektoren zuerstellen nutzt man den\texttt{c()}-Operator, der kurz für combine steht.
+Hierfür weisen wir einfach einer Variablen einen Vektor dadurch zu, dass wir in die Klammern des \texttt{c()}-Operators die jeweiligen homogenen atomaren Objekte aufführen die indem Vektor vorhanden sein sollen.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Nun stellt sich allerdings erst einmal die Frage was sind diese atomaren Objekte?
+Hierfür gehen wir in diesem Skript die für uns wichtigsten vier sogenannter atomaren (also kleinst mögliche Form) Objekten in \textbf{R} durch.
+Jede der verschiedenen Formen verlangt eine andere Form der Notation. Hierbei handelt es sich um die
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Logical
+\item
+  Integer
+\item
+  Double
+\item
+  Character
+\end{enumerate}
+
+\hypertarget{logicals}{%
+\subsection{Logicals}\label{logicals}}
+
+Bei den \textbf{Logicals} handelt es sich wie der Name schon verrät um logische Aussagen.
+Logische Werte nehmen einen von zwei möglichen Werten an \texttt{TRUE} oder \texttt{FALSE}, bzw. deren Abkürzung in Form von \texttt{T} und \texttt{F}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{logicalBSP <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"FALSE"}\NormalTok{, }\StringTok{"TRUE"}\NormalTok{, T, F)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{doubles}{%
+\subsection{Doubles}\label{doubles}}
+
+Bei den sogenannten \textbf{Doubles} handelt es sich um Gleitkommazahlen Hierbei können die Werte in Decimal-, Scientific- und in Hexadecimalschreibweise angegeben werden.
+Es gibt außerdem noch besondere Zahlenwerte welche ebenfalls zu den Doubles gehören.
+Hierbei handelt es sich um Unendlich: \texttt{Inf} bzw. \texttt{-Inf} und um die Angabe ``Not a Number'' \texttt{NaN}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{doublesBSP <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\FloatTok{42.42}\NormalTok{, }\FloatTok{13.37}\NormalTok{, }\FloatTok{6.66}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{integers}{%
+\subsection{Integers}\label{integers}}
+
+Die \textbf{Integers} (oder auch ganzzahlige Zahlen) gehören genau wie die Doubles zu den Zahlenwerten, die Besonderheit in der Notation liegt darin, dass jedem Zahlenwert ein ``L'' angehängt wird (\texttt{1L})
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{integerBSP <-}\StringTok{ }\KeywordTok{c}\NormalTok{(2L,6L,1L,3L,3L)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{characters}{%
+\subsection{Characters}\label{characters}}
+
+Die Klasse der \textbf{Characters} umfasst alle eingaben von Buchstaben/Zeichenkombinationen. B
+ei der Eingabe werden diese immer mit Anführungsstrichen (" " oder ' ' ) umschlossen. Beispiel: \texttt{"Hallo\ Welt!"}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{stringBSP <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Hallo Welt!"}\NormalTok{, }\StringTok{"Ich bin R Code!"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Korrekterweise sei an dieser Stelle auf zwei weitere atomare Objektarten hingewiesen, die complex- und raw-Objekte.
+Die Klasse ``complex'' umfasst alle Eingaben von komplexen Zahlen, während die Klasse ``raw'' nur im Rahmen von binären Daten genutzt wird.
+Diese beiden Arten werden in komplexeren Zusammenhängen behandelt, welche dir wahrscheinlich nicht im Rahmen der Bachelorveranstaltungen über den Weg laufen und werden daher nicht behandelt.
+Falls du Interesse an diesem Thema hast empfehlen wir das Buch: \href{https://adv-r.hadley.nz/}{Advanced R von Wickham}
+
+\hypertarget{listen}{%
+\section{Listen}\label{listen}}
+
+Der große Unterschied zwischen atomaren Vektoren und Listen ist der, dass Listen alle möglichen verschiedenen Typen von Daten beinhalten können.
+Listen werden im Gegensatz zu Vektoren mit dem Befehl \texttt{list()} erstellt.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lst1 <-}\StringTok{ }\KeywordTok{list}\NormalTok{(3L, }\StringTok{"Hallo"}\NormalTok{, }\KeywordTok{c}\NormalTok{(}\FloatTok{13.9}\NormalTok{, }\FloatTok{42.22223}\NormalTok{), }\KeywordTok{c}\NormalTok{(T, F, }\OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Interessanterweise ist es mögliche Listen in Listen zu speichern, was es ermöglicht sogenannte rekursive Vektoren zuerstellen:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{listception <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\KeywordTok{list}\NormalTok{(}\KeywordTok{list}\NormalTok{())))}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{eingabe-von-vektoren}{%
+\subsection{Eingabe von Vektoren}\label{eingabe-von-vektoren}}
+
+Die Eingabe von Daten per Hand kann sehr langwierig sein, vor allem wenn du zum Beispiel die Folge von 1 bis 1000 als Vektor speichern willst.
+Daher gibt es Möglichkeiten Einträge über Befehle von \textbf{R} automatisiert zuerstellen.
+Hier sind ein paar der nützlichsten Methoden, die dir das Arbeiten mit \textbf{R} erleichtern:
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+\begin{minipage}[b]{0.29\columnwidth}\raggedright
+Funktion\strut
+\end{minipage} & \begin{minipage}[b]{0.30\columnwidth}\raggedright
+Beispiel\strut
+\end{minipage} & \begin{minipage}[b]{0.32\columnwidth}\raggedright
+Ergebnis\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.29\columnwidth}\raggedright
+\texttt{c(a,\ b,\ ...)}\strut
+\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
+\texttt{c(1,\ 5,\ 9)}\strut
+\end{minipage} & \begin{minipage}[t]{0.32\columnwidth}\raggedright
+1, 5, 9\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.29\columnwidth}\raggedright
+\texttt{a:b}\strut
+\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
+\texttt{1:5}\strut
+\end{minipage} & \begin{minipage}[t]{0.32\columnwidth}\raggedright
+1, 2, 3, 4, 5\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.29\columnwidth}\raggedright
+\texttt{seq(from,\ to,\ by,\ length.out)}\strut
+\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
+\texttt{seq(from\ =\ 0,\ to\ =\ 6,\ by\ =\ 2)}\strut
+\end{minipage} & \begin{minipage}[t]{0.32\columnwidth}\raggedright
+0, 2, 4, 6\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.29\columnwidth}\raggedright
+\texttt{rep(x,\ times,\ each,\ length.out)}\strut
+\end{minipage} & \begin{minipage}[t]{0.30\columnwidth}\raggedright
+\texttt{rep(c(7,\ 8),\ times\ =\ 2,\ each\ =\ 2)}\strut
+\end{minipage} & \begin{minipage}[t]{0.32\columnwidth}\raggedright
+7, 7, 8, 8, 7, 7, 8, 8\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{faktoren}{%
+\subsection{Faktoren}\label{faktoren}}
+
+Eine spezielle Form der Vektoren sind Faktoren, welche die Kategorien oder Klassifikationen von
+Vektoren angeben, welche also Kategoriale Daten darstellen.
+Durch die Anwendung der \texttt{factor()}-Funktion auf einen Vektor mit Characters bzw. Zeichenketten (Strings), verwandelt diese einfachen die Zeichen in Faktoren um.
+Als Beispiel erschaffen wir einen Vektor mit Bezeichnung für Frau (w) und Mann (m) und verwandeln
+diese in Faktoren um.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sex <-}\StringTok{ }\KeywordTok{rep}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"w"}\NormalTok{,}\StringTok{"m"}\NormalTok{), }\DataTypeTok{times =} \DecValTok{3}\NormalTok{)}
+\NormalTok{sex <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(sex)}
+\NormalTok{sex}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] w m w m w m
+## Levels: m w
+\end{verbatim}
+
+Zwei nützliche Funktionen bei der Arbeit mit Faktoren sind die Checks \texttt{class()} und \texttt{levels()}.
+Die erste Funktion fragt einen Vektor welche Art von Daten vorliegen, während die zweite Funktion die verschiedenen Ausprägungen des Faktors darstellt
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(sex)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "factor"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{levels}\NormalTok{(sex)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "m" "w"
+\end{verbatim}
+
+Faktoren sind nützlich, wenn du die möglichen Werte kennst, die eine Variable annehmen kann, auch wenn
+du nicht alle Werte in einem bestimmten Datensatz weißt.
+Die Verwendung eines Faktors anstelle eines Zeichenvektors (Strings) macht es offensichtlich, wenn einige Gruppen keine Beobachtungen enthalten:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(sex)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## m w 
+## 3 3
+\end{verbatim}
+
+\hypertarget{matrizen-und-arrays}{%
+\section{Matrizen und Arrays}\label{matrizen-und-arrays}}
+
+Atomare Vektoren und Listen sind wie oben bereits erwähnt als 1 x d Objekte zu verstehen.
+Fügen wir den Objekten nun eine weitere Dimension hinzu, so betrachten wir Matrix und Arrays.
+Ähnlich zu den Listen existieren zur Erstellung von Matrizen und Arrays eigene Befehle, \texttt{matrix()} und respektive \texttt{array()}.
+
+\hypertarget{matrizen}{%
+\subsection{Matrizen}\label{matrizen}}
+
+Das besondere bei Matrizen im Gegensatz zu den 1-dimensionalen Vektoren und Listen ist, dass sie mehrere Spezifikationen benötigen um erschaffen zu werden.
+So muss bei der Nutzung von \texttt{matrix()} definiert werden, welche Werte in der Matrix zu finden sein sollen, des Weiteren wie die Dimensionen der Matrix auszusehen haben, also die Anzahl der Reihen (\texttt{nrow}) und Spalten(\texttt{ncol}).
+Hier ein kleines Beispiel:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{), }\DataTypeTok{ncol =} \DecValTok{2}\NormalTok{, }\DataTypeTok{nrow =} \DecValTok{3}\NormalTok{)}
+\NormalTok{m}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2]
+## [1,]    1    4
+## [2,]    2    5
+## [3,]    3    6
+\end{verbatim}
+
+Du kannst sehen, dass zuerst ein Atomarer Vektor mithilfe des Combine-Befehls eingegeben wird, gefolgt von der Anzahl der Spalten mit 2 und der Anzahl der Reihen mit 3.
+
+\hypertarget{arrays}{%
+\subsection{Arrays}\label{arrays}}
+
+Der Vollständigkeit halber hier ein Beispiel wie man Arrays in \textbf{R} erschafft, allerdings werden keine Arrays in der Einführungs-Vorlesung der Statistik behandelt.
+
+Ähnlich zu der Logik hinter dem Matrix Befehl müssen mehr Eingaben getätigt werden, als nur die Datenpunkte selbst, zu sehen am folgenden Beispiel
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a <-}\StringTok{ }\KeywordTok{array}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{12}\NormalTok{, }\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{2}\NormalTok{))}
+\NormalTok{a}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## , , 1
+## 
+##      [,1] [,2] [,3]
+## [1,]    1    3    5
+## [2,]    2    4    6
+## 
+## , , 2
+## 
+##      [,1] [,2] [,3]
+## [1,]    7    9   11
+## [2,]    8   10   12
+\end{verbatim}
+
+Der Array Befehl folgt folgender Struktur, man definiert zum einen die abzubildenden Datenpunkte, hier in unserem Beispiel durch die Sequenz von 1 bis 12 \texttt{1:12}, gefolgt von der Eingabe der gewünschten Dimension, in diesem Beispiel durch den Vektor \texttt{c(2,3,2)}resultierend in einem Array mit den Dimensionen 2 x 3 x 2.
+
+\hypertarget{data.frames}{%
+\subsection{Data.Frames}\label{data.frames}}
+
+Data Frames sind die zweidimensionale Version einer Liste. Sie sind sehr flexible und nützliche Datenstruktur für die Datenanalyse.
+Man kann einen Data Frame als eine Art \textbf{R} Äquivalent zur Excel-Tabelle verstehen, da sie Daten in einem ähnlichen Format speichert und darstellt.
+
+Data Frames gruppiert Vektoren in einer zweidimensionalen Tabelle.
+Jeder Vektor wird zu einer Spalte in der Tabelle.
+Folglich kann jede Spalte eines Datenrahmens einen anderen Datentyp enthalten.
+
+Die Erstellung eines Data Frames von Hand erfordert viel Arbeit, sodass die Eingabe einfacher über die \texttt{data.frame()} Funktion geschieht.
+Nutze einfach eine beliebige Anzahl von Vektoren, die jeweils durch ein Komma getrennt werden. Jeder Vektor sollte einem Namen entsprechen, der den Vektor beschreibt.
+Wichtig, jeder Vektor muss hierbei die gleiche Länge haben.
+Die \texttt{data.frame()}-Funktion macht jeden Vektor zu einer Spalte des neuen Data Frames:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{lat =} \KeywordTok{c}\NormalTok{(}\StringTok{"51.5454"}\NormalTok{, }\StringTok{"53.1438"}\NormalTok{, }\StringTok{"35.7034"}\NormalTok{),}
+                 \DataTypeTok{lon =} \KeywordTok{c}\NormalTok{(}\StringTok{"9.9055"}\NormalTok{, }\StringTok{"8.2138"}\NormalTok{, }\StringTok{"139.7532"}\NormalTok{), }
+                 \DataTypeTok{value =} \KeywordTok{c}\NormalTok{(}\StringTok{"Göttingen"}\NormalTok{, }\StringTok{"Oldenburg"}\NormalTok{, }\StringTok{"Tokyo"}\NormalTok{))}
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       lat      lon     value
+## 1 51.5454   9.9055 Göttingen
+## 2 53.1438   8.2138 Oldenburg
+## 3 35.7034 139.7532     Tokyo
+\end{verbatim}
+
+\hypertarget{names}{%
+\subsection{Names}\label{names}}
+
+Es macht oft Sinn nicht nur den Objekten, sondern auch Variablen in \textbf{R}-Objekten Namen zu geben.
+Ein Beispiel:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{alter <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{13}\NormalTok{, }\DecValTok{42}\NormalTok{, }\DecValTok{39}\NormalTok{)}
+\KeywordTok{names}\NormalTok{(alter)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## NULL
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{names}\NormalTok{(alter) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Chris"}\NormalTok{, }\StringTok{"Henny"}\NormalTok{, }\StringTok{"Paul"}\NormalTok{)}
+\NormalTok{alter}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Chris Henny  Paul 
+##    13    42    39
+\end{verbatim}
+
+Wir haben hier also einen Vektor der verschiedenen Altersangabe beinhält.
+Wir können nun jedem Eintrag einen Namen mit der \texttt{name()}-Funktion zuweisen, in diesem Fall drei verschiedene Namen.
+Nun wenn der Vektor abgerufen wird, werden die Namen mit den dazugehörigen Alterszahlen angegeben.
+Listen und Matrizen können genauso wie atomare Vektoren Namen aufweisen.
+Bei Listen ist dies sehr hilfreich, da es so einfacher ist auf bestimmte Elemente in den Listen zuzugreifen.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{alter <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\StringTok{"Chris"}\NormalTok{ =}\StringTok{ }\DecValTok{13}\NormalTok{, }\DataTypeTok{Henny =} \DecValTok{42}\NormalTok{, }\DataTypeTok{Paul =} \DecValTok{39}\NormalTok{)}
+\NormalTok{alter}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $Chris
+## [1] 13
+## 
+## $Henny
+## [1] 42
+## 
+## $Paul
+## [1] 39
+\end{verbatim}
+
+Wie man hier sehen kann, enthält die Liste nun drei verschiedene Objekte mit jeweils einem anderen Namen.
+Interessanterweise kann man den Namen mit aber auch ohne Anführungszeichen eingeben, dies liegt daran,
+dass wenn der Name aus mehreren Worten besteht der Name von \texttt{"\ "} umschlossen sein muss dies aber bei einem einzigen Wort optional ist.
+Des Weiteren sind die Namen hilfreich auf einzelne Elemente der Liste zuzugreifen.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{alter}\OperatorTok{$}\NormalTok{Chris}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 13
+\end{verbatim}
+
+Aber zu diesem bestimmten auswählen von Teildaten und Subsets mehr im späteren Abschnitt zur Daten Manipulation.
+Namen bei Matrizen haben auf Grund ihrer anderen Dimensionalität eine andere Struktur.
+Matrizen haben immer Column (Spalten) und Row (Reihen) spezifische Namen.
+Diese Namen kann man nur über die Nutzung der Funktionen \texttt{colnames()} und \texttt{rownames()} festlegen und verändern oder indem man über den Befehl \texttt{dimnames()} gleich beide zusammen definiert.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{, }\DataTypeTok{nrow =} \DecValTok{2}\NormalTok{, }\DataTypeTok{ncol =} \DecValTok{2}\NormalTok{)}
+\KeywordTok{dimnames}\NormalTok{(m) <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{), }\KeywordTok{c}\NormalTok{(}\StringTok{"c"}\NormalTok{, }\StringTok{"d"}\NormalTok{))}
+\NormalTok{m}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   c d
+## a 1 3
+## b 2 4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{colnames}\NormalTok{(m) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"h"}\NormalTok{, }\StringTok{"f"}\NormalTok{)}
+\KeywordTok{rownames}\NormalTok{(m) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"x"}\NormalTok{, }\StringTok{"z"}\NormalTok{)}
+\NormalTok{m}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   h f
+## x 1 3
+## z 2 4
+\end{verbatim}
+
+\hypertarget{kapitel3.3}{%
+\chapter{\texorpdfstring{Grundlegende \textbf{R}-Funktionen}{Grundlegende R-Funktionen}}\label{kapitel3.3}}
+
+\textbf{R} kommt von Haus aus mit verschiedenen bereits implementierten Funktionen wie die bereits vorgestellten \texttt{mean()}, \texttt{round()}, \texttt{print()} und vielen mehr.
+Im folgenden Abschnitt werden wir durch ein paar der wichtigsten in \textbf{R} implementierten Funktionen durchgehen um dir ein Gefühl dafür zu geben wie du mit \textbf{R}-Funktionen umgehen musst und wie du effektiv mit \textbf{R} arbeiten kannst.
+
+\hypertarget{mathematische-operationen}{%
+\section{Mathematische Operationen}\label{mathematische-operationen}}
+
+Bisher weißt du, wie man grundlegende arithmetische Operationen wie \texttt{+} (Addition), \texttt{-} (Subtraktion) und \texttt{*} (Multiplikation) auf Skalaren ausführst.
+Glücklicherweise macht es \textbf{R} genauso einfach, arithmetische Operationen auf numerischen Vektoren durchzuführen:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{5}\NormalTok{)}
+\NormalTok{y <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{5}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DecValTok{9}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Wenn du eine Operation mit einem Vektor und einem Skalar durchführst, wendet \textbf{R} den Skalar auf jedes einzelne Element des Vektors an.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Addition mit Skalaren}
+\NormalTok{x }\OperatorTok{+}\StringTok{ }\DecValTok{100}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 101 102 103 104 105
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{1}\OperatorTok{:}\DecValTok{5} \OperatorTok{+}\StringTok{ }\DecValTok{10}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 11 12 13 14 15
+\end{verbatim}
+
+Wenn du eine Operation auf zwei Vektoren der gleichen Länge anwenden willst funktioniert es recht einfach.
+\textbf{R} wendet die Operation auf beide Vektoren Element für Element an.
+Als Beispiel was damit gemeint ist:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OperatorTok{+}\StringTok{ }\NormalTok{y}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  6  8 10 12 14
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{y }\OperatorTok{-}\StringTok{ }\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4 4 4 4 4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(x }\OperatorTok{+}\StringTok{ }\NormalTok{y) }\OperatorTok{/}\StringTok{ }\DecValTok{10}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.6 0.8 1.0 1.2 1.4
+\end{verbatim}
+
+\hypertarget{deskriptive-statistik}{%
+\section{Deskriptive Statistik}\label{deskriptive-statistik}}
+
+Die folgenden Befehle stellen eine Zusammenfassung der für dich im Laufe des Studiums wichtigsten beschreibenden Größen der Statistik.
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+\begin{minipage}[b]{0.17\columnwidth}\raggedright
+Funktion\strut
+\end{minipage} & \begin{minipage}[b]{0.19\columnwidth}\raggedright
+Beispiel\strut
+\end{minipage} & \begin{minipage}[b]{0.56\columnwidth}\raggedright
+Output\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.17\columnwidth}\raggedright
+\texttt{sum(x),\ product(x)}\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\texttt{sum(1:10)}\strut
+\end{minipage} & \begin{minipage}[t]{0.56\columnwidth}\raggedright
+55\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.17\columnwidth}\raggedright
+\texttt{min(x),\ max(x)}\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\texttt{min(1:10)}\strut
+\end{minipage} & \begin{minipage}[t]{0.56\columnwidth}\raggedright
+1\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.17\columnwidth}\raggedright
+\texttt{mean(x),\ median(x)}\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\texttt{mean(1:10)}\strut
+\end{minipage} & \begin{minipage}[t]{0.56\columnwidth}\raggedright
+5.5\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.17\columnwidth}\raggedright
+\texttt{sd(x),\ var(x),\ range(x)}\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\texttt{sd(1:10)}\strut
+\end{minipage} & \begin{minipage}[t]{0.56\columnwidth}\raggedright
+3.0276504\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.17\columnwidth}\raggedright
+\texttt{quantile(x,\ probs)}\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\texttt{quantile(1:10,\ probs\ =\ .2)}\strut
+\end{minipage} & \begin{minipage}[t]{0.56\columnwidth}\raggedright
+2.8\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.17\columnwidth}\raggedright
+\texttt{summary(x)}\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\raggedright
+\texttt{summary(1:10)}\strut
+\end{minipage} & \begin{minipage}[t]{0.56\columnwidth}\raggedright
+\texttt{Min\ =\ 1.00.\ 1st\ Qu.\ =\ 3.25,\ Median\ =\ 5.50,\ Mean\ =\ 5.50,\ 3rd\ Qu.\ =\ 7.75,\ Max\ =\ 10.0}\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{missing-values}{%
+\section{Missing Values}\label{missing-values}}
+
+Ein Problem, welches auftreten kann, wenn man mit echten Daten arbeitet ist, dass entweder falsche oder gar fehlende Werte auftreten.
+Sollte in deinen Daten fehlende Werte auftreten, kommen leider vielen grundlegende Statistiken zu nicht verlässlichen Ergebnissen.
+Der folgende Code gibt beispielsweise NA als Ergebnis zurück, weil ein NA-Wert im Datenvektor vorhanden ist:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\OtherTok{NA}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{)}
+\KeywordTok{mean}\NormalTok{(a)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] NA
+\end{verbatim}
+
+Glücklicherweise bietet \textbf{R} allerdings eine Möglichkeit, um mit \texttt{NAs} in den Daten umzugehen.
+So kann man entweder bei der Anwendung einer Funktion auf die Daten ein weiteres Argument an die Funktion weitergeben, welche dieser befiehlt, alle \texttt{NAs} in den Daten zu ignorieren.
+Bei diesem Argument handelt es sich um den Ausdruck \texttt{na.rm}, so bald dieses gleich \texttt{TRUE} gesetzt wird, ignoriert \textbf{R} alle \texttt{NAs}.
+Hier ein Beispiel:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mean}\NormalTok{(a, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2
+\end{verbatim}
+
+Oder es gibt die Möglichkeit alle \texttt{NAs} in den Daten zu löschen.
+Hierfür erstellt man einfach ein neues \textbf{R}-Objekt, wobei man die \textbf{R}-Funktion \texttt{na.omit()} auf die Daten anwendet.
+Als Beispiel:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{b <-}\StringTok{ }\KeywordTok{na.omit}\NormalTok{(a)}
+\KeywordTok{mean}\NormalTok{(b)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2
+\end{verbatim}
+
+\hypertarget{packages}{%
+\section{Packages}\label{packages}}
+
+Sollte die in der base-\textbf{R} Version enthaltenen Funktionen nicht für deine Arbeit ausreichen, gibt es zwei Möglichkeiten wie du mit diesem Problem umgehst:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Finden eines \textbf{R}-Packages welches Funktionen beinhält welche es erlaubt dein Problem zu lösen
+\item
+  Eigene Funktionen zu schreiben
+\end{enumerate}
+
+Ein Package ist eine Sammlung von Code, welches von einer anderen Person oder Gruppe geschrieben worden ist. Meistens sind Pakete dazu gedacht, ein bestimmtes Problem zu lösen, also Funktionen zusammenzufassen, die mit einem bestimmten datenwissenschaftlichen Problem zusammenhängen (z.B. Data Wrangling, Visualisierung, Inferenz). Jeder kann ein Paket schreiben, und man kann Pakete von vielen verschiedenen Orten bekommen.
+
+\hypertarget{wie-installiere-ich-package}{%
+\subsection{Wie installiere ich Package?}\label{wie-installiere-ich-package}}
+
+Die Installation eines Pakets bedeutet einfach das Herunterladen des Packages auf deinen Computer. Es gibt verschiedene Wege, neue Pakete zu installieren. Der einfachste und gebräuchlichste Weg ist das Herunterladen aus dem Comprehensive \textbf{R} Archive Network (CRAN). CRAN ist der zentrale Speicherort für \textbf{R}-Pakete. Um ein neues \textbf{R}-Paket von CRAN zu installieren, kannst du einfach den Befehl \texttt{install.packages("name")} ausführen, wobei ``name'' der Name des Pakets ist.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"name"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Einige Pakete sind Bündel von Packages. Zum Beispiel das ``tidyverse''-Package, welches viele einzelne Pakete für Daten Wrangling und Visualisierung zusammenfasst, so dass du bei der Installation von einem einzelnen Package des tidyverse eigentlich acht verschiedene Packages installierst.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Installation des Package Bundles tidyverse}
+  \KeywordTok{install.packages}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{wie-nutze-ich-packages}{%
+\subsection{Wie nutze ich Packages?}\label{wie-nutze-ich-packages}}
+
+Jetzt weißt du wie man Packages installiert, aber wie nutzt du diese? Um Packages zu nutzen welche nicht Teil der Base-R Version sind, müssen diese erst in die aktive \textbf{R} Session geladen werden. Hierfür nutzt du einfach den Befehl \texttt{library("name")}. Nehmen wir das Beispiel des Packages \texttt{ggplot2} welches Teil des tidyverse ist. Dazu nutzt du einfach den folgenden Code:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Laden des Packages ggplot2}
+  \KeywordTok{library}\NormalTok{(ggplot2)}
+\end{Highlighting}
+\end{Shaded}
+
+Und schon bist du in der Lage die im Package beinhalteten Funktionen zu nutzen um z.B. \texttt{ggplot2} um ansprechendere graphische Analysen anzufertigen:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{  gg <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(midwest, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{area, }\DataTypeTok{y=}\NormalTok{poptotal)) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{col=}\NormalTok{state), }\DataTypeTok{size=}\DecValTok{3}\NormalTok{) }\OperatorTok{+}
+\StringTok{    }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method=}\StringTok{"lm"}\NormalTok{, }\DataTypeTok{col=}\StringTok{"firebrick"}\NormalTok{, }\DataTypeTok{size=}\DecValTok{2}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{coord_cartesian}\NormalTok{(}\DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FloatTok{0.1}\NormalTok{), }\DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1000000}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title=}\StringTok{"Fläche Vs Population"}\NormalTok{, }
+         \DataTypeTok{subtitle=}\StringTok{"US-Midwest dataset"}\NormalTok{, }
+         \DataTypeTok{y=}\StringTok{"Population"}\NormalTok{, }\DataTypeTok{x=}\StringTok{"Fläche"}\NormalTok{, }
+         \DataTypeTok{caption=}\StringTok{"Midwest Demographics"}\NormalTok{)}
+  
+\CommentTok{# Achsenbeschriftung ändern}
+\NormalTok{  gg }\OperatorTok{+}\StringTok{ }\KeywordTok{scale_x_continuous}\NormalTok{(}\DataTypeTok{breaks=}\KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FloatTok{0.1}\NormalTok{, }\FloatTok{0.01}\NormalTok{), }
+                          \DataTypeTok{labels =} \KeywordTok{sprintf}\NormalTok{(}\StringTok{"%1.2f%%"}\NormalTok{, }
+                                           \KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FloatTok{0.1}\NormalTok{, }\FloatTok{0.01}\NormalTok{))) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{scale_y_continuous}\NormalTok{(}\DataTypeTok{breaks=}\KeywordTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1000000}\NormalTok{, }\DecValTok{200000}\NormalTok{), }
+                       \DataTypeTok{labels =} \ControlFlowTok{function}\NormalTok{(x)\{}\KeywordTok{paste0}\NormalTok{(x}\OperatorTok{/}\DecValTok{1000}\NormalTok{, }\StringTok{'K'}\NormalTok{)\})}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{intro2r_files/figure-latex/ggplotBSP-1.pdf}
+
+\hypertarget{funktionen-und-kontroll-strukturen}{%
+\chapter{Funktionen und Kontroll-Strukturen}\label{funktionen-und-kontroll-strukturen}}
+
+Bei einigen Aufgaben müssen sich Teile einer Berechnung wiederholen oder sie sind abhängig von bestimmten externen Bedingungen.
+Selbst denselben Befehl immer wieder abzutippen ist im besten Fall langweilig, und im schlimmsten Fall sehr aufwendig.
+Deswegen erlaubt es \textbf{R}, wie viele andere Programmiersprachen auch, repetitive Aufgaben zu automatisieren.
+
+\hypertarget{for-loops}{%
+\section{For-Loops}\label{for-loops}}
+
+Wenn du Rechnungen mehrfach wiederholen musst eignet sich dafür der \texttt{for()}-Befehl, der die folgende
+allgemeine Form besitzt:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{ (variable }\ControlFlowTok{in}\NormalTok{ vector) \{}
+  \CommentTok{# Aufgabe}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Die \texttt{variable} ist eine sogenannte Zählvariable, sie zählt wie viele Durchgänge der For-loop bereits hinter sich hat.
+Der \texttt{vector} ist die Spannweite von der die Zählvariable zählt, bis der For-Loop abgeschlossen ist.
+Dies erscheint vielleicht relativ abstrakt, aber das folgende Beispiel sollte verdeutlichen wie ein For-Loop funktioniert.
+
+So möchtest du zum Beispiel die Zahlen von 1 bis 25 in der \textbf{R} Console ausgeben, wird diese Aufgabe mithilfe des For-Loops sehr einfach.
+Dafür musst du einfach nur den folgenden Code tippen:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{)\{}
+  \KeywordTok{print}\NormalTok{(i)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5
+\end{verbatim}
+
+Die Variable \texttt{i} nimmt je nach Durchlauf des Loops einen Zahlenwert von 1 bis 25 an. In jedem Durchlauf wird der jeweilige Wert von \texttt{i} ausgegeben. Dieser Vorgang startet bei 1 und endet mit dem 25ten Durchlauf.
+
+\hypertarget{if-else}{%
+\section{If-Else}\label{if-else}}
+
+Du wirst beim Schreiben von eigenen Funktionen in die Situation kommen, in der eine Funktion bedingt auf ein Ereignis reagieren muss. Diese bedingten Abfragen sehen in \textbf{R} so aus
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Einfacher Fall}
+  \ControlFlowTok{if}\NormalTok{ (condition) \{}
+\CommentTok{# expr}
+\NormalTok{\}}
+
+\CommentTok{# Entweder Oder Fall}
+\ControlFlowTok{if}\NormalTok{ (condition) \{}
+  \CommentTok{# expr}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+  \CommentTok{# expr}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Der Ablauf hierbei ist immer gleich, wird eine bestimmte Bedingung (condition) erfüllt, wird ein bestimmter \textbf{R} Befehl ausgeführt (expr).
+Man kann diese If-Abfrage durch eine Else-Condition erweitern, welche bei nicht Erfüllung der Bedingung einen anderen Befehl ausführen.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{6}\NormalTok{)}
+
+\ControlFlowTok{if}\NormalTok{ (x }\OperatorTok{==}\StringTok{ }\DecValTok{6}\NormalTok{) \{ }\CommentTok{# Wenn x = 6, dann}
+  \KeywordTok{print}\NormalTok{(}\StringTok{"x gleich 6"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "x gleich 6"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (x }\OperatorTok{==}\StringTok{ }\DecValTok{5}\NormalTok{) \{ }\CommentTok{# Wenn x = 5, dann}
+  \KeywordTok{print}\NormalTok{(}\StringTok{"x gleich 5"}\NormalTok{)}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{ }\CommentTok{# Wenn x nicht gleich 5 dann}
+  \KeywordTok{print}\NormalTok{(}\StringTok{"x ist ungleich 5"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "x ist ungleich 5"
+\end{verbatim}
+
+\hypertarget{while-loops}{%
+\section{While-Loops}\label{while-loops}}
+
+Die while-Schleife dient dazu, eine Abfolge von Anweisungen mehrfach auszuführen, solange eine bestimmte Bedingung erfüllt ist.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{while}\NormalTok{ (condition) \{}
+  \CommentTok{# Expr}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Ein Beispiel für diese Form der wiederholten Ausführung eines Befehls ist hier zu sehen. So lange der Wert der Variable \texttt{i} kleiner als 6 ist, wird der jeweilige Wert von \texttt{i} ausgegeben.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{i <-}\StringTok{ }\DecValTok{1}
+\ControlFlowTok{while}\NormalTok{ (i }\OperatorTok{<}\StringTok{ }\DecValTok{6}\NormalTok{) \{}
+  \KeywordTok{print}\NormalTok{(i)}
+\NormalTok{  i =}\StringTok{ }\NormalTok{i}\OperatorTok{+}\DecValTok{1}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5
+\end{verbatim}
+
+\hypertarget{eigene-funktionen}{%
+\section{Eigene Funktionen}\label{eigene-funktionen}}
+
+Wenn du merkst, dass du einige Aufgaben immer wieder durchführen musst oder dass keine Funktionen existieren, welche eine bestimmte Aufgabe lösen können, solltest du überlegen eigene Funktionen zu schreiben.
+Funktionen werden mit der \texttt{function()}-Anweisung definiert und wie alles andere in \textbf{R} als Objekte gespeichert.
+Ein Beispiel einer ``leeren'' Funktion
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{f <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{() \{}
+  \CommentTok{## Eine leere Funktion}
+\NormalTok{  \}}
+\end{Highlighting}
+\end{Shaded}
+
+Als nächstes können wir eine Funktion erstellen, die tatsächlich einen nicht-trivialen Funktionskörper hat.
+Das bedeutet, dass die Funktion auch eine wirkliche Aufgabe hat und etwas für dich ausführt.
+In unserem Beispiel ist es die Aufgabe der Funktion bei jedem Aufrufen der Funktion die Worte „Hello World!{}`` auszugeben.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{f <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{() \{}
+  \KeywordTok{cat}\NormalTok{(}\StringTok{"Hello, world!}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\NormalTok{\}}
+\KeywordTok{f}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Hello, world!
+\end{verbatim}
+
+Der letzte Aspekt einer Grundfunktion sind die Funktionsargumente.
+Dies sind die Optionen, die der Benutzer angeben kann auf deren Basis bestimmte Aktionen durchgeführt werden.
+Für unsere Grundfunktion können wir ein Argument hinzufügen, das bestimmt wie oft ``Hallo, Welt!'' in der Konsole ausgegeben wird.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{f <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(num) \{}
+       \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \KeywordTok{seq_len}\NormalTok{(num)) \{}
+               \KeywordTok{cat}\NormalTok{(}\StringTok{"Hello, world!}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\NormalTok{       \}}
+\NormalTok{\}}
+
+\KeywordTok{f}\NormalTok{(}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Hello, world!
+## Hello, world!
+\end{verbatim}
+
+Zu guter Letzt lernst du noch den Befehl \texttt{return()}kennen.
+Dieser Befehl sagt deiner \textbf{R}-Funktion, dass wenn die Funktion durchgeführt wird, es möglich ist einer Variablen mit HIlfe der Funktion einen Wert zu zuweisen.
+Als Beispiel schreiben wir eine Funktion welche zwei Elemente als Input nimmt und diese mit einander addiert.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{addtwo <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x, y)\{}
+\NormalTok{  z <-}\StringTok{ }\NormalTok{x }\OperatorTok{+}\StringTok{ }\NormalTok{y}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Führen wir nun diese Funktion aus, so werden \texttt{x} und \texttt{y} mit einander addiert und wiedergegeben. Nun willst du aber zum Beispiel diesen Wert in einem Objekt Speichern, nennen wir es einfach \texttt{v}, hierfür nutzt man einfach die folgende Funktionsstruktur.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{addtwo <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x, y)\{}
+\NormalTok{  z <-}\StringTok{ }\NormalTok{x }\OperatorTok{+}\StringTok{ }\NormalTok{y}
+  \KeywordTok{return}\NormalTok{(z)}
+\NormalTok{\}}
+
+\NormalTok{v <-}\StringTok{ }\KeywordTok{addtwo}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+Gebe einfach beliebige Zahlen für die beiden Inputs ein. Du wirst sehen, dass kein Ergebnis widergegeben wird, allerdings wenn du \texttt{v} eingibst und über \texttt{Strg\ +\ Enter} abrufst das Ergebnis ausgegeben wird.
+
+\hypertarget{daten}{%
+\chapter{Daten}\label{daten}}
+
+In diesem Kapitel wirst du lernen wie man externe Daten in \textbf{R} einließt, wie man mit diesen Daten arbeitet, sie verändert, anpasst und exportiert.
+
+\hypertarget{einlesen-von-daten}{%
+\section{Einlesen von Daten}\label{einlesen-von-daten}}
+
+Daten können aus verschiedenen externen Quellen und Dateiformaten in \textbf{R} eingelesen werden.
+Es gibt ein paar Hauptfunktionen, die Daten in \textbf{R} einlesen.
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{read.table()}, \texttt{read.csv()}, zum Einlesen von Tabellendaten
+\item
+  \texttt{source()}, zum Einlesen von \textbf{R}-Code-Dateien
+\item
+  \texttt{dget()}, zum Einlesen von \textbf{R}-Code-Dateien
+\item
+  \texttt{load()}, zum Lesen in gespeicherten Arbeitsbereichen
+\item
+  \texttt{unserialize()}, zum Lesen einzelner R-Objekte in binärer Form
+\end{itemize}
+
+Hierbei sei darauf hingewiesen, dass es noch viele weitere \textbf{R} Packages gibt, welche es dir erlauben Daten in \textbf{R} einzulesen.
+Parallel zu den verschiedenen Funktionen zum Einlesen von Daten in \textbf{R} gibt es Funktionen welche es dir erlauben Daten zu schreiben/exportieren.
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{write.table()}, \texttt{write.csv()} zum Schreiben von Tabellendaten in Textdateien (z.B. CSV)
+\item
+  \texttt{writeLines()}, zum zeilenweisen Schreiben von Zeichendaten in eine Datei
+\item
+  \texttt{dump()}, zum Ausgeben einer textlichen Darstellung mehrerer \textbf{R}-Objekte
+\item
+  \texttt{dput()}, zur Ausgabe einer textlichen Darstellung eines \textbf{R}-Objektes
+\item
+  \texttt{save()}, zum Speichern einer beliebigen Anzahl von \textbf{R}-Objekten im Binärformat (möglicherweise komprimiert) in eine Datei.
+\item
+  \texttt{serialize()}, zum Konvertieren eines \textbf{R}-Objektes in ein Binärformat zur Ausgabe.
+\end{itemize}
+
+\hypertarget{das-readr-package}{%
+\section{Das readr-Package}\label{das-readr-package}}
+
+Ein explizit für das Einlesen erschaffenes \textbf{R} Package ist das reader-Package welches zum Einlesen von großen Datenfiles gedacht ist.
+Das Package ersetzt die im vorigen Kapitel beschriebenen Funktionen
+\texttt{read.table()} und \texttt{read.csv()} mit den Funktionen \texttt{read\_table()} bzw. \texttt{read\_csv()}.
+
+Generell gibts es ein paar Gründe wieso du lieber auf die Funktionen des \texttt{readr}-Packages zurückgreifen solltest als die Basis-\textbf{R} Funktionen zu nutzen.
+
+\begin{itemize}
+\tightlist
+\item
+  Durch den effizienteren Code hinter den Funktonen ist das Einlesen von Daten um ein Vielfaches schneller, was sich vor allem bei größeren Datenfiles bemerkbar macht.
+\item
+  Die \texttt{readr}-Funktionen sind generell auch reproduzierbar. Während die Base-\textbf{R} Funktionen Eigenheiten des jeweiligen Betriebssystems des Computers übernehmen, sind \texttt{readr}-Funktionen System-agnostisch.
+\end{itemize}
+
+\hypertarget{speichern-von-daten}{%
+\section{Speichern von Daten}\label{speichern-von-daten}}
+
+Wie bereits zu Beginn des Kapitels dargestellt, existieren analog zu den Funktionen welche Daten in \textbf{R} einlesen Funktionen, welche Daten exportieren bzw. abspeichern. Wie jede Funktion in \textbf{R} die wir bisher begegnet sind, haben auch diese Argumente die bestimmten Einfluss auf Art und Weise wie die Funktion durchgeführt wird.
+
+Um nun eine Liste \texttt{x} beispielhaft als CSV-Datei abzuspeichern musst du folgendes machen:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{write.csv}\NormalTok{(x, }\DataTypeTok{file =} \StringTok{"beispiel.csv"}\NormalTok{, }\DataTypeTok{row.names =} \OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Der Aufbau der Argumente hat folgende Struktur. Zunächst solltest du \texttt{write.csv()} den Namen des \textbf{R}-Objektes geben, das du gespeichert haben möchtest.
+Als nächstes solltest du einen Dateinamen für deine Datei angeben. \textbf{R} wird diesen Namen ziemlich wörtlich nehmen, also stell sicher, dass du eine Erweiterung an den Namen anhängst (.csv).
+\textbf{R} wandelt deine Liste dann in eine Klartextdatei in eine CSV-Datei um, in welcher Werte durch Komma getrennt sind und speichert die Datei in deinem Arbeitsverzeichnis.
+
+\hypertarget{daten-selektion}{%
+\section{Daten Selektion}\label{daten-selektion}}
+
+Es ist oft wichtig für bestimmte Operationen nur einen Teil der Daten, also ein Subset, zu betrachten und zu bearbeiten.
+Diese sogenannte Subsettig von \textbf{R} Objekten kann in Base-\textbf{R} mithilfe von drei verschiedenen Operatoren gemacht werden.
+Diese drei Operatoren sind \texttt{{[}{]}}, \texttt{{[}{[}{]}{]}} und \texttt{\$}.
+Der \texttt{{[}{]}} Operator selektiert ein Teil der Daten und gibt das Subset in derselben Objekt Klasse aus wie das Originale.
+Der \texttt{{[}{[}{]}{]}} hingegen kann nur einzelne Element aus Listen oder Dataframes subsetten und das resultierende Objekt ist nicht unbedingt aus derselben Objekt Klasse wie das übergeordnete.
+Schlussendlich der \texttt{\$} Operator kann genutzt werden um Elemente durch Nutzung ihres Names auszulesen.
+Zuerst betrachten wir wie man Subsetting mit einem Vektor macht.
+
+\hypertarget{subsetting-von-vektoren}{%
+\subsection{Subsetting von Vektoren}\label{subsetting-von-vektoren}}
+
+Zu Beginn die Anwendung des \texttt{{[}} Operators auf Vektoren.
+Hierbei kann man sehen, dass entweder einzelne Elemente ausgelesen werden können, ganze Folgen oder bestimmte beliebige Positionen
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{foo <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"rot"}\NormalTok{, }\StringTok{"gruen"}\NormalTok{, }\StringTok{"blau"}\NormalTok{, }\StringTok{"blau"}\NormalTok{, }\StringTok{"gelb"}\NormalTok{, }\StringTok{"rot"}\NormalTok{)}
+
+\CommentTok{# Nur das erste Element des Vektors}
+\NormalTok{foo[}\DecValTok{1}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "rot"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Die ersten vier Elemente}
+\NormalTok{foo[}\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "rot"   "gruen" "blau"  "blau"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Der erste, dritte und letzte Eintrag}
+\NormalTok{foo[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{, }\KeywordTok{length}\NormalTok{(foo))]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "rot"  "blau" "rot"
+\end{verbatim}
+
+Oft sehr interessant ist auch die logische Abfrage von Inhalten:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Alle nicht roten Elemente}
+\NormalTok{foo[foo }\OperatorTok{!=}\StringTok{ "rot"}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "gruen" "blau"  "blau"  "gelb"
+\end{verbatim}
+
+\hypertarget{subsetting-von-matrizen}{%
+\subsection{Subsetting von Matrizen}\label{subsetting-von-matrizen}}
+
+Das Subsetten einer Matrix erfolgt nach denselben Regel wie das Subsetten der Vektoren, wobei hier die abzufragenden
+Positionen anstatt mit einer Angabe auf Grund der zwei-Dimensionalität durch zwei Angaben
+zu tätigenn ist. Hier ein Beispiel anhand der im Kapitel 3 erschaffenen Matrix was damit genau gemeint ist
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{), }\DataTypeTok{ncol =} \DecValTok{2}\NormalTok{, }\DataTypeTok{nrow =} \DecValTok{3}\NormalTok{, }\DataTypeTok{byrow =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{m}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2]
+## [1,]    1    2
+## [2,]    3    4
+## [3,]    5    6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Abfrage des Elements in der zweiten Reihe und der ersten Spalte}
+\NormalTok{m[}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3
+\end{verbatim}
+
+Wenn man nun allerdings anstatt eines Elementes, alle Elemente einer Reihe oder Spalte abfragen will kann
+man die jeweilige Row bzw. Column Angabe frei lassen. Beispiel hier:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Alle Elemente der ersten Reihe}
+\NormalTok{m[}\DecValTok{1}\NormalTok{, ]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1 2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Alle Elemente der ersten Spalte}
+\NormalTok{m[ , }\DecValTok{1}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1 3 5
+\end{verbatim}
+
+\hypertarget{subsetting-von-listen}{%
+\subsection{Subsetting von Listen}\label{subsetting-von-listen}}
+
+Listen können in \textbf{R} in drei verschiedenen Arten gesubsettet werden. Hierfür nutzt man die oben genannten drei verschiedenen Operatoren. Um die drei verschiedenen Arten zu illustrieren erschaffen wir zuerst eine Beispielsliste
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\DataTypeTok{foo =} \DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{, }\DataTypeTok{faa =} \StringTok{"hallo"}\NormalTok{, }\DataTypeTok{faz =} \FloatTok{0.3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Eine der einfachsten und bequemsten Arten Listen zu subsetten ist die Benutzung des \texttt{\$} Operators. Der Grund hierfür ist, dass wenn du den Namen der Zielliste eingibst, gefolgt vom Operator, kannst du durch das Betätigen der Tabulator Taste Rstudios Autovervollständigung nutzen. Dabei werden alle Elemente einer Liste aufgeführt und du kannst einfach das gewünschte Element über die Pfeiltasten auswählen.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x}\OperatorTok{$}\NormalTok{foo}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1 2 3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x}\OperatorTok{$}\NormalTok{faa}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "hallo"
+\end{verbatim}
+
+Ähnlich zum Subsetten der Matrizen und Vektoren, können Listen ebenso mit dem \texttt{{[}{]}}- bzw. \texttt{{[}{[}{]}{]}}-Operator gesubsettet werden. Wenn du also das erste Element der Liste auswählen willst kannst du einfach wie in folgendem Beispiel machen
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x[[}\DecValTok{1}\NormalTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1 2 3
+\end{verbatim}
+
+Ebenso ist es wieder möglich in Kombination mit dem \texttt{{[}{[}{]}{]}}-Operator mit Hilfe der Namen der Elemente die Liste zu subsetten.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x[[}\StringTok{"foo"}\NormalTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1 2 3
+\end{verbatim}
+
+Schlussendlich ist es ebenso möglich mehrere Elemente der Liste auszuwählen. Hierfür nutze einfach den \texttt{{[}{]}} oder \texttt{{[}{[}{]}{]}}-Operator und setze gebe einen Vektor an, welche die Elemente bestimmt. Allerdings sei hierbei darauf hingewiesen, dass je nach dem welchen der beiden Operatoren du nutzt verschieden Elemente ausgewählten werden .Zum einfacheren Verständnis das folgende Beispiel:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Das Zweite und das dritte Element der Liste}
+\NormalTok{x[}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{)]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $faa
+## [1] "hallo"
+## 
+## $faz
+## [1] 0.3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Der dritte Eintrag des ersten Elements }
+\NormalTok{x[[}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{)]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3
+\end{verbatim}
+
+\hypertarget{plotten}{%
+\chapter{Plotten}\label{plotten}}
+
+Oft ist es wichtig Zusammenhänge nicht nur in Zahlen, sondern ebenso graphisch darzustellen.
+Das folgende Kapitel zeigt dir wie man verschiedene Arten von wichtigen grundlegenden Plots in \textbf{R} erstellt und wie man diese in einer Art und Weise kreiert, sodass man sie ohne Probleme in Seminar- oder Abschlussarbeiten nutzen kann.
+
+Dieses Kapitel wird sich nur mit den in der base-\textbf{R} Version enthaltenen Plot-Funktionen befassen.
+Wir lassen bewusst \textbf{R}-Packages wie \texttt{ggplot2} oder \texttt{plotly} aus, solltest du dich allerdings für die Funktionalität dieser Packages und der damit verbundenen Verbesserung der Möglichkeiten der graphischen Darstellung interessieren, empfehlen wir dir die \url{https://socviz.co/} und \url{https://rkabacoff.github.io/datavis/} .
+
+\hypertarget{plot-funktion}{%
+\section{Plot-Funktion}\label{plot-funktion}}
+
+Die einfachste Möglichkeit einen Plot in \textbf{R} zuerstellen ist die \textbf{R}-base Funktion \texttt{plot()} zu nutzen. In der Standard Einstellung erstellt der Befehl ein Streudiagramm basierend auf den beiden Input Vektoren für die Abszissen- sowie der Ordinatenwerte.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}\DataTypeTok{x =} \DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{,}
+     \DataTypeTok{y =} \DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{intro2r_files/figure-latex/einfachplot-1.pdf}
+
+Erklärung der wichtigsten Argumente der \texttt{plot()}-Funktion
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.10\columnwidth}\raggedright
+Argument\strut
+\end{minipage} & \begin{minipage}[b]{0.84\columnwidth}\raggedright
+Beschreibung\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.10\columnwidth}\raggedright
+\texttt{x,\ y}\strut
+\end{minipage} & \begin{minipage}[t]{0.84\columnwidth}\raggedright
+Vektoren gleicher Länge, die die x- und y-Werte der Punkte angeben\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.10\columnwidth}\raggedright
+\texttt{type}\strut
+\end{minipage} & \begin{minipage}[t]{0.84\columnwidth}\raggedright
+Art der Handlung. \texttt{"l"} bedeutet Linien, \texttt{"p"} bedeutet Punkte, \texttt{"b"} bedeutet Linien und Punkte, \texttt{"n"} bedeutet kein Plotten\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.10\columnwidth}\raggedright
+\texttt{main}, \texttt{xlab}, \texttt{ylab}\strut
+\end{minipage} & \begin{minipage}[t]{0.84\columnwidth}\raggedright
+Strings, die den Titel der Handlung beschriften, und x- und y-Achsen\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.10\columnwidth}\raggedright
+\texttt{xlim}, \texttt{ylim}\strut
+\end{minipage} & \begin{minipage}[t]{0.84\columnwidth}\raggedright
+Grenzen zu den Achsen. Zum Beispiel setzt \texttt{xlim\ =\ c(0,\ 100)} das Minimum und das Maximum der x-Achse auf 0 und 100.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.10\columnwidth}\raggedright
+\texttt{pch}\strut
+\end{minipage} & \begin{minipage}[t]{0.84\columnwidth}\raggedright
+Eine ganze Zahl, die den Typ der Zeichensymbole angibt oder eine Zeichenkette.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.10\columnwidth}\raggedright
+\texttt{col}\strut
+\end{minipage} & \begin{minipage}[t]{0.84\columnwidth}\raggedright
+Hauptfarbe der Plottsymbole. Zum Beispiel wird \texttt{col\ =\ "rot"} rote Symbole erzeugen.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.10\columnwidth}\raggedright
+\texttt{cex}\strut
+\end{minipage} & \begin{minipage}[t]{0.84\columnwidth}\raggedright
+Ein numerischer Vektor, der die Größe der Symbole angibt (von 0 bis Inf). Die Standardgröße ist 1. \texttt{cex\ =\ 4} macht die Punkte sehr groß, während \texttt{cex\ =\ .5} sie sehr klein macht.\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}\DataTypeTok{x =} \DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{,}
+     \DataTypeTok{y =} \DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{,                        }
+     \DataTypeTok{type =} \StringTok{"b"}\NormalTok{,                      }
+     \DataTypeTok{main =} \StringTok{"Etwas hübscherer Plot"}\NormalTok{,}
+     \DataTypeTok{xlab =} \StringTok{"x-Achse"}\NormalTok{,}
+     \DataTypeTok{ylab =} \StringTok{"y-Achse "}\NormalTok{,                }
+     \DataTypeTok{col =} \StringTok{"red"}\NormalTok{,                     }
+     \DataTypeTok{pch =} \DecValTok{16}\NormalTok{,                        }
+     \DataTypeTok{cex =} \DecValTok{1}\NormalTok{)                         }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{intro2r_files/figure-latex/unnamed-chunk-19-1.pdf}
+
+Generell gilt es hier, wie bei allen anderen Funktionen in \textbf{R}, wenn du mehr Information über die Art und Weise der Anwendung von \textbf{R}-Funktionen möchtest einfach die \texttt{?}-Funktion in Console eingeben oder über den View-Tab in RStudio zu der Funktionsbeschreibung zu gelangen.
+
+\hypertarget{symbole}{%
+\section{Symbole}\label{symbole}}
+
+Eine der wichtigsten Optionen bei der Anpassung von Grafiken in \textbf{R} ist die Wahl der Symbole um Datenpunkte darzustellen.
+Das dafür genutzte Argumente \texttt{pch} erlaubt eine breite Auswahl an verschiedensten Formen an Symbolen.
+Um ein Symboltyp über \texttt{pch} auszuwählen gibt es zwei verschiedene Arten.
+Entweder durch die Angabe einer Zahl oder einer Zeichenfolge.
+
+Symbole unterscheiden sich in ihrer Form und in der Art wie sie eingefärbt sind.
+Die Symbole 1 bis 14 haben nur einen Rand und sind immer leer, während die Symbole 15 bis 20 keinen Rand haben und immer gefüllt sind.
+Die Symbole 21 bis 25 haben sowohl einen Rand als auch eine Füllung.
+Um die Rahmenfarbe oder den Hintergrund für die Symbole 1 bis 20 festzulegen, verwende das Argument col.~
+Bei den Symbolen 21 bis 25 legst du die Farbe des Rahmens mit col und die Farbe des Hintergrunds mit bg.
+
+\begin{center}\includegraphics{intro2r_files/figure-latex/unnamed-chunk-20-1} \end{center}
+
+Hier ein Beispiel dafür wie verschiedene Symbole und Farben Grafiken verändern können:
+
+\includegraphics{intro2r_files/figure-latex/unnamed-chunk-21-1.pdf}
+
+\hypertarget{low-level-plot-funktionen}{%
+\section{Low-Level Plot-Funktionen}\label{low-level-plot-funktionen}}
+
+Die sogenannten Low-Level-Plot Funktionen erlauben es ein Element eines Plots zu verändern oder neue hinzuzufügen.
+Die wichtigsten und am meisten genutzten sind hierbei die folgenden:
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.24\columnwidth}\raggedright
+Funktion\strut
+\end{minipage} & \begin{minipage}[b]{0.71\columnwidth}\raggedright
+Ergebnis\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.24\columnwidth}\raggedright
+\texttt{points(x,\ y)}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright
+Fügt Punkte hinzu\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.24\columnwidth}\raggedright
+\texttt{abline()}, \texttt{segments()}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright
+Fügt Linien oder Segmente hinzu\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.24\columnwidth}\raggedright
+\texttt{arrows()}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright
+Fügt Pfeile hinzu\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.24\columnwidth}\raggedright
+\texttt{curve()}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright
+Fügt eine Kurve hinzu, die eine Funktion darstellt\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.24\columnwidth}\raggedright
+\texttt{rect()},\texttt{polygon()}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright
+Fügt ein Rechteck oder eine willkürliche Form hinzu\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.24\columnwidth}\raggedright
+\texttt{text()}, \texttt{mtext()}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright
+Fügt Text innerhalb der Handlung oder an den Rändern der Handlung hinzu\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.24\columnwidth}\raggedright
+\texttt{legend()}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright
+Fügt eine Legende hinzu\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.24\columnwidth}\raggedright
+\texttt{axis()}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright
+Fügt eine Achse hinzu\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+Wenn man die Low-Level-Plot Funktionen verstehen will macht es Sinn mit einem leeren Plot anzufangen.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}\DataTypeTok{x =} \DecValTok{0}\NormalTok{,                 }
+     \DataTypeTok{xlab =} \StringTok{"X-Achse"}\NormalTok{, }
+     \DataTypeTok{ylab =} \StringTok{"Y-Achse"}\NormalTok{,}
+     \DataTypeTok{xlim =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{100}\NormalTok{), }
+     \DataTypeTok{ylim =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{100}\NormalTok{),}
+     \DataTypeTok{main =} \StringTok{"Leerer Plot"}\NormalTok{,}
+     \DataTypeTok{type =} \StringTok{"n"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{intro2r_files/figure-latex/unnamed-chunk-22-1.pdf}
+
+\hypertarget{points-und-segments}{%
+\section{points() und Segments()}\label{points-und-segments}}
+
+Um neue Punkte zu einem bestehenden Diagramm hinzuzufügen, verwende die Funktion points().
+Die Funktion points() hat viele ähnliche Argumente wie die Funktion plot(), wie x (für die x-Koordinaten),
+y (für die y-Koordinaten) und Parameter wie col (Randfarbe), cex (Punktgröße) und pch (Symboltyp).
+
+Ein Beispiel anhand des vorher schon genutzen \texttt{mtcars}-Datenset.
+Für nähere Informationen einfach \texttt{?mtcars} eingeben.
+Hierbei wollen wir alle Autos hinsichtlich ihres Verbrauches in Miles-per-Gallon in Relation zu ihrem Gewicht abbilden.
+Dabei wollen wir die Autos je nach Gangschaltungstyp (Automatik und Manuell) farblich kennzeichen.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}\DataTypeTok{x =} \DecValTok{0}\NormalTok{,                 }
+     \DataTypeTok{xlab =} \StringTok{"X-Achse"}\NormalTok{, }
+     \DataTypeTok{ylab =} \StringTok{"Y-Achse"}\NormalTok{,}
+     \DataTypeTok{xlim =} \KeywordTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{35}\NormalTok{), }
+     \DataTypeTok{ylim =} \KeywordTok{c}\NormalTok{(}\FloatTok{1.2}\NormalTok{, }\FloatTok{5.5}\NormalTok{),}
+     \DataTypeTok{main =} \StringTok{"Verbrauch pro 1000 lb"}\NormalTok{,}
+     \DataTypeTok{type =} \StringTok{"n"}\NormalTok{)}
+
+\CommentTok{# Punkte hinzufügen Automatik}
+\KeywordTok{points}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ mtcars}\OperatorTok{$}\NormalTok{mpg[mtcars}\OperatorTok{$}\NormalTok{am }\OperatorTok{==}\StringTok{ }\DecValTok{0}\NormalTok{],}
+       \DataTypeTok{y =}\NormalTok{ mtcars}\OperatorTok{$}\NormalTok{wt[mtcars}\OperatorTok{$}\NormalTok{am }\OperatorTok{==}\StringTok{ }\DecValTok{0}\NormalTok{],}
+       \DataTypeTok{pch =} \DecValTok{16}\NormalTok{,}
+       \DataTypeTok{col =} \StringTok{"coral2"}\NormalTok{)}
+\CommentTok{# Punkte hinzufügen Manuell}
+\KeywordTok{points}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ mtcars}\OperatorTok{$}\NormalTok{mpg[mtcars}\OperatorTok{$}\NormalTok{am }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{],}
+       \DataTypeTok{y =}\NormalTok{ mtcars}\OperatorTok{$}\NormalTok{wt[mtcars}\OperatorTok{$}\NormalTok{am }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{],}
+       \DataTypeTok{pch =} \DecValTok{16}\NormalTok{,}
+       \DataTypeTok{col =} \StringTok{"steelblue3"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{intro2r_files/figure-latex/unnamed-chunk-24-1.pdf}
+
+\hypertarget{abline-und-segments}{%
+\section{abline() und segments()}\label{abline-und-segments}}
+
+Um einem Plot gerade Linien hinzuzufügen, verwendest du \texttt{abline()} oder \texttt{segments()}. \texttt{abline()} fügt eine Linie über den gesamten Plot hinzu,
+während \texttt{segments()} eine Linie mit definierten Anfangs- und Endpunkten hinzufügt.
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.18\columnwidth}\raggedright
+Argument\strut
+\end{minipage} & \begin{minipage}[b]{0.76\columnwidth}\raggedright
+Ergebnis\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.18\columnwidth}\raggedright
+\texttt{h,\ v}\strut
+\end{minipage} & \begin{minipage}[t]{0.76\columnwidth}\raggedright
+Positionen der horizontalen und vertikalen Linien (nur für \texttt{abline()})\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.18\columnwidth}\raggedright
+\texttt{x0,\ y0,\ x1,\ y1}\strut
+\end{minipage} & \begin{minipage}[t]{0.76\columnwidth}\raggedright
+Anfangs- und Endkoordinaten der Linien (nur für \texttt{segmente()})\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.18\columnwidth}\raggedright
+\texttt{lty}\strut
+\end{minipage} & \begin{minipage}[t]{0.76\columnwidth}\raggedright
+Linientyp. 1 = durchgezogen, 2 = gestrichelt, 3 = gepunktet, \ldots{}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.18\columnwidth}\raggedright
+\texttt{lwd}\strut
+\end{minipage} & \begin{minipage}[t]{0.76\columnwidth}\raggedright
+Breite der Linien, die durch eine Zahl angegeben wird\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.18\columnwidth}\raggedright
+\texttt{col}\strut
+\end{minipage} & \begin{minipage}[t]{0.76\columnwidth}\raggedright
+Line Farbe\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+Um das Aussehen der Linien zu ändern nutzt man das Argument \texttt{lty}
+
+\includegraphics{intro2r_files/figure-latex/ltytypes-1.pdf}
+
+Du kasnnst auch eine Regressionslinie (auch als Linie der besten Anpassung bezeichnet) zu einem Scatterplot hinzufügen,
+indem du ein Regressionsobjekt eingibst, das mit lm() als Hauptargument für abline() erstellt wurde.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ mtcars}\OperatorTok{$}\NormalTok{mpg,}
+     \DataTypeTok{y =}\NormalTok{ mtcars}\OperatorTok{$}\NormalTok{wt,}
+     \DataTypeTok{pch =} \DecValTok{16}\NormalTok{,}
+     \DataTypeTok{col =} \StringTok{"coral2"}\NormalTok{)}
+
+\CommentTok{# Regressionslinie hinzufügen }
+\KeywordTok{abline}\NormalTok{(}\KeywordTok{lm}\NormalTok{(wt }\OperatorTok{~}\StringTok{ }\NormalTok{mpg, }\DataTypeTok{data =}\NormalTok{ mtcars), }
+       \DataTypeTok{lty =} \DecValTok{2}\NormalTok{,}
+       \DataTypeTok{col =} \StringTok{"steelblue3"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{intro2r_files/figure-latex/unnamed-chunk-25-1.pdf}
+
+\hypertarget{legend}{%
+\section{legend()}\label{legend}}
+
+Die letzte Low-Level-Plotting-Funktion, die wir im Detail besprechen werden, ist legend(), die eine Legende zu einem Plot hinzufügt.
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.28\columnwidth}\raggedright
+Argument\strut
+\end{minipage} & \begin{minipage}[b]{0.66\columnwidth}\raggedright
+Ergebnis\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.28\columnwidth}\raggedright
+\texttt{x,\ y}\strut
+\end{minipage} & \begin{minipage}[t]{0.66\columnwidth}\raggedright
+Die Koordinaten der Legende - z.B. \texttt{x\ =\ 0,\ y\ =\ 0} setzen den Text an die Koordinaten (0, 0).\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.28\columnwidth}\raggedright
+\texttt{labels}\strut
+\end{minipage} & \begin{minipage}[t]{0.66\columnwidth}\raggedright
+Ein String-Vektor, der den Text in der Legende angibt. Zum Beispiel wird `legend = c(``Männlich,''Weiblich")\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+Es ist ebenfalls möglich die Position der Legende durch Worte einzugeben wie \texttt{"topright"}, \texttt{"topleft"}.
+Zum Beispiel wird ``unten rechts'' die Legende immer in der rechten unteren Ecke der Handlung platziert.
+Ein Beispiel an unserem Auto Datenset:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}\DataTypeTok{x =} \DecValTok{0}\NormalTok{,                 }
+     \DataTypeTok{xlab =} \StringTok{"X-Achse"}\NormalTok{, }
+     \DataTypeTok{ylab =} \StringTok{"Y-Achse"}\NormalTok{,}
+     \DataTypeTok{xlim =} \KeywordTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{35}\NormalTok{), }
+     \DataTypeTok{ylim =} \KeywordTok{c}\NormalTok{(}\FloatTok{1.2}\NormalTok{, }\FloatTok{5.5}\NormalTok{),}
+     \DataTypeTok{main =} \StringTok{"Verbrauch pro 1000 lb"}\NormalTok{,}
+     \DataTypeTok{type =} \StringTok{"n"}\NormalTok{)}
+
+\CommentTok{# Punkte hinzufügen Automatik}
+\KeywordTok{points}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ mtcars}\OperatorTok{$}\NormalTok{mpg[mtcars}\OperatorTok{$}\NormalTok{am }\OperatorTok{==}\StringTok{ }\DecValTok{0}\NormalTok{],}
+       \DataTypeTok{y =}\NormalTok{ mtcars}\OperatorTok{$}\NormalTok{wt[mtcars}\OperatorTok{$}\NormalTok{am }\OperatorTok{==}\StringTok{ }\DecValTok{0}\NormalTok{],}
+       \DataTypeTok{pch =} \DecValTok{16}\NormalTok{,}
+       \DataTypeTok{col =} \StringTok{"coral2"}\NormalTok{)}
+\CommentTok{# Punkte hinzufügen Manuell}
+\KeywordTok{points}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ mtcars}\OperatorTok{$}\NormalTok{mpg[mtcars}\OperatorTok{$}\NormalTok{am }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{],}
+       \DataTypeTok{y =}\NormalTok{ mtcars}\OperatorTok{$}\NormalTok{wt[mtcars}\OperatorTok{$}\NormalTok{am }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{],}
+       \DataTypeTok{pch =} \DecValTok{16}\NormalTok{,}
+       \DataTypeTok{col =} \StringTok{"steelblue3"}\NormalTok{)}
+\CommentTok{## Legende hinzufügen}
+\KeywordTok{legend}\NormalTok{(}\StringTok{"topright"}\NormalTok{,}
+       \DataTypeTok{legend =} \KeywordTok{c}\NormalTok{(}\StringTok{"Automatik"}\NormalTok{, }\StringTok{"Manuell"}\NormalTok{),}
+       \DataTypeTok{col =} \KeywordTok{c}\NormalTok{(}\StringTok{'coral2'}\NormalTok{, }\StringTok{'steelblue3'}\NormalTok{),}
+       \DataTypeTok{pch =} \KeywordTok{c}\NormalTok{(}\DecValTok{16}\NormalTok{, }\DecValTok{16}\NormalTok{),}
+       \DataTypeTok{bg =} \StringTok{"white"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{intro2r_files/figure-latex/unnamed-chunk-26-1.pdf}
+
+\hypertarget{multiple-plots}{%
+\section{Multiple Plots}\label{multiple-plots}}
+
+Wie du im vorigen Beispiel gehen hast ist es ebenfalls möglich mehrere Plots in einer einzelnen Grafik abzubilden.
+Hier für gibt's es bei Base-R Plots zwei Wege dieses zu erreichen.
+Am häufigsten wird dieses mit dem Parameter \texttt{par(mfrow)} und \texttt{par(mfcol)} erreicht.
+Gehen wir diese die beiden Funktionen durch. Mit den Parametern mfrow und mfcol kannst du eine Matrix von Plots in einem Plotraum erstellen.
+Beide Parameter nehmen einen Vektor der Länge zwei als Argument, also der Anzahl der Zeilen und Spalten in der resultierenden Plottmatrix.
+
+Was ist also der Unterschied zwischen \texttt{par(mfrow)} und \texttt{par(mfcol)}? Der einzige Unterschied besteht darin,
+dass \texttt{par(mfrow)} sequentielle Plots zeilenweise in die Plottmatrix einfügt, während \texttt{par(mfcol)} sie spaltenweise füllt.
+
+Der folgende Code erstellt beispielsweise die 2 x 2-Plotting-Matrix des vorigen Beispiels.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Es soll eine 2 x 2 Plotmatrix enstehen:}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{))}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mar =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{1}\NormalTok{))}
+\CommentTok{# Daten erschaffen}
+\NormalTok{x.data <-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{25}\NormalTok{)}
+\NormalTok{y.data <-}\StringTok{ }\NormalTok{x.data }\OperatorTok{+}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{25}\NormalTok{)}
+\CommentTok{# Plot 1}
+\KeywordTok{plot}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ x.data, }\DataTypeTok{y =}\NormalTok{ y.data, }\DataTypeTok{xaxt =} \StringTok{"n"}\NormalTok{, }\DataTypeTok{yaxt =} \StringTok{"n"}\NormalTok{, }\DataTypeTok{xlab =} \StringTok{""}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{""}\NormalTok{, }\DataTypeTok{main =} \StringTok{"pch = 2,}\CharTok{\textbackslash{}n}\StringTok{col = 'blue'"}\NormalTok{, }
+     \DataTypeTok{pch =} \DecValTok{2}\NormalTok{, }\DataTypeTok{col =} \StringTok{"blue"}\NormalTok{, }\DataTypeTok{cex =} \FloatTok{1.5}\NormalTok{, }\DataTypeTok{cex.main =} \FloatTok{1.2}\NormalTok{)}
+\CommentTok{# Plot 2}
+\KeywordTok{plot}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ x.data, }\DataTypeTok{y =}\NormalTok{ y.data, }\DataTypeTok{xaxt =} \StringTok{"n"}\NormalTok{, }\DataTypeTok{yaxt =} \StringTok{"n"}\NormalTok{, }\DataTypeTok{xlab =} \StringTok{""}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{""}\NormalTok{, }\DataTypeTok{main =} \StringTok{"pch = 16,}\CharTok{\textbackslash{}n}\StringTok{col = 'orchid2'"}\NormalTok{, }
+     \DataTypeTok{pch =} \DecValTok{16}\NormalTok{, }\DataTypeTok{col =} \StringTok{"orchid2"}\NormalTok{, }\DataTypeTok{cex=} \FloatTok{1.5}\NormalTok{, }\DataTypeTok{cex.main =} \FloatTok{1.2}\NormalTok{)}
+\CommentTok{# Plot 3}
+\KeywordTok{plot}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ x.data, }\DataTypeTok{y =}\NormalTok{ y.data, }\DataTypeTok{xaxt =} \StringTok{"n"}\NormalTok{, }\DataTypeTok{yaxt =} \StringTok{"n"}\NormalTok{, }\DataTypeTok{xlab =} \StringTok{""}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{""}\NormalTok{, }\DataTypeTok{main =} \StringTok{"pch = 21,}\CharTok{\textbackslash{}n}\StringTok{col = 'black',}\CharTok{\textbackslash{}n}\StringTok{bg = 'orangered2"}\NormalTok{, }
+     \DataTypeTok{cex=} \FloatTok{1.5}\NormalTok{, }\DataTypeTok{cex.main =} \FloatTok{1.2}\NormalTok{, }
+     \DataTypeTok{pch =} \DecValTok{21}\NormalTok{, }\DataTypeTok{col =} \StringTok{"black"}\NormalTok{, }\DataTypeTok{bg =} \StringTok{"orangered2"}\NormalTok{)}
+\CommentTok{# Plot 4}
+\KeywordTok{plot}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ x.data, }\DataTypeTok{y =}\NormalTok{ y.data, }\DataTypeTok{xaxt =} \StringTok{"n"}\NormalTok{, }\DataTypeTok{yaxt =} \StringTok{"n"}\NormalTok{, }\DataTypeTok{xlab =} \StringTok{""}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{""}\NormalTok{, }\DataTypeTok{main =} \StringTok{"pch = 25,}\CharTok{\textbackslash{}n}\StringTok{col = 'pink3',}\CharTok{\textbackslash{}n}\StringTok{bg = 'plum3"}\NormalTok{, }
+     \DataTypeTok{cex=} \FloatTok{1.5}\NormalTok{, }\DataTypeTok{cex.main =} \FloatTok{1.2}\NormalTok{, }
+     \DataTypeTok{pch =} \DecValTok{25}\NormalTok{, }\DataTypeTok{col =} \StringTok{"pink3"}\NormalTok{, }\DataTypeTok{bg =} \StringTok{"plum3"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{intro2r_files/figure-latex/unnamed-chunk-27-1.pdf}
+
+  \bibliography{book.bib,packages.bib}
+
+\end{document}

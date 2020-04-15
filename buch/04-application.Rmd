@@ -1,0 +1,143 @@
+# Grundlegende **R**-Funktionen {#kapitel3.3}
+  
+ 
+**R** kommt von Haus aus mit verschiedenen bereits implementierten Funktionen wie die bereits vorgestellten `mean()`, `round()`, `print()` und vielen mehr. 
+Im folgenden Abschnitt werden wir durch ein paar der wichtigsten in **R** implementierten Funktionen durchgehen um dir ein Gefühl dafür zu geben wie du mit **R**-Funktionen umgehen musst und wie du effektiv mit **R** arbeiten kannst.
+  
+  
+## Mathematische Operationen
+
+Bisher weißt du, wie man grundlegende arithmetische Operationen wie `+` (Addition), `-` (Subtraktion) und `*` (Multiplikation) auf Skalaren ausführst. 
+Glücklicherweise macht es **R** genauso einfach, arithmetische Operationen auf numerischen Vektoren durchzuführen:
+
+
+```{r arithBSP}
+
+x <- c(1, 2, 3, 4, 5)
+y <- c(5, 6, 7, 8, 9)
+
+```
+
+Wenn du eine Operation mit einem Vektor und einem Skalar durchführst, wendet **R** den Skalar auf jedes einzelne Element des Vektors an.
+
+```{r vekaddBSP}
+# Addition mit Skalaren
+x + 100
+
+1:5 + 10
+```
+
+Wenn du eine Operation auf zwei Vektoren der gleichen Länge anwenden willst funktioniert es recht einfach. 
+**R** wendet die Operation auf beide Vektoren Element für Element an. 
+Als Beispiel was damit gemeint ist:
+  
+```{r vektormath}
+x + y
+y - x
+(x + y) / 10
+
+```
+## Deskriptive Statistik
+
+Die folgenden Befehle stellen eine Zusammenfassung der für dich im Laufe des Studiums wichtigsten beschreibenden Größen der Statistik.
+
+| Funktion                 | Beispiel                   | Output                                                                             |
+|:-------------------------|:---------------------------|:-----------------------------------------------------------------------------------|
+| `sum(x), product(x)`     |`sum(1:10)`                 |`r sum(1:10)`                                                                       |
+| `min(x), max(x)`         |`min(1:10)`                 |`r min(1:10)`                                                                       |
+| `mean(x), median(x)`     |`mean(1:10)`                | `r mean(1:10)`                                                                     |
+| `sd(x), var(x), range(x)`|`sd(1:10)`                  | `r sd(1:10)`                                                                       |
+| `quantile(x, probs)`     |`quantile(1:10, probs = .2)`|`r quantile(1:10, probs = .2)`                                                      |
+| `summary(x)`             |`summary(1:10)`             |`Min = 1.00. 1st Qu. = 3.25, Median = 5.50, Mean = 5.50, 3rd Qu. = 7.75, Max = 10.0`|
+
+
+
+
+##  Missing Values
+
+Ein Problem, welches auftreten kann, wenn man mit echten Daten arbeitet ist, dass entweder falsche oder gar fehlende Werte auftreten. 
+Sollte in deinen Daten fehlende Werte auftreten, kommen leider vielen grundlegende Statistiken zu nicht verlässlichen Ergebnissen. 
+Der folgende Code gibt beispielsweise NA als Ergebnis zurück, weil ein NA-Wert im Datenvektor vorhanden ist:
+
+```{r}
+a <- c(0, 1, NA, 3, 4)
+mean(a)
+```
+
+Glücklicherweise bietet **R** allerdings eine Möglichkeit, um mit `NAs` in den Daten umzugehen. 
+So kann man entweder bei der Anwendung einer Funktion auf die Daten ein weiteres Argument an die Funktion weitergeben, welche dieser befiehlt, alle `NAs` in den Daten zu ignorieren. 
+Bei diesem Argument handelt es sich um den Ausdruck `na.rm`, so bald dieses gleich `TRUE` gesetzt wird, ignoriert **R** alle `NAs`. 
+Hier ein Beispiel:
+
+```{r}
+
+mean(a, na.rm = TRUE)
+
+```
+
+Oder es gibt die Möglichkeit alle `NAs` in den Daten zu löschen. 
+Hierfür erstellt man einfach ein neues **R**-Objekt, wobei man die **R**-Funktion `na.omit()` auf die Daten anwendet. 
+Als Beispiel:
+
+```{r}
+b <- na.omit(a)
+mean(b)
+``` 
+
+
+  
+## Packages
+
+Sollte die in der base-**R** Version enthaltenen Funktionen nicht für deine Arbeit ausreichen, gibt es zwei Möglichkeiten wie du mit diesem Problem umgehst:
+
+  1. Finden eines **R**-Packages welches Funktionen beinhält welche es erlaubt dein Problem zu lösen
+  2. Eigene Funktionen zu schreiben
+
+Ein Package ist eine Sammlung von Code, welches von einer anderen Person oder Gruppe geschrieben worden ist. Meistens sind Pakete dazu gedacht, ein bestimmtes Problem zu lösen, also Funktionen zusammenzufassen, die mit einem bestimmten datenwissenschaftlichen Problem zusammenhängen (z.B. Data Wrangling, Visualisierung, Inferenz). Jeder kann ein Paket schreiben, und man kann Pakete von vielen verschiedenen Orten bekommen.
+  
+  
+### Wie installiere ich Package?
+
+Die Installation eines Pakets bedeutet einfach das Herunterladen des Packages auf deinen Computer. Es gibt verschiedene Wege, neue Pakete zu installieren. Der einfachste und gebräuchlichste Weg ist das Herunterladen aus dem Comprehensive **R** Archive Network (CRAN). CRAN ist der zentrale Speicherort für **R**-Pakete. Um ein neues **R**-Paket von CRAN zu installieren, kannst du einfach den Befehl `install.packages("name")` ausführen, wobei "name" der Name des Pakets ist.
+  
+```{r packages, eval = FALSE}
+install.packages("name")
+```
+Einige Pakete sind Bündel von Packages. Zum Beispiel das "tidyverse"-Package, welches viele einzelne Pakete für Daten Wrangling und Visualisierung zusammenfasst, so dass du bei der Installation von einem einzelnen Package des tidyverse eigentlich acht verschiedene Packages installierst.
+  
+```{r installationtidyverse, eval = FALSE}
+# Installation des Package Bundles tidyverse
+  install.packages("tidyverse")
+  
+```
+  
+### Wie nutze ich Packages?
+
+Jetzt weißt du wie man Packages installiert, aber wie nutzt du diese? Um Packages zu nutzen welche nicht Teil der Base-R Version sind, müssen diese erst in die aktive **R** Session geladen werden. Hierfür nutzt du einfach den Befehl `library("name")`. Nehmen wir das Beispiel des Packages `ggplot2` welches Teil des tidyverse ist. Dazu nutzt du einfach den folgenden Code:
+    
+```{r, }
+# Laden des Packages ggplot2
+  library(ggplot2)
+```
+Und schon bist du in der Lage die im Package beinhalteten Funktionen zu nutzen um z.B. `ggplot2` um  ansprechendere graphische Analysen anzufertigen:
+    
+```{r ggplotBSP}
+  
+  gg <- ggplot(midwest, aes(x=area, y=poptotal)) + 
+    geom_point(aes(col=state), size=3) +
+    geom_smooth(method="lm", col="firebrick", size=2) + 
+    coord_cartesian(xlim=c(0, 0.1), ylim=c(0, 1000000)) + 
+    labs(title="Fläche Vs Population", 
+         subtitle="US-Midwest dataset", 
+         y="Population", x="Fläche", 
+         caption="Midwest Demographics")
+  
+# Achsenbeschriftung ändern
+  gg + scale_x_continuous(breaks=seq(0, 0.1, 0.01), 
+                          labels = sprintf("%1.2f%%", 
+                                           seq(0, 0.1, 0.01))) + 
+    scale_y_continuous(breaks=seq(0, 1000000, 200000), 
+                       labels = function(x){paste0(x/1000, 'K')})
+  
+```
+

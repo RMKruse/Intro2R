@@ -1,0 +1,5 @@
+book_filename: "intro2r"
+language:
+  ui:
+    chapter_name: "Kapitel "
+delete_merged_file: true

@@ -1,0 +1,37 @@
+--- 
+title: "Einführung in R"
+author: "René-Marcel Kruse"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+---
+
+
+# Einleitung {-}
+
+Dieses Skript ist als Teil der Bachelorveranstaltung Statistik der Wirtschaftswissenschaftlichen Fakultät der Universität Göttingen entstanden und soll Studenten helfen auf eine einfache und direkte Art und Weise die wichtigsten Funktion der Statischen Programmiersprache **R** zu verstehen und anwenden zu können. Der Inhalt soll des Weiteren allen Studierenden helfen welche Interesse oder Fragen hinsichtlich **R**-Programmierung haben.
+
+Die aktuellste Version des Skriptes, sowie die unterliegenden Source-Files, sind im Gitlab-Repository ["intro2r"](https://gitlab.gwdg.de/kruse44/intro2r) zu finden.
+
+Dieses Skript wurde in [Rmarkdown](https://rmarkdown.rstudio.com/) und dem [learnr](https://rstudio.github.io/learnr/)-Package geschrieben und erstellt. Es handelt sich hierbei um einen Work-in-Progress und wird ständig durch Mitarbeiter des Lehrstuhl Statistik der Universität Göttingen erweitert und verbessert. Daher würden die Autoren sich sehr über Verbesserungsvorschläge, neue Ideen oder Fehlermeldungen freuen. Hierfür einfach eine E-Mail an folgende Adresse:
+
+  &emsp;&emsp;&emsp; gitlab+kruse44-intro2r-10509-issue-@gwdg.de 
+
+Das folgende Lehrmaterial ist und wird immer frei sein und kann unter einer [CC-BY-SA 4.0 Lizenz](https://creativecommons.org/licenses/by-sa/4.0/deed.de) verwendet, verbreitet und modifiziert werden.  Der Hauptautor der originalen Version ist [René-Marcel Kruse](https://www.uni-goettingen.de/en/610058.html)  (<a href="https://github.com/RMKruse/">Github@RMKruse</a>, <a href="https://gitlab.gwdg.de/kruse44">gitlab.gwdg@kruse44</a>) unter Mitwirkung von:
+
+* Jasmin Schilling
+
+Dieses Skript bezieht sich auf verschiedene Quellen, deren inhaltliche Aufarbeitung und Darstellung der Thematik, als Grundlage und Bezugspunkt beim Erstellen dieses Skriptes dienten. Hierbei sei vor allem auf folgende Quellen verwiesen, wobei es sich bei allen Quellen um Free-and-Open-Source Lehrinhalte der jeweiligen Autoren handelt:
+
+* [Advanced R](http://adv-r.had.co.nz/) von [Hadley Wickham](http://hadley.nz/)
+* [Merely Useful: Novice R](https://merely-useful.github.io/r/index.html) von [Madeleine Bonsma-Fisher et al.]()
+* [R for Data Science](#https://r4ds.had.co.nz/) von [Hadley Wickham](http://hadley.nz/) und [Garrett Grolemund](https://twitter.com/statgarrett?lang=de)
+* [Hands-On Programming with R](#https://rstudio-education.github.io/hopr/) von [Garrett Grolemund](https://twitter.com/statgarrett?lang=de)
+* [Fundamentals of Data Visualization](#https://serialmentor.com/dataviz/) von [Claus O. Wilke](https://github.com/clauswilke)
+* [YaRrr! The Pirate’s Guide to R](#https://bookdown.org/ndphillips/YaRrr/) von [Nathaniel D. Phillips](https://ndphillips.github.io/index.html)
+
+Des Weiteren diente als Grundlage die Vorlesungsfolien des Statistik-Master Kurses "Introduction to Statistical Programming" von [Paul Wiemann](https://www.uni-goettingen.de/de/525900.html).

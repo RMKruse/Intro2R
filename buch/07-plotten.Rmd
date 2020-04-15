@@ -1,0 +1,312 @@
+# Plotten
+
+Oft ist es wichtig Zusammenhänge nicht nur in Zahlen, sondern ebenso graphisch darzustellen. 
+Das folgende Kapitel zeigt dir wie man verschiedene Arten von wichtigen grundlegenden Plots in **R** erstellt und wie man diese in einer Art und Weise kreiert, sodass man sie ohne Probleme in Seminar- oder Abschlussarbeiten nutzen kann.
+
+Dieses Kapitel wird sich nur mit den in der base-**R** Version enthaltenen Plot-Funktionen befassen. 
+Wir lassen bewusst **R**-Packages wie `ggplot2` oder `plotly` aus, solltest du dich allerdings für die Funktionalität dieser Packages und der damit verbundenen Verbesserung der Möglichkeiten der graphischen Darstellung interessieren, empfehlen wir dir die https://socviz.co/ und https://rkabacoff.github.io/datavis/ . 
+
+  
+
+## Plot-Funktion
+  
+Die einfachste Möglichkeit einen Plot in **R** zuerstellen ist die **R**-base Funktion `plot()` zu nutzen. In der Standard Einstellung erstellt der Befehl ein Streudiagramm basierend auf den beiden Input Vektoren für die Abszissen- sowie der Ordinatenwerte.  
+  
+```{r einfachplot}  
+  
+plot(x = 1:5,
+     y = 1:5)
+
+```
+
+Erklärung der wichtigsten Argumente der `plot()`-Funktion
+
+| Argument             | Beschreibung                                                                                                                                                                      | 
+|:---------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|`x, y`                |Vektoren gleicher Länge, die die x- und y-Werte der Punkte angeben                                                                                                                 |
+|`type`                | Art der Handlung. `"l"` bedeutet Linien, `"p"` bedeutet Punkte, `"b"` bedeutet Linien und Punkte, `"n"` bedeutet kein Plotten                                                     |
+|`main`, `xlab`, `ylab`| Strings, die den Titel der Handlung beschriften, und x- und y-Achsen                                                                                                              |
+|`xlim`, `ylim`        | Grenzen zu den Achsen. Zum Beispiel setzt `xlim = c(0, 100)` das Minimum und das Maximum der x-Achse auf 0 und 100.                                                               |
+|`pch`                 | Eine ganze Zahl, die den Typ der Zeichensymbole angibt oder eine Zeichenkette.                                                                                                    |
+|`col`                 | Hauptfarbe der Plottsymbole. Zum Beispiel wird `col = "rot"` rote Symbole erzeugen.                                                                                               |
+|`cex`                 | Ein numerischer Vektor, der die Größe der Symbole angibt (von 0 bis Inf). Die Standardgröße ist 1. `cex = 4` macht die Punkte sehr groß, während `cex = .5` sie sehr klein macht. |
+
+
+```{r}
+
+plot(x = 1:5,
+     y = 1:5,                        
+     type = "b",                      
+     main = "Etwas hübscherer Plot",
+     xlab = "x-Achse",
+     ylab = "y-Achse ",                
+     col = "red",                     
+     pch = 16,                        
+     cex = 1)                         
+
+```
+
+Generell gilt es hier, wie bei allen anderen Funktionen in **R**, wenn du mehr Information über die Art und Weise der Anwendung von **R**-Funktionen möchtest einfach die `?`-Funktion in Console eingeben oder über den View-Tab in RStudio zu der Funktionsbeschreibung zu gelangen.
+
+
+## Symbole 
+
+Eine der wichtigsten Optionen bei der Anpassung von Grafiken in **R** ist die Wahl der Symbole um Datenpunkte darzustellen. 
+Das dafür genutzte Argumente `pch` erlaubt eine breite Auswahl an verschiedensten Formen an Symbolen. 
+Um ein Symboltyp über `pch` auszuwählen gibt es zwei verschiedene Arten. 
+Entweder durch die Angabe einer Zahl oder einer Zeichenfolge.
+
+Symbole unterscheiden sich in ihrer Form und in der Art wie sie eingefärbt sind. 
+Die Symbole 1 bis 14 haben nur einen Rand und sind immer leer, während die Symbole 15 bis 20 keinen Rand haben und immer gefüllt sind. 
+Die Symbole 21 bis 25 haben sowohl einen Rand als auch eine Füllung. 
+Um die Rahmenfarbe oder den Hintergrund für die Symbole 1 bis 20 festzulegen, verwende das Argument col. 
+Bei den Symbolen 21 bis 25 legst du die Farbe des Rahmens mit col und die Farbe des Hintergrunds mit bg.
+
+
+```{r echo = FALSE, fig.width = 3, fig.height = 3, fig.align= 'center'}
+par(mar  = c(1, 1, 3, 1))
+plot(x = rep(1:5 + .1, each = 5),
+     y = rep(5:1, times = 5),
+     pch = 1:25,
+     xlab = "", ylab = "", xaxt = "n", yaxt = "n",
+     xlim = c(.5, 5.5),
+     ylim = c(0, 6),
+     bty = "n", bg = "gray", cex = 1.4,
+     main = "pch = ?"
+     )
+text(x = rep(1:5, each = 5) - .35,
+     y = rep(5:1, times = 5),
+     labels = 1:25, cex = 1.2
+     )
+```
+
+Hier ein Beispiel dafür wie verschiedene Symbole und Farben Grafiken verändern können:
+
+```{r echo = FALSE}
+par(mfrow = c(2, 2))
+par(mar = c(0, 1, 6, 1))
+x.data <- rnorm(25)
+y.data <- x.data + rnorm(25)
+# Plot 1
+plot(x = x.data, y = y.data, xaxt = "n", yaxt = "n", xlab = "", ylab = "", main = "pch = 2,\ncol = 'blue'", 
+     pch = 2, col = "blue", cex = 1.5, cex.main = 1.2)
+# Plot 2
+plot(x = x.data, y = y.data, xaxt = "n", yaxt = "n", xlab = "", ylab = "", main = "pch = 16,\ncol = 'orchid2'", 
+     pch = 16, col = "orchid2", cex= 1.5, cex.main = 1.2)
+# Plot 3
+plot(x = x.data, y = y.data, xaxt = "n", yaxt = "n", xlab = "", ylab = "", main = "pch = 21,\ncol = 'black',\nbg = 'orangered2", 
+     cex= 1.5, cex.main = 1.2, 
+     pch = 21, col = "black", bg = "orangered2")
+# Plot 4
+plot(x = x.data, y = y.data, xaxt = "n", yaxt = "n", xlab = "", ylab = "", main = "pch = 25,\ncol = 'pink3',\nbg = 'plum3", 
+     cex= 1.5, cex.main = 1.2, 
+     pch = 25, col = "pink3", bg = "plum3")
+```
+
+
+## Low-Level Plot-Funktionen
+
+Die sogenannten Low-Level-Plot Funktionen erlauben es ein Element eines Plots zu verändern oder neue hinzuzufügen. 
+Die wichtigsten und am meisten genutzten sind hierbei die folgenden: 
+
+
+|Funktion                |Ergebnis                                                                |
+|:-----------------------|:-----------------------------------------------------------------------|
+|`points(x, y)`          |Fügt Punkte hinzu                                                       |
+|`abline()`, `segments()`|Fügt Linien oder Segmente hinzu                                         |
+|`arrows()`              |Fügt Pfeile hinzu                                                       |
+|`curve()`               |Fügt eine Kurve hinzu, die eine Funktion darstellt                      |
+|`rect()`,`polygon()`    |Fügt ein Rechteck oder eine willkürliche Form hinzu                     |
+|`text()`, `mtext()`     |Fügt Text innerhalb der Handlung oder an den Rändern der Handlung hinzu |
+|`legend()`              |Fügt eine Legende hinzu                                                 |
+|`axis()`                |Fügt eine Achse hinzu                                                   |
+
+
+Wenn man die Low-Level-Plot Funktionen verstehen will macht es Sinn mit einem leeren Plot anzufangen.
+
+```{r}
+plot(x = 0,                 
+     xlab = "X-Achse", 
+     ylab = "Y-Achse",
+     xlim = c(0, 100), 
+     ylim = c(0, 100),
+     main = "Leerer Plot",
+     type = "n")
+
+```
+
+## points() und Segments()
+
+Um neue Punkte zu einem bestehenden Diagramm hinzuzufügen, verwende die Funktion points(). 
+Die Funktion points() hat viele ähnliche Argumente wie die Funktion plot(), wie x (für die x-Koordinaten), 
+y (für die y-Koordinaten) und Parameter wie col (Randfarbe), cex (Punktgröße) und pch (Symboltyp). 
+
+Ein Beispiel anhand des vorher schon genutzen `mtcars`-Datenset. 
+Für nähere Informationen einfach `?mtcars` eingeben. 
+Hierbei wollen wir alle Autos hinsichtlich ihres Verbrauches in Miles-per-Gallon in Relation zu ihrem Gewicht abbilden. 
+Dabei wollen wir die Autos je nach Gangschaltungstyp (Automatik und Manuell) farblich kennzeichen.
+
+```{r, include = FALSE}
+data(mtcars)
+```
+
+
+```{r}
+plot(x = 0,                 
+     xlab = "X-Achse", 
+     ylab = "Y-Achse",
+     xlim = c(10, 35), 
+     ylim = c(1.2, 5.5),
+     main = "Verbrauch pro 1000 lb",
+     type = "n")
+
+# Punkte hinzufügen Automatik
+points(x = mtcars$mpg[mtcars$am == 0],
+       y = mtcars$wt[mtcars$am == 0],
+       pch = 16,
+       col = "coral2")
+# Punkte hinzufügen Manuell
+points(x = mtcars$mpg[mtcars$am == 1],
+       y = mtcars$wt[mtcars$am == 1],
+       pch = 16,
+       col = "steelblue3")
+```
+
+
+## abline() und segments()
+
+Um einem Plot gerade Linien hinzuzufügen, verwendest du `abline()` oder `segments()`. `abline()` fügt eine Linie über den gesamten Plot hinzu, 
+während `segments()` eine Linie mit definierten Anfangs- und Endpunkten hinzufügt.
+
+|Argument         |Ergebnis                                                                |
+|:----------------|:-----------------------------------------------------------------------|
+|`h, v`           | Positionen der horizontalen und vertikalen Linien (nur für `abline()`) |
+|`x0, y0, x1, y1` | Anfangs- und Endkoordinaten der Linien (nur für `segmente()`)          |
+|`lty`            | Linientyp. 1 = durchgezogen, 2 = gestrichelt, 3 = gepunktet, ...       |
+|`lwd`            | Breite der Linien, die durch eine Zahl angegeben wird                  |
+|`col`            | Line Farbe                                                             |
+
+Um das Aussehen der Linien zu ändern nutzt man das Argument `lty`
+
+```{r ltytypes, echo = FALSE, fig.width = 4, fig.height = 4}
+par(mar = c(3, 0, 6, 0))
+plot(1,
+     xlim = c(0, 7),
+     ylim = c(0, 1),
+     type = "n",
+     xlab = "lty values",
+     ylab = "",
+     xaxt = "n",
+     yaxt = "n",
+     bty = "n",
+     main = "")
+abline(v = 1:6,
+       lty = 1:6,
+       lwd = 2)
+mtext(1:6,
+      side = 3,
+      at = 1:6,
+      cex = 1.5,
+      line = 1)
+mtext("lty = ...",
+      side = 3,
+      at = 3.5,
+      line = 4,
+      cex = 2)
+```
+
+Du kasnnst auch eine Regressionslinie (auch als Linie der besten Anpassung bezeichnet) zu einem Scatterplot hinzufügen, 
+indem du ein Regressionsobjekt eingibst, das mit lm() als Hauptargument für abline() erstellt wurde.
+
+
+```{r}
+plot(x = mtcars$mpg,
+     y = mtcars$wt,
+     pch = 16,
+     col = "coral2")
+
+# Regressionslinie hinzufügen 
+abline(lm(wt ~ mpg, data = mtcars), 
+       lty = 2,
+       col = "steelblue3")
+```
+
+## legend()
+
+Die letzte Low-Level-Plotting-Funktion, die wir im Detail besprechen werden, ist legend(), die eine Legende zu einem Plot hinzufügt.
+
+|Argument               |Ergebnis                                             |
+|:----------------------|:----------------------------------------------------|
+|`x, y`      |Die Koordinaten der Legende - z.B. `x = 0, y = 0` setzen den Text an die Koordinaten (0, 0).               |
+|`labels`    |Ein String-Vektor, der den Text in der Legende angibt. Zum Beispiel wird `legend = c("Männlich, "Weiblich")|
+
+Es ist ebenfalls möglich die Position der Legende durch Worte einzugeben wie `"topright"`, `"topleft"`. 
+Zum Beispiel wird "unten rechts" die Legende immer in der rechten unteren Ecke der Handlung platziert.
+Ein Beispiel an unserem Auto Datenset:
+
+
+```{r}
+plot(x = 0,                 
+     xlab = "X-Achse", 
+     ylab = "Y-Achse",
+     xlim = c(10, 35), 
+     ylim = c(1.2, 5.5),
+     main = "Verbrauch pro 1000 lb",
+     type = "n")
+
+# Punkte hinzufügen Automatik
+points(x = mtcars$mpg[mtcars$am == 0],
+       y = mtcars$wt[mtcars$am == 0],
+       pch = 16,
+       col = "coral2")
+# Punkte hinzufügen Manuell
+points(x = mtcars$mpg[mtcars$am == 1],
+       y = mtcars$wt[mtcars$am == 1],
+       pch = 16,
+       col = "steelblue3")
+## Legende hinzufügen
+legend("topright",
+       legend = c("Automatik", "Manuell"),
+       col = c('coral2', 'steelblue3'),
+       pch = c(16, 16),
+       bg = "white")
+```
+
+
+
+##  Multiple Plots 
+
+Wie du im vorigen Beispiel gehen hast ist es ebenfalls möglich mehrere Plots in einer einzelnen Grafik abzubilden. 
+Hier für gibt’s es bei Base-R Plots zwei Wege dieses zu erreichen. 
+Am häufigsten wird dieses mit dem Parameter `par(mfrow)` und `par(mfcol)` erreicht. 
+Gehen wir diese die beiden Funktionen durch. Mit den Parametern mfrow und mfcol kannst du eine Matrix von Plots in einem Plotraum erstellen. 
+Beide Parameter nehmen einen Vektor der Länge zwei als Argument, also der Anzahl der Zeilen und Spalten in der resultierenden Plottmatrix.
+
+Was ist also der Unterschied zwischen `par(mfrow)` und `par(mfcol)`? Der einzige Unterschied besteht darin, 
+dass `par(mfrow)` sequentielle Plots zeilenweise in die Plottmatrix einfügt, während `par(mfcol)` sie spaltenweise füllt.
+
+Der folgende Code erstellt beispielsweise die 2 x 2-Plotting-Matrix des vorigen Beispiels.
+
+```{r}
+# Es soll eine 2 x 2 Plotmatrix enstehen:
+par(mfrow = c(2, 2))
+par(mar = c(0, 1, 6, 1))
+# Daten erschaffen
+x.data <- rnorm(25)
+y.data <- x.data + rnorm(25)
+# Plot 1
+plot(x = x.data, y = y.data, xaxt = "n", yaxt = "n", xlab = "", ylab = "", main = "pch = 2,\ncol = 'blue'", 
+     pch = 2, col = "blue", cex = 1.5, cex.main = 1.2)
+# Plot 2
+plot(x = x.data, y = y.data, xaxt = "n", yaxt = "n", xlab = "", ylab = "", main = "pch = 16,\ncol = 'orchid2'", 
+     pch = 16, col = "orchid2", cex= 1.5, cex.main = 1.2)
+# Plot 3
+plot(x = x.data, y = y.data, xaxt = "n", yaxt = "n", xlab = "", ylab = "", main = "pch = 21,\ncol = 'black',\nbg = 'orangered2", 
+     cex= 1.5, cex.main = 1.2, 
+     pch = 21, col = "black", bg = "orangered2")
+# Plot 4
+plot(x = x.data, y = y.data, xaxt = "n", yaxt = "n", xlab = "", ylab = "", main = "pch = 25,\ncol = 'pink3',\nbg = 'plum3", 
+     cex= 1.5, cex.main = 1.2, 
+     pch = 25, col = "pink3", bg = "plum3")
+
+``` 

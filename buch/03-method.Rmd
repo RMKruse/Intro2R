@@ -1,0 +1,265 @@
+# Daten Strukturen in R
+
+Um nun mit **R** zu arbeiten, ist es wichtig zu verstehen wie **R** überhaupt mit Daten umgeht, sie speichert und viel mehr noch wie du als Nutzer mit diesen arbeiten kannst. 
+Daher schauen wir uns zu Beginn wir uns erst einmal an in welchen Formen (Strukturen) Daten in **R** gespeichert werden können.
+
+Die Basisdatenstrukturen von **R** können nach ihrer Dimensionalität (1 x d, 2 x d oder n x d) und danach organisiert werden, ob sie homogen (alle Inhalte müssen vom gleichen Typ sein) oder heterogen (die Inhalte können von unterschiedlichem Typ sein) sind. 
+Daraus ergeben sich die fünf in der Datenanalyse an den häufigsten verwendeten Datentypen:
+
+| Dimension      | Homogen             | Heterogen     |
+| -------------- |:--------------------| :-------------|
+| 1 x d          | (Atomarer) Vektor   | List          |
+| 2 x d          | Matrix              |   Data Frame  |
+| n x d          | Array               |    -          |
+
+
+Eine Besonderheit von **R** ist es, dass es keine skalaren Typen kennt. 
+Einzelne Daten die wir als Menschen als Skalare wahrnehmen würden, sind trotzdem für **R** ein Vektor mit der Länge 1.
+
+Wir starten mit dem einfachsten und wahrscheinlich wichtigsten Daten Typ in **R** den Vektoren. 
+Ein Vektor besteht entweder homogen aus der gleichen elementaren oder "atomaren" Klassen (sog. Atomare Vektoren) oder aus heterogen Daten als Listen.
+
+## Vektoren 
+
+Um atomare Vektoren zuerstellen nutzt man den` c()`-Operator, der kurz für combine steht. 
+Hierfür weisen wir einfach einer Variablen einen Vektor dadurch zu, dass wir in die Klammern des `c()`-Operators die jeweiligen homogenen atomaren Objekte aufführen die indem Vektor vorhanden sein sollen.
+
+```{r}
+
+x <- c(1, 2, 3)
+
+```
+
+Nun stellt sich allerdings erst einmal die Frage was sind diese atomaren Objekte? 
+Hierfür gehen wir in diesem Skript die für uns wichtigsten vier sogenannter atomaren (also kleinst mögliche Form) Objekten in **R** durch. 
+Jede der verschiedenen Formen verlangt eine andere Form der Notation. Hierbei handelt es sich um die
+  
+  1. Logical
+  2. Integer
+  3. Double
+  4. Character
+  
+  
+
+  
+### Logicals
+
+Bei den **Logicals** handelt es sich wie der Name schon verrät um logische Aussagen. 
+Logische Werte nehmen einen von zwei möglichen Werten an `TRUE` oder `FALSE`, bzw. deren Abkürzung in Form von `T` und `F`. 
+
+```{r logicalBSP}
+logicalBSP <- c("FALSE", "TRUE", T, F)
+```
+  
+
+### Doubles
+  
+Bei den sogenannten **Doubles** handelt es sich um Gleitkommazahlen Hierbei können die Werte in Decimal-, Scientific- und in Hexadecimalschreibweise angegeben werden. 
+Es gibt außerdem noch besondere Zahlenwerte welche ebenfalls zu den Doubles gehören. 
+Hierbei handelt es sich um Unendlich: `Inf` bzw. `-Inf` und um die Angabe "Not a Number" `NaN`.
+
+```{r doublesBSP}
+doublesBSP <- c(42.42, 13.37, 6.66)
+```  
+### Integers
+ 
+Die **Integers** (oder auch ganzzahlige Zahlen) gehören genau wie die Doubles zu den Zahlenwerten, die Besonderheit in der Notation liegt darin, dass jedem Zahlenwert ein "L" angehängt wird (`1L`)
+
+```{r intBSP}
+integerBSP <- c(2L,6L,1L,3L,3L)
+```  
+
+### Characters
+   
+Die Klasse der **Characters** umfasst alle eingaben von Buchstaben/Zeichenkombinationen. B
+ei der Eingabe werden diese immer mit Anführungsstrichen (" " oder ' ' ) umschlossen. Beispiel: `"Hallo Welt!"`   
+```{r strBSP}
+stringBSP <- c("Hallo Welt!", "Ich bin R Code!")
+```  
+Korrekterweise sei an dieser Stelle auf zwei weitere atomare Objektarten hingewiesen, die complex- und raw-Objekte. 
+Die Klasse "complex" umfasst alle Eingaben von komplexen Zahlen, während die Klasse "raw" nur im Rahmen von binären Daten genutzt wird. 
+Diese beiden Arten werden in komplexeren Zusammenhängen behandelt, welche dir wahrscheinlich nicht im Rahmen der Bachelorveranstaltungen über den Weg laufen und werden daher nicht behandelt. 
+Falls du Interesse an diesem Thema hast empfehlen wir das Buch: [Advanced R von Wickham](https://adv-r.hadley.nz/)
+
+## Listen
+
+Der große Unterschied zwischen atomaren Vektoren und Listen ist der, dass Listen alle möglichen verschiedenen Typen von Daten beinhalten können. 
+Listen werden im Gegensatz zu Vektoren mit dem Befehl `list()` erstellt.
+
+```{r listenBSP1}
+
+lst1 <- list(3L, "Hallo", c(13.9, 42.22223), c(T, F, TRUE))
+
+```
+
+Interessanterweise ist es mögliche Listen in Listen zu speichern, was es ermöglicht sogenannte rekursive Vektoren zuerstellen:
+
+```{r list2}
+
+listception <- list(list(list(list())))
+  
+``` 
+
+
+
+### Eingabe von Vektoren
+
+Die Eingabe von Daten per Hand kann sehr langwierig sein, vor allem wenn du zum Beispiel die Folge von 1 bis 1000 als Vektor speichern willst. 
+Daher gibt es Möglichkeiten Einträge über Befehle von **R** automatisiert zuerstellen. 
+Hier sind ein paar der nützlichsten Methoden, die dir das Arbeiten mit **R** erleichtern:
+
+| Funktion                         | Beispiel                          | Ergebnis                            |
+|:---------------------------------|:----------------------------------|:------------------------------------|
+| `c(a, b, ...)`                   |`c(1, 5, 9)`                       |`r c(1, 5, 9)`                       |
+| `a:b`                            |`1:5`                              |`r 1:5`                              |
+|`seq(from, to, by, length.out)`   |`seq(from = 0, to = 6, by = 2)`    |`r seq(from = 0, to = 6, by = 2)`    |
+|` rep(x, times, each, length.out)`|`rep(c(7, 8), times = 2, each = 2)`|`r rep(c(7, 8), times = 2, each = 2)`|
+
+
+
+### Faktoren
+
+Eine spezielle Form der Vektoren sind Faktoren, welche die Kategorien oder Klassifikationen von
+Vektoren angeben, welche also Kategoriale Daten darstellen. 
+Durch die Anwendung der `factor()`-Funktion auf einen Vektor mit Characters bzw. Zeichenketten (Strings), verwandelt diese einfachen die Zeichen in Faktoren um. 
+Als Beispiel erschaffen wir einen Vektor mit Bezeichnung für Frau (w) und Mann (m) und verwandeln
+diese in Faktoren um.
+
+```{r faktorBSP1}
+
+sex <- rep(c("w","m"), times = 3)
+sex <- factor(sex)
+sex
+
+```
+
+Zwei nützliche Funktionen bei der Arbeit mit Faktoren sind die Checks `class()` und `levels()`. 
+Die erste Funktion fragt einen Vektor welche Art von Daten vorliegen, während die zweite Funktion die verschiedenen Ausprägungen des Faktors darstellt
+
+```{r faktorBSP2}
+
+class(sex)
+levels(sex)
+
+```
+
+Faktoren sind nützlich, wenn du die möglichen Werte kennst, die eine Variable annehmen kann, auch wenn
+du nicht alle Werte in einem bestimmten Datensatz weißt. 
+Die Verwendung eines Faktors anstelle eines Zeichenvektors (Strings) macht es offensichtlich, wenn einige Gruppen keine Beobachtungen enthalten:
+
+```{r faktorBSP3}
+
+summary(sex)
+
+```
+
+
+## Matrizen und Arrays
+
+Atomare Vektoren und Listen sind wie oben bereits erwähnt als 1 x d Objekte zu verstehen. 
+Fügen wir den Objekten nun eine weitere Dimension hinzu, so betrachten wir Matrix und Arrays. 
+Ähnlich zu den Listen existieren zur Erstellung von Matrizen und Arrays eigene Befehle, `matrix()` und respektive `array()`.
+
+
+### Matrizen
+
+Das besondere bei Matrizen im Gegensatz zu den 1-dimensionalen Vektoren und Listen ist, dass sie mehrere Spezifikationen benötigen um erschaffen zu werden. 
+So muss bei der Nutzung von `matrix()` definiert werden, welche Werte in der Matrix zu finden sein sollen, des Weiteren wie die Dimensionen der Matrix auszusehen haben, also die Anzahl der Reihen (`nrow`) und Spalten(`ncol`). 
+Hier ein kleines Beispiel:
+
+```{r matrixBSP}
+
+m <- matrix(c(1,2,3,4,5,6), ncol = 2, nrow = 3)
+m
+
+```
+
+Du kannst sehen, dass zuerst ein Atomarer Vektor mithilfe des Combine-Befehls eingegeben wird, gefolgt von der Anzahl der Spalten mit 2 und der Anzahl der Reihen mit 3.
+
+### Arrays
+ 
+Der Vollständigkeit halber  hier ein Beispiel wie man Arrays in **R** erschafft, allerdings werden keine Arrays in der Einführungs-Vorlesung der Statistik behandelt.
+
+Ähnlich zu der Logik hinter dem Matrix Befehl müssen mehr Eingaben getätigt werden, als nur die Datenpunkte selbst, zu sehen am folgenden Beispiel
+
+```{r arrayBSP}
+
+a <- array(1:12, c(2, 3, 2))
+a
+```
+
+Der Array Befehl folgt folgender Struktur, man definiert zum einen die abzubildenden Datenpunkte, hier in unserem Beispiel durch die Sequenz von 1 bis 12 `1:12`, gefolgt von der Eingabe der gewünschten Dimension, in diesem Beispiel durch den Vektor `c(2,3,2)`resultierend in einem Array mit den Dimensionen 2 x 3 x 2.
+
+### Data.Frames
+
+Data Frames sind die zweidimensionale Version einer Liste. Sie sind sehr flexible und nützliche Datenstruktur für die Datenanalyse. 
+Man kann einen Data Frame als eine Art **R** Äquivalent zur Excel-Tabelle verstehen, da sie Daten in einem ähnlichen Format speichert und darstellt.
+
+Data Frames gruppiert Vektoren in einer zweidimensionalen Tabelle. 
+Jeder Vektor wird zu einer Spalte in der Tabelle. 
+Folglich kann jede Spalte eines Datenrahmens einen anderen Datentyp enthalten.
+
+Die Erstellung eines Data Frames von Hand erfordert viel Arbeit, sodass die Eingabe einfacher über die `data.frame()` Funktion geschieht. 
+Nutze einfach eine beliebige Anzahl von Vektoren, die jeweils durch ein Komma getrennt werden. Jeder Vektor sollte einem Namen entsprechen, der den Vektor beschreibt.
+Wichtig, jeder Vektor muss hierbei die gleiche Länge haben.
+Die `data.frame()`-Funktion macht jeden Vektor zu einer Spalte des neuen Data Frames:
+
+```{r datafBSP}
+
+df <- data.frame(lat = c("51.5454", "53.1438", "35.7034"),
+                 lon = c("9.9055", "8.2138", "139.7532"), 
+                 value = c("Göttingen", "Oldenburg", "Tokyo"))
+df
+
+```
+
+
+
+### Names
+
+Es macht oft Sinn nicht nur den Objekten, sondern auch Variablen in **R**-Objekten Namen zu geben. 
+Ein Beispiel: 
+
+```{r namesBSP1}
+alter <- c(13, 42, 39)
+names(alter)
+
+names(alter) <- c("Chris", "Henny", "Paul")
+alter
+```
+
+Wir haben hier also einen Vektor der verschiedenen Altersangabe beinhält. 
+Wir können nun jedem Eintrag einen Namen mit der `name()`-Funktion zuweisen, in diesem Fall drei verschiedene Namen. 
+Nun wenn der Vektor abgerufen wird, werden die Namen mit den dazugehörigen Alterszahlen angegeben.
+Listen und Matrizen können genauso wie atomare Vektoren Namen aufweisen. 
+Bei Listen ist dies sehr hilfreich, da es so einfacher ist auf bestimmte Elemente in den Listen zuzugreifen.
+
+```{r namesBSP2}
+alter <- list("Chris" = 13, Henny = 42, Paul = 39)
+alter
+```
+
+Wie man hier sehen kann, enthält die Liste nun drei verschiedene Objekte mit jeweils einem anderen Namen.
+Interessanterweise kann man den Namen mit aber auch ohne Anführungszeichen eingeben, dies liegt daran,
+dass wenn der Name aus mehreren Worten besteht der Name von `" "` umschlossen sein muss dies aber bei einem einzigen Wort optional ist.
+Des Weiteren sind die Namen hilfreich auf einzelne Elemente der Liste zuzugreifen.
+
+```{r namesBSP3}
+alter$Chris
+```
+
+Aber zu diesem bestimmten auswählen von Teildaten und Subsets mehr im späteren Abschnitt zur Daten Manipulation.
+Namen bei Matrizen haben auf Grund ihrer anderen Dimensionalität eine andere Struktur. 
+Matrizen haben immer Column (Spalten) und Row (Reihen) spezifische Namen. 
+Diese Namen kann man nur über die Nutzung der Funktionen `colnames()` und `rownames()` festlegen und verändern oder indem man über den Befehl `dimnames()` gleich beide zusammen definiert.
+
+```{r namesBSP4}
+
+m <- matrix(1:4, nrow = 2, ncol = 2)
+dimnames(m) <- list(c("a", "b"), c("c", "d"))
+m
+
+colnames(m) <- c("h", "f")
+rownames(m) <- c("x", "z")
+m
+```
